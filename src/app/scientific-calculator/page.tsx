@@ -4,7 +4,7 @@ import { ScientificCalculator } from '@/components/calculators/ScientificCalcula
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { SocialShare } from '@/components/common/SocialShare';
 import { RelatedCalculators } from '@/components/common/RelatedCalculators';
-import { EmbedCode } from '@/components/common/EmbedCode';
+import { EmbedDialog } from '@/components/shared/EmbedDialog';
 
 const relatedCalculators = [
   {
@@ -95,20 +95,23 @@ export default function ScientificCalculatorPage() {
                   </p>
                 </div>
               </section>
-
-              {/* Embed Code Section */}
-              <EmbedCode calculatorId="scientific" />
             </div>
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Social Share */}
+            {/* Social Share and Embed */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-              <SocialShare
-                url="https://yourcalculatorsite.com/scientific-calculator"
-                title="Scientific Calculator - Your Calculator Hub"
-              />
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold">Share & Embed</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <SocialShare
+                  url="https://yourcalculatorsite.com/scientific-calculator"
+                  title="Scientific Calculator - Your Calculator Hub"
+                />
+                <EmbedDialog title="Scientific Calculator" />
+              </div>
             </div>
 
             {/* Related Calculators */}

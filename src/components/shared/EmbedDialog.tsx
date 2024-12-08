@@ -1,0 +1,71 @@
+'use client';
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Code2, Copy } from "lucide-react"
+import { useToast } from "@/components/ui/use-toast"
+import { usePathname } from "next/navigation"
+
+interface EmbedDialogProps {
+  title: string;
+}
+
+export function EmbedDialog({ title }: EmbedDialogProps) {
+  const { toast } = useToast();
+  const pathname = usePathname();
+  
+  // Get the current URL
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://calculators-hub.com';
+  const currentUrl = `${baseUrl}${pathname}`;
+  
+  // Generate embed code
+  const embedCode = `<iframe 
+  src="${currentUrl}"
+  width="100%" 
+  height="600px" 
+  frameborder="0" 
+  allowtransparency="true"
+  style="border: 1px solid #ddd; border-radius: 8px;"
+></iframe>`;
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(embedCode);
+    toast({
+      title: "Copied!",
+      description: "Embed code copied to clipboard",
+    });
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline" size="icon" className="h-9 w-9">
+          <Code2 className="h-4 w-4" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Embed {title}</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <div className="relative">
+            <pre className="bg-muted rounded-lg p-4 overflow-x-auto text-sm">
+              {embedCode}
+            </pre>
+            <Button
+              size="icon"
+              variant="ghost"
+              className="absolute top-2 right-2"
+              onClick={copyToClipboard}
+            >
+              <Copy className="h-4 w-4" />
+            </Button>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Copy and paste this code into your website to embed this calculator.
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
