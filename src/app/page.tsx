@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { Calculator, HomeIcon, Percent, ArrowRight, Search } from 'lucide-react'
+import { ScientificCalculator } from '@/components/calculators/ScientificCalculator';
 
 const calculatorCategories = [
   {
@@ -100,6 +101,7 @@ const calculatorCategories = [
       { name: 'Lease Calculator', href: '/calculators/lease' },
       { name: 'Budget Calculator', href: '/calculators/budget' },
       { name: 'Commission Calculator', href: '/calculators/commission' },
+      { name: 'Scientific Calculator', href: '/calculators/scientific' },
     ],
   },
 ];
@@ -147,6 +149,25 @@ export default function Home() {
                   className="w-full px-6 py-4 rounded-full text-gray-900 bg-white/95 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                 />
                 <Search className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-12">
+              <div className="text-white">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Try our powerful Scientific Calculator
+                </h2>
+                <p className="text-lg md:text-xl mb-6 opacity-90">
+                  From basic arithmetic to complex calculations, we've got you covered.
+                </p>
+                <Link 
+                  href="/calculators/scientific"
+                  className="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all"
+                >
+                  Open Full Calculator
+                </Link>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                <ScientificCalculator />
               </div>
             </div>
           </div>
