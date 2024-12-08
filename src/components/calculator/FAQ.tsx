@@ -1,13 +1,13 @@
-import { useState, type ReactNode } from 'react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 interface FAQItemProps {
   question: string;
-  answer: ReactNode;
+  answer: React.ReactNode;
 }
 
 export function FAQItem({ question, answer }: FAQItemProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <div className="border-b border-gray-200 dark:border-gray-700">
@@ -33,6 +33,21 @@ export function FAQItem({ question, answer }: FAQItemProps) {
           {answer}
         </div>
       </div>
+    </div>
+  );
+}
+
+interface FAQListProps {
+  items: FAQItemProps[];
+  className?: string;
+}
+
+export function FAQList({ items, className }: FAQListProps) {
+  return (
+    <div className={cn("space-y-2", className)}>
+      {items.map((item, index) => (
+        <FAQItem key={index} {...item} />
+      ))}
     </div>
   );
 }
