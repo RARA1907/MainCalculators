@@ -130,76 +130,65 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+      <div className="w-full max-w-6xl mx-auto mb-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-4 md:p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+          <div className="text-white">
+            <h1 className="text-2xl md:text-3xl font-bold mb-3">
               Your Ultimate Calculator Hub
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Access over 50+ calculators for finance, math, and more
+            <p className="text-base md:text-lg mb-4 opacity-90">
+              From basic arithmetic to complex financial calculations, we've got you covered.
             </p>
-            <div className="max-w-3xl mx-auto">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search calculators..."
-                  value={searchQuery}
-                  onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full px-6 py-4 rounded-full text-gray-900 bg-white/95 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                />
-                <Search className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
-              </div>
+            {/* Search Bar */}
+            <div className="relative mb-4">
+              <input
+                type="text"
+                placeholder="Search calculators..."
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="w-full px-3 py-2 pl-10 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-white/70 text-sm"
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 h-4 w-4" />
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-12">
-              <div className="text-white">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Try our powerful Scientific Calculator
-                </h2>
-                <p className="text-lg md:text-xl mb-6 opacity-90">
-                  From basic arithmetic to complex calculations, we've got you covered.
-                </p>
-                <Link 
-                  href="/calculators/scientific"
-                  className="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all"
-                >
-                  Open Full Calculator
-                </Link>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl shadow-lg">
-                <ScientificCalculator />
-              </div>
+            <Link 
+              href="/calculators/scientific"
+              className="inline-block bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-opacity-90 transition-all"
+            >
+              Open Full Calculator
+            </Link>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl shadow-lg max-w-md mx-auto lg:mx-0 w-full">
+            <div className="transform scale-90">
+              <ScientificCalculator />
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Categories Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredCategories.map((category, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
-            >
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                {category.title}
-              </h2>
-              <ul className="space-y-2">
-                {category.items.map((item, itemIndex) => (
-                  <li key={itemIndex}>
-                    <Link
-                      href={item.href}
-                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 flex items-center"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredCategories.map((category, index) => (
+          <div
+            key={index}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow duration-200 p-4"
+          >
+            <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+              {category.title}
+            </h2>
+            <ul className="space-y-2">
+              {category.items.map((item, itemIndex) => (
+                <li key={itemIndex}>
+                  <Link
+                    href={item.href}
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 flex items-center"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );
