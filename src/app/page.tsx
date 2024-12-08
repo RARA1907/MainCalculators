@@ -3,10 +3,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Calculator, HomeIcon, Percent, ArrowRight, Search } from 'lucide-react'
+import { Calculator, HomeIcon, Percent, ArrowRight } from 'lucide-react'
 import { ScientificCalculator } from '@/components/calculators/ScientificCalculator';
+import { SearchBar } from '@/components/SearchBar';
+import { getAllCalculators } from '@/utils/getAllCalculators';
 
-const categories = [
+export const categories = [
   {
     title: 'Finance Calculators',
     description: 'Comprehensive financial planning tools for all your needs',
@@ -402,6 +404,8 @@ function CategorySection({ category }) {
 }
 
 export default function Home() {
+  const allCalculators = getAllCalculators();
+
   return (
     <div>
       {/* Hero Section */}
@@ -415,6 +419,11 @@ export default function Home() {
             <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
               Access hundreds of free calculators for finance, health, math, and more. Simple, accurate, and always free.
             </p>
+            
+            {/* Search Bar */}
+            <div className="mt-8">
+              <SearchBar allCalculators={allCalculators} />
+            </div>
           </div>
         </div>
       </div>
