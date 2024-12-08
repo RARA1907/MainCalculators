@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import { useState } from 'react';
 import { ChevronDown, ChevronRight, Calculator } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -127,7 +129,7 @@ const calculatorCategories: TreeNode[] = [
 ];
 
 const TreeItem: React.FC<TreeItemProps> = ({ node, level }) => {
-  const [isOpen, setIsOpen] = React.useState(level === 0);
+  const [isOpen, setIsOpen] = useState(level === 0);
   const hasChildren = node.children && node.children.length > 0;
   
   return (
