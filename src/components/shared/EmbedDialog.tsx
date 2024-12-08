@@ -10,8 +10,8 @@ interface EmbedDialogProps {
   title: string;
 }
 
-export function EmbedDialog({ title }: EmbedDialogProps) {
-  const { toast } = useToast();
+export default function EmbedDialog({ title }: EmbedDialogProps) {
+  const { toast } = useToast()
   const pathname = usePathname();
   
   // Get the current URL
@@ -29,10 +29,13 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
 ></iframe>`;
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(embedCode);
-    toast({
-      title: "Copied!",
-      description: "Embed code copied to clipboard",
+    navigator.clipboard.writeText(embedCode).then(() => {
+      toast({
+        variant: "default",
+        title: "Copied to clipboard",
+        description: "The embed code has been copied to your clipboard",
+        duration: 3000,
+      });
     });
   };
 
