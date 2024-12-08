@@ -4,66 +4,88 @@ import { useState } from 'react'
 import LoanCalculator from '../components/calculators/LoanCalculator'
 import MortgageCalculator from '../components/calculators/MortgageCalculator'
 import InvestmentCalculator from '../components/calculators/InvestmentCalculator'
-
-const calculators = [
-  {
-    id: 'loan',
-    name: 'Loan Calculator',
-    description: 'Calculate monthly loan payments and total interest',
-    component: LoanCalculator,
-  },
-  {
-    id: 'mortgage',
-    name: 'Mortgage Calculator',
-    description: 'Calculate monthly mortgage payments including PITI',
-    component: MortgageCalculator,
-  },
-  {
-    id: 'investment',
-    name: 'Investment Calculator',
-    description: 'Project investment growth with compound interest',
-    component: InvestmentCalculator,
-  },
-]
+import * as Tabs from '@radix-ui/react-tabs'
+import { Calculator, Home, PiggyBank } from 'lucide-react'
 
 export default function Home() {
-  const [activeCalculator, setActiveCalculator] = useState('loan')
+  const [activeTab, setActiveTab] = useState('loan')
 
-  const ActiveCalculatorComponent = calculators.find(calc => calc.id === activeCalculator)?.component
+  const calculators = [
+    {
+      id: 'loan',
+      name: 'Loan Calculator',
+      description: 'Calculate monthly loan payments and total interest',
+      component: LoanCalculator,
+      icon: Calculator,
+    },
+    {
+      id: 'mortgage',
+      name: 'Mortgage Calculator',
+      description: 'Calculate monthly mortgage payments including PITI',
+      component: MortgageCalculator,
+      icon: Home,
+    },
+    {
+      id: 'investment',
+      name: 'Investment Calculator',
+      description: 'Plan your investments and calculate potential returns',
+      component: InvestmentCalculator,
+      icon: PiggyBank,
+    },
+  ]
 
   return (
-    <div className="space-y-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">Welcome to MainCalculators.com</h1>
-        <p className="text-xl text-gray-600">Your one-stop destination for all financial calculations</p>
-      </div>
-
-      {/* Calculator Navigation */}
-      <div className="flex justify-center space-x-4">
-        {calculators.map((calc) => (
-          <button
-            key={calc.id}
-            onClick={() => setActiveCalculator(calc.id)}
-            className={`px-4 py-2 rounded-lg transition-colors duration-200
-              ${activeCalculator === calc.id
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-secondary hover:bg-secondary/80'
-              }`}
-          >
-            {calc.name}
-          </button>
-        ))}
-      </div>
-
-      {/* Calculator Description */}
-      <div className="text-center">
-        <p className="text-gray-600">
-          {calculators.find(calc => calc.id === activeCalculator)?.description}
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-bold text-center mb-2 text-gray-900 dark:text-white">
+          Financial Calculators Hub
+        </h1>
+        <p className="text-center mb-8 text-gray-600 dark:text-gray-300">
+          Make informed financial decisions with our suite of calculators
         </p>
-      </div>
 
-      {/* Active Calculator */}
-      {ActiveCalculatorComponent && <ActiveCalculatorComponent />}
-    </div>
+        <Tabs.Root
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="w-full max-w-4xl mx-auto"
+        >
+          <Tabs.List className="flex space-x-1 rounded-xl bg-gray-200 dark:bg-gray-700 p-1 mb-8">
+            {calculators.map((calc) => (
+              <Tabs.Trigger
+                key={calc.id}
+                value={calc.id}
+                className={`w-full rounded-lg py-3 px-4 text-sm font-medium transition-all focus:outline-none flex items-center justify-center gap-2
+                  ${
+                    activeTab === calc.id
+                      ? 'bg-white text-gray-900 shadow dark:bg-gray-800 dark:text-white'
+                      : 'text-gray-600 hover:bg-white/[0.12] hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  }`}
+              >
+                {calc.icon && <calc.icon className="w-4 h-4" />}
+                {calc.name}
+              </Tabs.Trigger>
+            ))}
+          </Tabs.List>
+
+          {calculators.map((calc) => (
+            <Tabs.Content
+              key={calc.id}
+              value={calc.id}
+              className="focus:outline-none"
+            >
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h2 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">
+                  {calc.name}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  {calc.description}
+                </p>
+                <calc.component />
+              </div>
+            </Tabs.Content>
+          ))}
+        </Tabs.Root>
+      </div>
+    </main>
   )
 }
