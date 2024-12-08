@@ -6,350 +6,313 @@ import { useState } from 'react'
 import { Calculator, HomeIcon, Percent, ArrowRight, Search } from 'lucide-react'
 import { ScientificCalculator } from '@/components/calculators/ScientificCalculator';
 
-const calculatorCategories = [
+const categories = [
   {
-    title: 'Mortgage and Real Estate',
-    items: [
-      { name: 'Mortgage Calculator', href: '/mortgage-calculator' },
-      { name: 'Amortization Calculator', href: '/amortization-calculator' },
-      { name: 'Mortgage Payoff Calculator', href: '/mortgage-payoff-calculator' },
-      { name: 'House Affordability Calculator', href: '/house-affordability-calculator' },
-      { name: 'Rent Calculator', href: '/rent-calculator' },
-      { name: 'Debt-to-Income Ratio Calculator', href: '/debt-to-income-ratio-calculator' },
-      { name: 'Real Estate Calculator', href: '/real-estate-calculator' },
-      { name: 'Refinance Calculator', href: '/refinance-calculator' },
-      { name: 'Rental Property Calculator', href: '/rental-property-calculator' },
-      { name: 'APR Calculator', href: '/apr-calculator' },
-      { name: 'FHA Loan Calculator', href: '/fha-loan-calculator' },
-      { name: 'VA Mortgage Calculator', href: '/va-mortgage-calculator' },
-      { name: 'Down Payment Calculator', href: '/down-payment-calculator' },
-      { name: 'Rent vs. Buy Calculator', href: '/rent-vs-buy-calculator' },
-    ],
+    title: 'Finance Calculators',
+    description: 'Comprehensive financial planning tools for all your needs',
+    subcategories: [
+      {
+        title: 'Mortgage & Real Estate',
+        icon: '🏠',
+        items: [
+          { name: 'Mortgage Calculator', href: '/mortgage-calculator' },
+          { name: 'Amortization Calculator', href: '/amortization-calculator' },
+          { name: 'Mortgage Payoff Calculator', href: '/mortgage-payoff-calculator' },
+          { name: 'House Affordability Calculator', href: '/house-affordability-calculator' },
+          { name: 'Rent Calculator', href: '/rent-calculator' },
+          { name: 'Debt-to-Income Ratio Calculator', href: '/debt-to-income-ratio-calculator' },
+          { name: 'Real Estate Calculator', href: '/real-estate-calculator' },
+          { name: 'Refinance Calculator', href: '/refinance-calculator' },
+          { name: 'Rental Property Calculator', href: '/rental-property-calculator' },
+          { name: 'APR Calculator', href: '/apr-calculator' },
+          { name: 'FHA Loan Calculator', href: '/fha-loan-calculator' },
+          { name: 'VA Mortgage Calculator', href: '/va-mortgage-calculator' },
+          { name: 'Down Payment Calculator', href: '/down-payment-calculator' },
+          { name: 'Rent vs. Buy Calculator', href: '/rent-vs-buy-calculator' }
+        ]
+      },
+      {
+        title: 'Investment & Trading',
+        icon: '📈',
+        items: [
+          { name: 'Investment Calculator', href: '/investment-calculator' },
+          { name: 'Interest Calculator', href: '/interest-calculator' },
+          { name: 'Finance Calculator', href: '/finance-calculator' },
+          { name: 'Compound Interest Calculator', href: '/compound-interest-calculator' },
+          { name: 'Interest Rate Calculator', href: '/interest-rate-calculator' },
+          { name: 'Simple Interest Calculator', href: '/simple-interest-calculator' },
+          { name: 'CD Calculator', href: '/cd-calculator' },
+          { name: 'Bond Calculator', href: '/bond-calculator' },
+          { name: 'Average Return Calculator', href: '/average-return-calculator' },
+          { name: 'ROI Calculator', href: '/roi-calculator' },
+          { name: 'Payback Period Calculator', href: '/payback-period-calculator' },
+          { name: 'Present Value Calculator', href: '/present-value-calculator' },
+          { name: 'Future Value Calculator', href: '/future-value-calculator' },
+          { name: 'Stock Calculator', href: '/stock-calculator' },
+          { name: 'Dividend Calculator', href: '/dividend-calculator' },
+          { name: 'Capital Gains Calculator', href: '/capital-gains-calculator' }
+        ]
+      },
+      {
+        title: 'Tax & Salary',
+        icon: '💰',
+        items: [
+          { name: 'Income Tax Calculator', href: '/income-tax-calculator' },
+          { name: 'Take Home Pay Calculator', href: '/take-home-pay-calculator' },
+          { name: 'Salary Calculator', href: '/salary-calculator' },
+          { name: 'VAT Calculator', href: '/vat-calculator' },
+          { name: 'Sales Tax Calculator', href: '/sales-tax-calculator' },
+          { name: 'Marriage Tax Calculator', href: '/marriage-tax-calculator' },
+          { name: 'Estate Tax Calculator', href: '/estate-tax-calculator' },
+          { name: 'Take-Home-Paycheck Calculator', href: '/take-home-paycheck-calculator' }
+        ]
+      },
+      {
+        title: 'Retirement & Savings',
+        icon: '👴',
+        items: [
+          { name: 'Retirement Calculator', href: '/retirement-calculator' },
+          { name: '401k Calculator', href: '/401k-calculator' },
+          { name: 'Savings Calculator', href: '/savings-calculator' },
+          { name: 'Pension Calculator', href: '/pension-calculator' },
+          { name: 'Social Security Calculator', href: '/social-security-calculator' },
+          { name: 'Annuity Calculator', href: '/annuity-calculator' },
+          { name: 'Annuity Payout Calculator', href: '/annuity-payout-calculator' },
+          { name: 'Roth IRA Calculator', href: '/roth-ira-calculator' },
+          { name: 'IRA Calculator', href: '/ira-calculator' },
+          { name: 'RMD Calculator', href: '/rmd-calculator' }
+        ]
+      },
+      {
+        title: 'Loans & Credit',
+        icon: '💳',
+        items: [
+          { name: 'Loan Calculator', href: '/loan-calculator' },
+          { name: 'Payment Calculator', href: '/payment-calculator' },
+          { name: 'Auto Loan Calculator', href: '/auto-loan-calculator' },
+          { name: 'Cash Back or Low Interest Calculator', href: '/cash-back-or-low-interest-calculator' },
+          { name: 'Auto Lease Calculator', href: '/auto-lease-calculator' },
+          { name: 'Credit Card Calculator', href: '/credit-card-calculator' },
+          { name: 'Credit Cards Payoff Calculator', href: '/credit-cards-payoff-calculator' },
+          { name: 'Debt Payoff Calculator', href: '/debt-payoff-calculator' },
+          { name: 'Debt Consolidation Calculator', href: '/debt-consolidation-calculator' },
+          { name: 'Repayment Calculator', href: '/repayment-calculator' },
+          { name: 'Student Loan Calculator', href: '/student-loan-calculator' },
+          { name: 'Business Loan Calculator', href: '/business-loan-calculator' },
+          { name: 'Personal Loan Calculator', href: '/personal-loan-calculator' },
+          { name: 'Lease Calculator', href: '/lease-calculator' }
+        ]
+      },
+      {
+        title: 'Business & Other',
+        icon: '💼',
+        items: [
+          { name: 'Currency Calculator', href: '/currency-calculator' },
+          { name: 'Inflation Calculator', href: '/inflation-calculator' },
+          { name: 'College Cost Calculator', href: '/college-cost-calculator' },
+          { name: 'Depreciation Calculator', href: '/depreciation-calculator' },
+          { name: 'Margin Calculator', href: '/margin-calculator' },
+          { name: 'Discount Calculator', href: '/discount-calculator' },
+          { name: 'Budget Calculator', href: '/budget-calculator' },
+          { name: 'Commission Calculator', href: '/commission-calculator' },
+          { name: 'Unit Converter', href: '/unit-converter' },
+          { name: 'Date Calculator', href: '/date-calculator' }
+        ]
+      }
+    ]
   },
   {
-    title: 'Auto',
-    items: [
-      { name: 'Auto Loan Calculator', href: '/auto-loan-calculator' },
-      { name: 'Cash Back or Low Interest Calculator', href: '/cash-back-or-low-interest-calculator' },
-      { name: 'Auto Lease Calculator', href: '/auto-lease-calculator' },
-    ],
+    title: 'Health & Fitness Calculators',
+    description: 'Tools for tracking health, fitness, and wellness goals',
+    subcategories: [
+      {
+        title: 'Fitness & Body',
+        icon: '💪',
+        items: [
+          { name: 'BMI Calculator', href: '/bmi-calculator' },
+          { name: 'Body Fat Calculator', href: '/body-fat-calculator' },
+          { name: 'BMR Calculator', href: '/bmr-calculator' },
+          { name: 'Ideal Weight Calculator', href: '/ideal-weight-calculator' },
+          { name: 'Calories Burned Calculator', href: '/calories-burned-calculator' },
+          { name: 'One Rep Max Calculator', href: '/one-rep-max-calculator' },
+          { name: 'Pace Calculator', href: '/pace-calculator' },
+          { name: 'Army Body Fat Calculator', href: '/army-body-fat-calculator' },
+          { name: 'Lean Body Mass Calculator', href: '/lean-body-mass-calculator' },
+          { name: 'Healthy Weight Calculator', href: '/healthy-weight-calculator' },
+          { name: 'Body Type Calculator', href: '/body-type-calculator' },
+          { name: 'Body Surface Area Calculator', href: '/body-surface-area-calculator' }
+        ]
+      },
+      {
+        title: 'Nutrition & Diet',
+        icon: '🥗',
+        items: [
+          { name: 'Calorie Calculator', href: '/calorie-calculator' },
+          { name: 'Macro Calculator', href: '/macro-calculator' },
+          { name: 'Protein Calculator', href: '/protein-calculator' },
+          { name: 'TDEE Calculator', href: '/tdee-calculator' },
+          { name: 'Carbohydrate Calculator', href: '/carbohydrate-calculator' },
+          { name: 'Fat Intake Calculator', href: '/fat-intake-calculator' },
+          { name: 'BAC Calculator', href: '/bac-calculator' }
+        ]
+      },
+      {
+        title: 'Pregnancy & Fertility',
+        icon: '👶',
+        items: [
+          { name: 'Pregnancy Calculator', href: '/pregnancy-calculator' },
+          { name: 'Due Date Calculator', href: '/due-date-calculator' },
+          { name: 'Ovulation Calculator', href: '/ovulation-calculator' },
+          { name: 'Conception Calculator', href: '/conception-calculator' },
+          { name: 'Period Calculator', href: '/period-calculator' },
+          { name: 'Pregnancy Weight Gain Calculator', href: '/pregnancy-weight-gain-calculator' },
+          { name: 'Pregnancy Conception Calculator', href: '/pregnancy-conception-calculator' }
+        ]
+      },
+      {
+        title: 'Medical',
+        icon: '🏥',
+        items: [
+          { name: 'GFR Calculator', href: '/gfr-calculator' }
+        ]
+      }
+    ]
   },
   {
-    title: 'Investment',
-    items: [
-      { name: 'Interest Calculator', href: '/interest-calculator' },
-      { name: 'Investment Calculator', href: '/investment-calculator' },
-      { name: 'Finance Calculator', href: '/finance-calculator' },
-      { name: 'Compound Interest Calculator', href: '/compound-interest-calculator' },
-      { name: 'Interest Rate Calculator', href: '/interest-rate-calculator' },
-      { name: 'Savings Calculator', href: '/savings-calculator' },
-      { name: 'Simple Interest Calculator', href: '/simple-interest-calculator' },
-      { name: 'CD Calculator', href: '/cd-calculator' },
-      { name: 'Bond Calculator', href: '/bond-calculator' },
-      { name: 'Average Return Calculator', href: '/average-return-calculator' },
-      { name: 'ROI Calculator', href: '/roi-calculator' },
-      { name: 'Payback Period Calculator', href: '/payback-period-calculator' },
-      { name: 'Present Value Calculator', href: '/present-value-calculator' },
-      { name: 'Future Value Calculator', href: '/future-value-calculator' },
-    ],
-  },
-  {
-    title: 'Health & Fitness',
-    items: [
-      // Fitness Calculators
-      { name: 'BMI Calculator', href: '/bmi-calculator', category: 'Fitness' },
-      { name: 'Calorie Calculator', href: '/calorie-calculator', category: 'Fitness' },
-      { name: 'Body Fat Calculator', href: '/body-fat-calculator', category: 'Fitness' },
-      { name: 'BMR Calculator', href: '/bmr-calculator', category: 'Fitness' },
-      { name: 'Ideal Weight Calculator', href: '/ideal-weight-calculator', category: 'Fitness' },
-      { name: 'Pace Calculator', href: '/pace-calculator', category: 'Fitness' },
-      { name: 'Army Body Fat Calculator', href: '/army-body-fat-calculator', category: 'Fitness' },
-      { name: 'Lean Body Mass Calculator', href: '/lean-body-mass-calculator', category: 'Fitness' },
-      { name: 'Healthy Weight Calculator', href: '/healthy-weight-calculator', category: 'Fitness' },
-      { name: 'Calories Burned Calculator', href: '/calories-burned-calculator', category: 'Fitness' },
-      { name: 'One Rep Max Calculator', href: '/one-rep-max-calculator', category: 'Fitness' },
-      
-      // Pregnancy Calculators
-      { name: 'Pregnancy Calculator', href: '/pregnancy-calculator', category: 'Pregnancy' },
-      { name: 'Pregnancy Weight Gain Calculator', href: '/pregnancy-weight-gain-calculator', category: 'Pregnancy' },
-      { name: 'Pregnancy Conception Calculator', href: '/pregnancy-conception-calculator', category: 'Pregnancy' },
-      { name: 'Due Date Calculator', href: '/due-date-calculator', category: 'Pregnancy' },
-      { name: 'Ovulation Calculator', href: '/ovulation-calculator', category: 'Pregnancy' },
-      { name: 'Conception Calculator', href: '/conception-calculator', category: 'Pregnancy' },
-      { name: 'Period Calculator', href: '/period-calculator', category: 'Pregnancy' },
-      
-      // Nutrition & Other Health Calculators
-      { name: 'Macro Calculator', href: '/macro-calculator', category: 'Other' },
-      { name: 'Carbohydrate Calculator', href: '/carbohydrate-calculator', category: 'Other' },
-      { name: 'Protein Calculator', href: '/protein-calculator', category: 'Other' },
-      { name: 'Fat Intake Calculator', href: '/fat-intake-calculator', category: 'Other' },
-      { name: 'TDEE Calculator', href: '/tdee-calculator', category: 'Other' },
-      { name: 'GFR Calculator', href: '/gfr-calculator', category: 'Other' },
-      { name: 'Body Type Calculator', href: '/body-type-calculator', category: 'Other' },
-      { name: 'Body Surface Area Calculator', href: '/body-surface-area-calculator', category: 'Other' },
-      { name: 'BAC Calculator', href: '/bac-calculator', category: 'Other' }
-    ],
-  },
-  {
-    title: 'Mathematics',
-    items: [
-      // Basic Math & Numbers
-      { name: 'Scientific Calculator', href: '/scientific-calculator', category: 'Basic' },
-      { name: 'Fraction Calculator', href: '/fraction-calculator', category: 'Basic' },
-      { name: 'Percentage Calculator', href: '/percentage-calculator', category: 'Basic' },
-      { name: 'Random Number Generator', href: '/random-number-generator', category: 'Basic' },
-      { name: 'Percent Error Calculator', href: '/percent-error-calculator', category: 'Basic' },
-      { name: 'Exponent Calculator', href: '/exponent-calculator', category: 'Basic' },
-      { name: 'Binary Calculator', href: '/binary-calculator', category: 'Basic' },
-      { name: 'Hex Calculator', href: '/hex-calculator', category: 'Basic' },
-      { name: 'Half-Life Calculator', href: '/half-life-calculator', category: 'Basic' },
-      { name: 'Quadratic Formula Calculator', href: '/quadratic-formula-calculator', category: 'Basic' },
-      { name: 'Log Calculator', href: '/log-calculator', category: 'Basic' },
-      { name: 'Ratio Calculator', href: '/ratio-calculator', category: 'Basic' },
-      { name: 'Root Calculator', href: '/root-calculator', category: 'Basic' },
-      { name: 'Least Common Multiple Calculator', href: '/lcm-calculator', category: 'Basic' },
-      { name: 'Greatest Common Factor Calculator', href: '/gcf-calculator', category: 'Basic' },
-      { name: 'Factor Calculator', href: '/factor-calculator', category: 'Basic' },
-      { name: 'Rounding Calculator', href: '/rounding-calculator', category: 'Basic' },
-      { name: 'Matrix Calculator', href: '/matrix-calculator', category: 'Basic' },
-      { name: 'Scientific Notation Calculator', href: '/scientific-notation-calculator', category: 'Basic' },
-      { name: 'Big Number Calculator', href: '/big-number-calculator', category: 'Basic' },
-
-      // Statistics
-      { name: 'Standard Deviation Calculator', href: '/standard-deviation-calculator', category: 'Statistics' },
-      { name: 'Number Sequence Calculator', href: '/number-sequence-calculator', category: 'Statistics' },
-      { name: 'Sample Size Calculator', href: '/sample-size-calculator', category: 'Statistics' },
-      { name: 'Probability Calculator', href: '/probability-calculator', category: 'Statistics' },
-      { name: 'Statistics Calculator', href: '/statistics-calculator', category: 'Statistics' },
-      { name: 'Mean, Median, Mode, Range Calculator', href: '/mean-median-mode-range-calculator', category: 'Statistics' },
-      { name: 'Permutation and Combination Calculator', href: '/permutation-combination-calculator', category: 'Statistics' },
-      { name: 'Z-score Calculator', href: '/z-score-calculator', category: 'Statistics' },
-      { name: 'Confidence Interval Calculator', href: '/confidence-interval-calculator', category: 'Statistics' },
-
-      // Geometry
-      { name: 'Triangle Calculator', href: '/triangle-calculator', category: 'Geometry' },
-      { name: 'Volume Calculator', href: '/volume-calculator', category: 'Geometry' },
-      { name: 'Slope Calculator', href: '/slope-calculator', category: 'Geometry' },
-      { name: 'Area Calculator', href: '/area-calculator', category: 'Geometry' },
-      { name: 'Distance Calculator', href: '/distance-calculator', category: 'Geometry' },
-      { name: 'Circle Calculator', href: '/circle-calculator', category: 'Geometry' },
-      { name: 'Surface Area Calculator', href: '/surface-area-calculator', category: 'Geometry' },
-      { name: 'Pythagorean Theorem Calculator', href: '/pythagorean-theorem-calculator', category: 'Geometry' },
-      { name: 'Right Triangle Calculator', href: '/right-triangle-calculator', category: 'Geometry' }
-    ],
-  },
-  {
-    title: 'Retirement',
-    items: [
-      { name: 'Retirement Calculator', href: '/retirement-calculator' },
-      { name: '401K Calculator', href: '/401k-calculator' },
-      { name: 'Pension Calculator', href: '/pension-calculator' },
-      { name: 'Social Security Calculator', href: '/social-security-calculator' },
-      { name: 'Annuity Calculator', href: '/annuity-calculator' },
-      { name: 'Annuity Payout Calculator', href: '/annuity-payout-calculator' },
-      { name: 'Roth IRA Calculator', href: '/roth-ira-calculator' },
-      { name: 'IRA Calculator', href: '/ira-calculator' },
-      { name: 'RMD Calculator', href: '/rmd-calculator' },
-    ],
-  },
-  {
-    title: 'Tax and Salary',
-    items: [
-      { name: 'Income Tax Calculator', href: '/income-tax-calculator' },
-      { name: 'Salary Calculator', href: '/salary-calculator' },
-      { name: 'Marriage Tax Calculator', href: '/marriage-tax-calculator' },
-      { name: 'Estate Tax Calculator', href: '/estate-tax-calculator' },
-      { name: 'Take-Home-Paycheck Calculator', href: '/take-home-paycheck-calculator' },
-    ],
-  },
-  {
-    title: 'Other',
-    items: [
-      { name: 'Loan Calculator', href: '/loan-calculator' },
-      { name: 'Payment Calculator', href: '/payment-calculator' },
-      { name: 'Currency Calculator', href: '/currency-calculator' },
-      { name: 'Inflation Calculator', href: '/inflation-calculator' },
-      { name: 'Sales Tax Calculator', href: '/sales-tax-calculator' },
-      { name: 'Credit Card Calculator', href: '/credit-card-calculator' },
-      { name: 'Credit Cards Payoff Calculator', href: '/credit-cards-payoff-calculator' },
-      { name: 'Debt Payoff Calculator', href: '/debt-payoff-calculator' },
-      { name: 'Debt Consolidation Calculator', href: '/debt-consolidation-calculator' },
-      { name: 'Repayment Calculator', href: '/repayment-calculator' },
-      { name: 'Student Loan Calculator', href: '/student-loan-calculator' },
-      { name: 'College Cost Calculator', href: '/college-cost-calculator' },
-      { name: 'VAT Calculator', href: '/vat-calculator' },
-      { name: 'Depreciation Calculator', href: '/depreciation-calculator' },
-      { name: 'Margin Calculator', href: '/margin-calculator' },
-      { name: 'Discount Calculator', href: '/discount-calculator' },
-      { name: 'Business Loan Calculator', href: '/business-loan-calculator' },
-      { name: 'Personal Loan Calculator', href: '/personal-loan-calculator' },
-      { name: 'Lease Calculator', href: '/lease-calculator' },
-      { name: 'Budget Calculator', href: '/budget-calculator' },
-      { name: 'Commission Calculator', href: '/commission-calculator' },
-      { name: 'Scientific Calculator', href: '/scientific-calculator' },
-      { name: 'Unit Converter', href: '/unit-converter' },
-      { name: 'Percentage Calculator', href: '/percentage-calculator' },
-      { name: 'Date Calculator', href: '/date-calculator' }
-    ],
-  },
+    title: 'Mathematics Calculators',
+    description: 'Advanced mathematical tools for calculations and analysis',
+    subcategories: [
+      {
+        title: 'Basic Math & Numbers',
+        icon: '🔢',
+        items: [
+          { name: 'Scientific Calculator', href: '/scientific-calculator' },
+          { name: 'Fraction Calculator', href: '/fraction-calculator' },
+          { name: 'Percentage Calculator', href: '/percentage-calculator' },
+          { name: 'Random Number Generator', href: '/random-number-generator' },
+          { name: 'Percent Error Calculator', href: '/percent-error-calculator' },
+          { name: 'Exponent Calculator', href: '/exponent-calculator' },
+          { name: 'Binary Calculator', href: '/binary-calculator' },
+          { name: 'Hex Calculator', href: '/hex-calculator' },
+          { name: 'Half-Life Calculator', href: '/half-life-calculator' },
+          { name: 'Quadratic Formula Calculator', href: '/quadratic-formula-calculator' },
+          { name: 'Log Calculator', href: '/log-calculator' },
+          { name: 'Ratio Calculator', href: '/ratio-calculator' },
+          { name: 'Root Calculator', href: '/root-calculator' },
+          { name: 'Least Common Multiple Calculator', href: '/lcm-calculator' },
+          { name: 'Greatest Common Factor Calculator', href: '/gcf-calculator' },
+          { name: 'Factor Calculator', href: '/factor-calculator' },
+          { name: 'Rounding Calculator', href: '/rounding-calculator' },
+          { name: 'Matrix Calculator', href: '/matrix-calculator' },
+          { name: 'Scientific Notation Calculator', href: '/scientific-notation-calculator' },
+          { name: 'Big Number Calculator', href: '/big-number-calculator' }
+        ]
+      },
+      {
+        title: 'Statistics & Probability',
+        icon: '📊',
+        items: [
+          { name: 'Statistics Calculator', href: '/statistics-calculator' },
+          { name: 'Standard Deviation Calculator', href: '/standard-deviation-calculator' },
+          { name: 'Number Sequence Calculator', href: '/number-sequence-calculator' },
+          { name: 'Sample Size Calculator', href: '/sample-size-calculator' },
+          { name: 'Probability Calculator', href: '/probability-calculator' },
+          { name: 'Mean, Median, Mode, Range Calculator', href: '/mean-median-mode-range-calculator' },
+          { name: 'Permutation and Combination Calculator', href: '/permutation-combination-calculator' },
+          { name: 'Z-score Calculator', href: '/z-score-calculator' },
+          { name: 'Confidence Interval Calculator', href: '/confidence-interval-calculator' }
+        ]
+      },
+      {
+        title: 'Geometry & Measurements',
+        icon: '📐',
+        items: [
+          { name: 'Area Calculator', href: '/area-calculator' },
+          { name: 'Volume Calculator', href: '/volume-calculator' },
+          { name: 'Triangle Calculator', href: '/triangle-calculator' },
+          { name: 'Circle Calculator', href: '/circle-calculator' },
+          { name: 'Pythagorean Theorem Calculator', href: '/pythagorean-theorem-calculator' },
+          { name: 'Slope Calculator', href: '/slope-calculator' },
+          { name: 'Distance Calculator', href: '/distance-calculator' },
+          { name: 'Surface Area Calculator', href: '/surface-area-calculator' },
+          { name: 'Right Triangle Calculator', href: '/right-triangle-calculator' }
+        ]
+      }
+    ]
+  }
 ];
 
+function CategorySection({ category }) {
+  return (
+    <div className="py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+            {category.title}
+          </h2>
+          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-400 sm:mt-4">
+            {category.description}
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {category.subcategories.map((subcategory) => (
+            <div
+              key={subcategory.title}
+              className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="px-4 py-5 sm:p-6">
+                <div className="flex items-center">
+                  <span className="text-3xl mr-3">{subcategory.icon}</span>
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                    {subcategory.title}
+                  </h3>
+                </div>
+                <div className="mt-4">
+                  <ul className="space-y-2">
+                    {subcategory.items.map((item) => (
+                      <li key={item.name}>
+                        <Link
+                          href={item.href}
+                          className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredCategories, setFilteredCategories] = useState(calculatorCategories);
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    const filtered = calculatorCategories.filter(category =>
-      category.title.toLowerCase().includes(query.toLowerCase()) ||
-      category.items.some(item =>
-        item.name.toLowerCase().includes(query.toLowerCase())
-      )
-    );
-    setFilteredCategories(filtered);
-  };
-
-  // Health kategorisi için özel görüntüleme bileşeni
-  function HealthCalculatorsList({ items }) {
-    const categories = {
-      Fitness: 'Fitness & Body Measurements',
-      Pregnancy: 'Pregnancy & Fertility',
-      Other: 'Nutrition & Other Health'
-    };
-
-    return (
-      <div className="space-y-4">
-        {Object.entries(categories).map(([category, title]) => {
-          const categoryItems = items.filter(item => item.category === category);
-          if (categoryItems.length === 0) return null;
-
-          return (
-            <div key={category} className="space-y-2">
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                {title}
-              </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                {categoryItems.map((item, index) => (
-                  <li key={index}>
-                    <Link
-                      href={item.href}
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
-  // Math kategorisi için özel görüntüleme bileşeni
-  function MathCalculatorsList({ items }) {
-    const categories = {
-      Basic: 'Basic Math & Numbers',
-      Statistics: 'Statistics & Probability',
-      Geometry: 'Geometry & Measurements'
-    };
-
-    return (
-      <div className="space-y-4">
-        {Object.entries(categories).map(([category, title]) => {
-          const categoryItems = items.filter(item => item.category === category);
-          if (categoryItems.length === 0) return null;
-
-          return (
-            <div key={category} className="space-y-2">
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                {title}
-              </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                {categoryItems.map((item, index) => (
-                  <li key={index}>
-                    <Link
-                      href={item.href}
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
   return (
     <div>
       {/* Hero Section */}
-      <div className="w-full max-w-6xl mx-auto mb-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-4 md:p-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-          <div className="text-white">
-            <h1 className="text-2xl md:text-3xl font-bold mb-3">
-              Your Ultimate Calculator Hub
+      <div className="bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+              <span className="block">Free Online Calculators</span>
+              <span className="block text-blue-600">For Every Need</span>
             </h1>
-            <p className="text-base md:text-lg mb-4 opacity-90">
-              From basic arithmetic to complex financial calculations, we've got you covered.
+            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+              Access hundreds of free calculators for finance, health, math, and more. Simple, accurate, and always free.
             </p>
-            {/* Search Bar */}
-            <div className="relative mb-4">
-              <input
-                type="text"
-                placeholder="Search calculators..."
-                value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
-                className="w-full px-3 py-2 pl-10 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 text-white placeholder-white/70 text-sm"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70 h-4 w-4" />
-            </div>
-            <Link 
-              href="/scientific-calculator"
-              className="inline-block bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-opacity-90 transition-all"
-            >
-              Open Full Calculator
-            </Link>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl shadow-lg max-w-md mx-auto lg:mx-0 w-full">
-            <div className="transform scale-90">
-              <ScientificCalculator />
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Categories Grid */}
-      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredCategories.map((category) => (
-          <div
-            key={category.title}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transition-shadow duration-200 p-4"
-          >
-            <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-              {category.title}
-            </h2>
-            {category.title === 'Health & Fitness' ? (
-              <HealthCalculatorsList items={category.items} />
-            ) : category.title === 'Mathematics' ? (
-              <MathCalculatorsList items={category.items} />
-            ) : (
-              <ul className="space-y-1">
-                {category.items.map((item) => (
-                  <li
-                    key={item.name}
-                    className="text-sm text-blue-600 dark:text-blue-400"
-                  >
-                    <Link href={item.href}>{item.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+      {/* Categories Sections */}
+      <div className="bg-gray-50 dark:bg-gray-900">
+        {categories.map((category) => (
+          <CategorySection key={category.title} category={category} />
         ))}
       </div>
     </div>
