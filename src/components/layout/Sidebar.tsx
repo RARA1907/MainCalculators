@@ -180,7 +180,7 @@ const TreeItem: React.FC<TreeItemProps> = ({ node, level }) => {
         {node.link ? (
           <Link 
             href={node.link} 
-            className="text-sm hover:text-blue-500 truncate"
+            className="text-sm text-[#0EA5E9] hover:text-[#7DD3FC] active:text-[#F59E0B] transition-colors duration-200 truncate"
             onClick={(e) => e.stopPropagation()}
           >
             {node.name}
@@ -188,7 +188,7 @@ const TreeItem: React.FC<TreeItemProps> = ({ node, level }) => {
         ) : (
           <span className={cn(
             "text-sm truncate",
-            level === 0 ? "font-semibold" : "font-medium"
+            level === 0 ? "font-semibold text-[#0EA5E9]" : "font-medium"
           )}>
             {node.name}
           </span>

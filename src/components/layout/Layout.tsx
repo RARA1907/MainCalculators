@@ -19,7 +19,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg lg:hidden"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -30,8 +30,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       {/* Main Content */}
       <div className="flex pt-16">
-        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        {/* Sidebar - Fixed on desktop, off-canvas on mobile */}
+        <div className="hidden lg:block w-72 flex-shrink-0">
+          <Sidebar isOpen={true} onClose={() => {}} />
+        </div>
         
+        {/* Mobile Sidebar */}
+        <div className="lg:hidden">
+          <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        </div>
+
+        {/* Main Content Area */}
         <main className="flex-1 p-4 lg:p-8">
           {children}
         </main>

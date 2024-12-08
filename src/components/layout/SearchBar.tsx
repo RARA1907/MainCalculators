@@ -58,9 +58,10 @@ export const SearchBar = ({ allCalculators }: SearchBarProps) => {
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => searchQuery && setIsOpen(true)}
           className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 
-                   bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                   bg-white dark:bg-gray-800 focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent
+                   placeholder-gray-400 dark:placeholder-gray-500"
         />
-        <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+        <Search className="absolute left-3 top-2.5 h-5 w-5 text-[#0EA5E9]" />
       </div>
 
       {/* Search Results Dropdown */}
@@ -72,9 +73,9 @@ export const SearchBar = ({ allCalculators }: SearchBarProps) => {
               key={result.id}
               href={result.link}
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="block px-4 py-2 hover:bg-[#7DD3FC]/10 active:bg-[#F59E0B]/10 transition-colors duration-200"
             >
-              <div className="text-sm font-medium">{result.name}</div>
+              <div className="text-sm font-medium text-[#0EA5E9]">{result.name}</div>
               <div className="text-xs text-gray-500 dark:text-gray-400">{result.category}</div>
             </Link>
           ))}
