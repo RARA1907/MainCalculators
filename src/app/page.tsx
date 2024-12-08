@@ -5,9 +5,9 @@ import LoanCalculator from '../components/calculators/LoanCalculator'
 import MortgageCalculator from '../components/calculators/MortgageCalculator'
 import InvestmentCalculator from '../components/calculators/InvestmentCalculator'
 import * as Tabs from '@radix-ui/react-tabs'
-import { Calculator, Home, PiggyBank } from 'lucide-react'
+import { Calculator, HomeIcon, PiggyBank } from 'lucide-react'
 
-export default function Home() {
+export default function HomePage() {
   const [activeTab, setActiveTab] = useState('loan')
 
   const calculators = [
@@ -23,7 +23,7 @@ export default function Home() {
       name: 'Mortgage Calculator',
       description: 'Calculate monthly mortgage payments including PITI',
       component: MortgageCalculator,
-      icon: Home,
+      icon: HomeIcon,
     },
     {
       id: 'investment',
