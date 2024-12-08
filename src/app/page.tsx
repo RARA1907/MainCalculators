@@ -239,6 +239,116 @@ const categories = [
         ]
       }
     ]
+  },
+  {
+    title: 'Other Calculators',
+    description: 'Specialized calculators for various daily needs and professional tasks',
+    subcategories: [
+      {
+        title: 'Date and Time',
+        icon: '⏰',
+        items: [
+          { name: 'Age Calculator', href: '/age-calculator' },
+          { name: 'Date Calculator', href: '/date-calculator' },
+          { name: 'Time Calculator', href: '/time-calculator' },
+          { name: 'Hours Calculator', href: '/hours-calculator' },
+          { name: 'Time Card Calculator', href: '/time-card-calculator' },
+          { name: 'Time Zone Calculator', href: '/time-zone-calculator' },
+          { name: 'Time Duration Calculator', href: '/time-duration-calculator' },
+          { name: 'Day Counter', href: '/day-counter' },
+          { name: 'Day of the Week Calculator', href: '/day-of-week-calculator' }
+        ]
+      },
+      {
+        title: 'Construction',
+        icon: '🏗️',
+        items: [
+          { name: 'Concrete Calculator', href: '/concrete-calculator' },
+          { name: 'BTU Calculator', href: '/btu-calculator' },
+          { name: 'Square Footage Calculator', href: '/square-footage-calculator' },
+          { name: 'Stair Calculator', href: '/stair-calculator' },
+          { name: 'Roofing Calculator', href: '/roofing-calculator' },
+          { name: 'Tile Calculator', href: '/tile-calculator' },
+          { name: 'Mulch Calculator', href: '/mulch-calculator' },
+          { name: 'Gravel Calculator', href: '/gravel-calculator' }
+        ]
+      },
+      {
+        title: 'Measurements',
+        icon: '📏',
+        items: [
+          { name: 'Height Calculator', href: '/height-calculator' },
+          { name: 'Conversion Calculator', href: '/conversion-calculator' },
+          { name: 'GDP Calculator', href: '/gdp-calculator' },
+          { name: 'Density Calculator', href: '/density-calculator' },
+          { name: 'Mass Calculator', href: '/mass-calculator' },
+          { name: 'Weight Calculator', href: '/weight-calculator' },
+          { name: 'Speed Calculator', href: '/speed-calculator' },
+          { name: 'Molarity Calculator', href: '/molarity-calculator' },
+          { name: 'Molecular Weight Calculator', href: '/molecular-weight-calculator' }
+        ]
+      },
+      {
+        title: 'Electronics',
+        icon: '⚡',
+        items: [
+          { name: 'Voltage Drop Calculator', href: '/voltage-drop-calculator' },
+          { name: 'Resistor Calculator', href: '/resistor-calculator' },
+          { name: 'Ohms Law Calculator', href: '/ohms-law-calculator' },
+          { name: 'Electricity Calculator', href: '/electricity-calculator' }
+        ]
+      },
+      {
+        title: 'Internet & Tech',
+        icon: '🌐',
+        items: [
+          { name: 'IP Subnet Calculator', href: '/ip-subnet-calculator' },
+          { name: 'Password Generator', href: '/password-generator' },
+          { name: 'Bandwidth Calculator', href: '/bandwidth-calculator' }
+        ]
+      },
+      {
+        title: 'Daily Life',
+        icon: '📝',
+        items: [
+          { name: 'GPA Calculator', href: '/gpa-calculator' },
+          { name: 'Grade Calculator', href: '/grade-calculator' },
+          { name: 'Bra Size Calculator', href: '/bra-size-calculator' },
+          { name: 'Tip Calculator', href: '/tip-calculator' },
+          { name: 'Golf Handicap Calculator', href: '/golf-handicap-calculator' },
+          { name: 'Sleep Calculator', href: '/sleep-calculator' }
+        ]
+      },
+      {
+        title: 'Weather',
+        icon: '🌤️',
+        items: [
+          { name: 'Wind Chill Calculator', href: '/wind-chill-calculator' },
+          { name: 'Heat Index Calculator', href: '/heat-index-calculator' },
+          { name: 'Dew Point Calculator', href: '/dew-point-calculator' }
+        ]
+      },
+      {
+        title: 'Transportation',
+        icon: '🚗',
+        items: [
+          { name: 'Fuel Cost Calculator', href: '/fuel-cost-calculator' },
+          { name: 'Gas Mileage Calculator', href: '/gas-mileage-calculator' },
+          { name: 'Horsepower Calculator', href: '/horsepower-calculator' },
+          { name: 'Engine Horsepower Calculator', href: '/engine-horsepower-calculator' },
+          { name: 'Mileage Calculator', href: '/mileage-calculator' },
+          { name: 'Tire Size Calculator', href: '/tire-size-calculator' }
+        ]
+      },
+      {
+        title: 'Fun & Games',
+        icon: '🎲',
+        items: [
+          { name: 'Dice Roller', href: '/dice-roller' },
+          { name: 'Love Calculator', href: '/love-calculator' }
+        ]
+      }
+    ]
   }
 ];
 
