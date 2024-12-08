@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronRight, Calculator } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import SearchBar from './SearchBar';
 
 interface TreeNode {
   id: string;
@@ -16,6 +17,24 @@ interface TreeItemProps {
   node: TreeNode;
   level: number;
 }
+
+// Flatten calculator tree for search
+const flattenCalculators = (nodes: TreeNode[], parentCategory: string = ''): any[] => {
+  return nodes.reduce((acc: any[], node) => {
+    if (node.children) {
+      return [...acc, ...flattenCalculators(node.children, node.name)];
+    }
+    if (node.link) {
+      return [...acc, {
+        id: node.id,
+        name: node.name,
+        link: node.link,
+        category: parentCategory
+      }];
+    }
+    return acc;
+  }, []);
+};
 
 const calculatorCategories: TreeNode[] = [
   {
@@ -137,11 +156,17 @@ const TreeItem: React.FC<TreeItemProps> = ({ node, level }) => {
       <div 
         className={cn(
           "flex items-center w-full py-2 px-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer rounded-lg",
-          level > 0 && "ml-" + (level * 2),
-          "transition-colors duration-200"
+          "transition-colors duration-200",
+          {
+            'ml-0': level === 0,
+            'ml-4': level === 1,
+            'ml-8': level === 2,
+          }
         )}
         onClick={() => hasChildren && setIsOpen(!isOpen)}
       >
+        <div className={cn("flex-shrink-0", level > 0 && "border-l-2 border-gray-200 dark:border-gray-700 h-6 -ml-2")} />
+        
         {hasChildren ? (
           isOpen ? (
             <ChevronDown className="w-4 h-4 mr-2 flex-shrink-0" />
@@ -161,7 +186,12 @@ const TreeItem: React.FC<TreeItemProps> = ({ node, level }) => {
             {node.name}
           </Link>
         ) : (
-          <span className="text-sm font-medium truncate">{node.name}</span>
+          <span className={cn(
+            "text-sm truncate",
+            level === 0 ? "font-semibold" : "font-medium"
+          )}>
+            {node.name}
+          </span>
         )}
       </div>
       
@@ -182,6 +212,8 @@ interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+  const allCalculators = flattenCalculators(calculatorCategories);
+
   return (
     <>
       {/* Backdrop for mobile */}
@@ -203,11 +235,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           "lg:sticky lg:top-16"
         )}
       >
-        <div className="h-full overflow-y-auto py-4">
-          <div className="px-4 mb-4">
-            <h2 className="text-lg font-semibold">Calculators</h2>
-          </div>
-          
+        <SearchBar allCalculators={allCalculators} />
+        
+        <div className="h-[calc(100vh-10rem)] overflow-y-auto">
           <nav className="px-2">
             {calculatorCategories.map((category) => (
               <TreeItem key={category.id} node={category} level={0} />
