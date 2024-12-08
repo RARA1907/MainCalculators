@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface FAQItemProps {
   question: string;
-  answer: React.ReactNode;
+  answer: ReactNode;
 }
 
 export function FAQItem({ question, answer }: FAQItemProps) {
