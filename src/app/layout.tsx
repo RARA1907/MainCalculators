@@ -5,7 +5,6 @@ import { Footer } from '@/components/layout/Footer'
 import { Metadata } from 'next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ScrollToTop } from '@/components/ScrollToTop'
-import { useScrollToTop } from '@/hooks/useScrollToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -76,29 +75,6 @@ export const viewport = {
   userScalable: false,
 }
 
-function RootLayoutClient({ children }: { children: React.ReactNode }) {
-  useScrollToTop();
-  
-  return (
-    <div>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <div className="flex flex-col min-h-screen">
-          <main className="flex-grow">
-            <Layout>{children}</Layout>
-          </main>
-          <Footer />
-        </div>
-      </ThemeProvider>
-      <ScrollToTop />
-    </div>
-  );
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -107,9 +83,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <RootLayoutClient>
-          {children}
-        </RootLayoutClient>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">
+              <Layout>{children}</Layout>
+            </main>
+            <Footer />
+          </div>
+          <ScrollToTop />
+        </ThemeProvider>
       </body>
     </html>
   )
