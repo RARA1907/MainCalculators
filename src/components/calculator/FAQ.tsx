@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 interface FAQItemProps {
@@ -7,7 +7,7 @@ interface FAQItemProps {
 }
 
 export function FAQItem({ question, answer }: FAQItemProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="border-b border-gray-200 dark:border-gray-700">
