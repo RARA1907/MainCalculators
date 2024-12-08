@@ -1,12 +1,10 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { CalculatorPageLayout } from '@/components/calculator/CalculatorPageLayout';
 import { Formula } from '@/components/calculator/Formula';
 import { FAQList } from '@/components/calculator/FAQ';
 import Image from 'next/image';
-
-export { metadata, viewport } from './metadata';
 
 function CompoundInterestCalculator() {
   const [principal, setPrincipal] = React.useState<number>(10000);
