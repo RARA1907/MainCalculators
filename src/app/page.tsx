@@ -105,18 +105,61 @@ const calculatorCategories = [
 ];
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredCategories, setFilteredCategories] = useState(calculatorCategories);
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (!query) {
+      setFilteredCategories(calculatorCategories);
+      return;
+    }
+
+    const filtered = calculatorCategories.map(category => ({
+      ...category,
+      items: category.items.filter(item =>
+        item.name.toLowerCase().includes(query.toLowerCase())
+      )
+    })).filter(category => category.items.length > 0);
+
+    setFilteredCategories(filtered);
+  };
+
   return (
-    <div className="pt-16">
+    <div>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Your Ultimate Calculator Hub
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-blue-100">
+              Access over 50+ calculators for finance, math, and more
+            </p>
+            <div className="max-w-3xl mx-auto">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search calculators..."
+                  value={searchQuery}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  className="w-full px-6 py-4 rounded-full text-gray-900 bg-white/95 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                />
+                <Search className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
-          Financial Calculators
-        </h1>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {calculatorCategories.map((category, index) => (
+          {filteredCategories.map((category, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
             >
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 {category.title}
@@ -126,7 +169,7 @@ export default function Home() {
                   <li key={itemIndex}>
                     <Link
                       href={item.href}
-                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 flex items-center"
                     >
                       {item.name}
                     </Link>
