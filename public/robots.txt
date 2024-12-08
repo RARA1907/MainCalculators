@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://maincalculators.com/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 1

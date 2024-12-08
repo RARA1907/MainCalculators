@@ -1,13 +1,72 @@
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Layout from '@/components/layout/Layout'
+import { Layout } from '@/components/layout/Layout'
+import { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Financial Calculators Hub',
-  description: 'A collection of useful financial calculators',
+  title: {
+    default: 'Main Calculators - Your Financial Calculator Hub',
+    template: '%s | Main Calculators'
+  },
+  description: 'Access a comprehensive suite of financial calculators for all your calculation needs. Simple, accurate, and easy to use.',
+  keywords: ['financial calculators', 'calculator hub', 'finance tools', 'calculation tools', 'math calculators'],
+  authors: [{ name: 'Main Calculators Team' }],
+  creator: 'Main Calculators',
+  publisher: 'Main Calculators',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://maincalculators.com',
+    siteName: 'Main Calculators',
+    title: 'Main Calculators - Your Financial Calculator Hub',
+    description: 'Access a comprehensive suite of financial calculators for all your calculation needs. Simple, accurate, and easy to use.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Main Calculators Preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Main Calculators - Your Financial Calculator Hub',
+    description: 'Access a comprehensive suite of financial calculators for all your calculation needs. Simple, accurate, and easy to use.',
+    images: ['/twitter-image.jpg'],
+    creator: '@maincalculators',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/apple-touch-icon-precomposed.png',
+    },
+  },
+  manifest: '/site.webmanifest',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  verification: {
+    google: 'your-google-site-verification',
+  },
 }
 
 export default function RootLayout({
