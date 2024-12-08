@@ -1,4 +1,4 @@
-import { categories } from '@/app/page';
+import { categories } from '@/data/categories';
 
 export type Calculator = {
   name: string;
