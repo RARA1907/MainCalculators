@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Menu } from 'lucide-react';
 import Sidebar from './Sidebar';
-import Header from './Header';
+import { Header } from './Header';
 
 interface LayoutProps {
   children: React.ReactNode;
