@@ -51,18 +51,3 @@ export function FAQList({ items, className }: FAQListProps) {
     </div>
   );
 }
-
-interface FAQListProps {
-  items: FAQItemProps[];
-  className?: string;
-}
-
-export function FAQList({ items, className }: FAQListProps) {
-  return (
-    <div className={cn("space-y-2", className)}>
-      {items.map((item, index) => (
-        <FAQItem key={index} {...item} />
-      ))}
-    </div>
-  );
-}
