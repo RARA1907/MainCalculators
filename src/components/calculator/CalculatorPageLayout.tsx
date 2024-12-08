@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 interface CalculatorPageLayoutProps {
   title: string;
   description: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   calculator: React.ReactNode;
   content: React.ReactNode;
   faq: React.ReactNode;
