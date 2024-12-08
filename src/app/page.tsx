@@ -373,22 +373,25 @@ function CategorySection({ category }) {
               key={subcategory.title}
               className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="px-4 py-5 sm:p-6">
-                <div className="flex items-center">
-                  <span className="text-3xl mr-3">{subcategory.icon}</span>
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+              <div className="px-6 py-6">
+                <div className="flex items-center mb-4">
+                  <span className="text-4xl mr-3">{subcategory.icon}</span>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                     {subcategory.title}
                   </h3>
                 </div>
-                <div className="mt-4">
-                  <ul className="space-y-2">
+                <div className="mt-6">
+                  <ul className="space-y-3">
                     {subcategory.items.map((item) => (
                       <li key={item.name}>
                         <Link
                           href={item.href}
-                          className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-base text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline transition-colors duration-200 flex items-center group"
                         >
-                          {item.name}
+                          <span className="group-hover:translate-x-1 transition-transform duration-200">
+                            {item.name}
+                          </span>
+                          <ArrowRight className="h-4 w-4 ml-1 opacity-0 group-hover:opacity-100 transition-all duration-200" />
                         </Link>
                       </li>
                     ))}
