@@ -20,6 +20,7 @@ interface CalculatorLayoutProps {
     min?: number
     max?: number
     step?: number
+    name: string
   }[]
   onCalculate?: () => void
   results?: React.ReactNode
@@ -66,6 +67,7 @@ export default function CalculatorLayout({
                       min={input.min}
                       max={input.max}
                       step={input.step}
+                      name={input.name}
                       className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 ${
                         input.error
                           ? 'border-red-500 focus:ring-red-500'
