@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Metadata } from 'next'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ScrollToTop } from '@/components/ScrollToTop'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -81,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -89,13 +90,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-screen">
-            <main className="flex-grow">
-              <Layout>{children}</Layout>
-            </main>
+          <Layout>
+            {children}
             <Footer />
-          </div>
-          <ScrollToTop />
+            <ScrollToTop />
+          </Layout>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

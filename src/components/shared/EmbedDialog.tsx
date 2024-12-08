@@ -15,7 +15,7 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
   const pathname = usePathname();
   
   // Get the current URL
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://calculators-hub.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.maincalculators.com';
   const currentUrl = `${baseUrl}${pathname}`;
   
   // Generate embed code
