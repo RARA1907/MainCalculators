@@ -5,198 +5,138 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { Calculator, HomeIcon, Percent, ArrowRight, Search } from 'lucide-react'
 
-const categories = [
+const calculatorCategories = [
   {
-    title: 'Financial Calculators',
-    description: 'Calculate mortgages, loans, and investments',
-    icon: HomeIcon,
-    color: 'bg-green-500',
+    title: 'Mortgage and Real Estate',
     items: [
       { name: 'Mortgage Calculator', href: '/calculators/mortgage' },
-      { name: 'Compound Interest', href: '/calculators/compound-interest' },
+      { name: 'Amortization Calculator', href: '/calculators/amortization' },
+      { name: 'Mortgage Payoff Calculator', href: '/calculators/mortgage-payoff' },
+      { name: 'House Affordability Calculator', href: '/calculators/house-affordability' },
+      { name: 'Rent Calculator', href: '/calculators/rent' },
+      { name: 'Debt-to-Income Ratio Calculator', href: '/calculators/dti' },
+      { name: 'Real Estate Calculator', href: '/calculators/real-estate' },
+      { name: 'Refinance Calculator', href: '/calculators/refinance' },
+      { name: 'Rental Property Calculator', href: '/calculators/rental-property' },
+      { name: 'APR Calculator', href: '/calculators/apr' },
+      { name: 'FHA Loan Calculator', href: '/calculators/fha-loan' },
+      { name: 'VA Mortgage Calculator', href: '/calculators/va-mortgage' },
+      { name: 'Down Payment Calculator', href: '/calculators/down-payment' },
+      { name: 'Rent vs. Buy Calculator', href: '/calculators/rent-vs-buy' },
+    ],
+  },
+  {
+    title: 'Auto',
+    items: [
+      { name: 'Auto Loan Calculator', href: '/calculators/auto-loan' },
+      { name: 'Cash Back or Low Interest Calculator', href: '/calculators/cash-back-interest' },
+      { name: 'Auto Lease Calculator', href: '/calculators/auto-lease' },
+    ],
+  },
+  {
+    title: 'Investment',
+    items: [
+      { name: 'Interest Calculator', href: '/calculators/interest' },
+      { name: 'Investment Calculator', href: '/calculators/investment' },
+      { name: 'Finance Calculator', href: '/calculators/finance' },
+      { name: 'Compound Interest Calculator', href: '/calculators/compound-interest' },
+      { name: 'Interest Rate Calculator', href: '/calculators/interest-rate' },
+      { name: 'Savings Calculator', href: '/calculators/savings' },
+      { name: 'Simple Interest Calculator', href: '/calculators/simple-interest' },
+      { name: 'CD Calculator', href: '/calculators/cd' },
+      { name: 'Bond Calculator', href: '/calculators/bond' },
+      { name: 'Average Return Calculator', href: '/calculators/average-return' },
+      { name: 'ROI Calculator', href: '/calculators/roi' },
+      { name: 'Payback Period Calculator', href: '/calculators/payback-period' },
+      { name: 'Present Value Calculator', href: '/calculators/present-value' },
+      { name: 'Future Value Calculator', href: '/calculators/future-value' },
+    ],
+  },
+  {
+    title: 'Retirement',
+    items: [
+      { name: 'Retirement Calculator', href: '/calculators/retirement' },
+      { name: '401K Calculator', href: '/calculators/401k' },
+      { name: 'Pension Calculator', href: '/calculators/pension' },
+      { name: 'Social Security Calculator', href: '/calculators/social-security' },
+      { name: 'Annuity Calculator', href: '/calculators/annuity' },
+      { name: 'Annuity Payout Calculator', href: '/calculators/annuity-payout' },
+      { name: 'Roth IRA Calculator', href: '/calculators/roth-ira' },
+      { name: 'IRA Calculator', href: '/calculators/ira' },
+      { name: 'RMD Calculator', href: '/calculators/rmd' },
+    ],
+  },
+  {
+    title: 'Tax and Salary',
+    items: [
+      { name: 'Income Tax Calculator', href: '/calculators/income-tax' },
+      { name: 'Salary Calculator', href: '/calculators/salary' },
+      { name: 'Marriage Tax Calculator', href: '/calculators/marriage-tax' },
+      { name: 'Estate Tax Calculator', href: '/calculators/estate-tax' },
+      { name: 'Take-Home-Paycheck Calculator', href: '/calculators/take-home-paycheck' },
+    ],
+  },
+  {
+    title: 'Other',
+    items: [
       { name: 'Loan Calculator', href: '/calculators/loan' },
-    ]
+      { name: 'Payment Calculator', href: '/calculators/payment' },
+      { name: 'Currency Calculator', href: '/calculators/currency' },
+      { name: 'Inflation Calculator', href: '/calculators/inflation' },
+      { name: 'Sales Tax Calculator', href: '/calculators/sales-tax' },
+      { name: 'Credit Card Calculator', href: '/calculators/credit-card' },
+      { name: 'Credit Cards Payoff Calculator', href: '/calculators/credit-cards-payoff' },
+      { name: 'Debt Payoff Calculator', href: '/calculators/debt-payoff' },
+      { name: 'Debt Consolidation Calculator', href: '/calculators/debt-consolidation' },
+      { name: 'Repayment Calculator', href: '/calculators/repayment' },
+      { name: 'Student Loan Calculator', href: '/calculators/student-loan' },
+      { name: 'College Cost Calculator', href: '/calculators/college-cost' },
+      { name: 'VAT Calculator', href: '/calculators/vat' },
+      { name: 'Depreciation Calculator', href: '/calculators/depreciation' },
+      { name: 'Margin Calculator', href: '/calculators/margin' },
+      { name: 'Discount Calculator', href: '/calculators/discount' },
+      { name: 'Business Loan Calculator', href: '/calculators/business-loan' },
+      { name: 'Personal Loan Calculator', href: '/calculators/personal-loan' },
+      { name: 'Lease Calculator', href: '/calculators/lease' },
+      { name: 'Budget Calculator', href: '/calculators/budget' },
+      { name: 'Commission Calculator', href: '/calculators/commission' },
+    ],
   },
-  {
-    title: 'Math Calculators',
-    description: 'Advanced mathematical calculations and conversions',
-    icon: Calculator,
-    color: 'bg-blue-500',
-    items: [
-      { name: 'Scientific Calculator', href: '/calculators/scientific' },
-      { name: 'Percentage Calculator', href: '/calculators/percentage' },
-      { name: 'Unit Converter', href: '/calculators/unit-converter' },
-    ]
-  },
-  {
-    title: 'Other Calculators',
-    description: 'Specialized calculators for specific needs',
-    icon: Percent,
-    color: 'bg-purple-500',
-    items: [
-      { name: 'BMI Calculator', href: '/calculators/bmi' },
-      { name: 'Age Calculator', href: '/calculators/age' },
-      { name: 'Time Calculator', href: '/calculators/time' },
-    ]
-  },
-]
+];
 
-export default function HomePage() {
-  const [displayValue, setDisplayValue] = useState('0')
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isDegrees, setIsDegrees] = useState(true)
-
-  const handleButtonClick = (value: string) => {
-    if (displayValue === '0' && !['/', '*', '-', '+', '.'].includes(value)) {
-      setDisplayValue(value)
-    } else {
-      setDisplayValue(prev => prev + value)
-    }
-  }
-
-  const handleClear = () => {
-    setDisplayValue('0')
-  }
-
-  const handleCalculate = () => {
-    try {
-      setDisplayValue(eval(displayValue).toString())
-    } catch (error) {
-      setDisplayValue('Error')
-    }
-  }
-
-  const handleTrigFunction = (func: string) => {
-    try {
-      const value = parseFloat(displayValue)
-      let result
-      if (func === 'sin') {
-        result = isDegrees ? Math.sin(value * Math.PI / 180) : Math.sin(value)
-      } else if (func === 'cos') {
-        result = isDegrees ? Math.cos(value * Math.PI / 180) : Math.cos(value)
-      } else if (func === 'tan') {
-        result = isDegrees ? Math.tan(value * Math.PI / 180) : Math.tan(value)
-      }
-      setDisplayValue(result?.toString() || 'Error')
-    } catch (error) {
-      setDisplayValue('Error')
-    }
-  }
-
+export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section with Calculator */}
-      <section className="py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-              Main Calculators
-            </h1>
-            <div className="max-w-xl mx-auto relative mb-8">
-              <input
-                type="text"
-                placeholder="Search calculators..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <Search className="absolute right-3 top-3 text-gray-400" />
+    <div className="pt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+          Financial Calculators
+        </h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {calculatorCategories.map((category, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+            >
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                {category.title}
+              </h2>
+              <ul className="space-y-2">
+                {category.items.map((item, itemIndex) => (
+                  <li key={itemIndex}>
+                    <Link
+                      href={item.href}
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
-          {/* Calculator Interface */}
-          <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-            {/* Display */}
-            <div className="bg-gray-100 dark:bg-gray-900 p-4">
-              <div className="text-right text-3xl font-mono mb-2 text-gray-900 dark:text-white">
-                {displayValue}
-              </div>
-              <div className="flex justify-between items-center">
-                <button
-                  onClick={() => setIsDegrees(!isDegrees)}
-                  className="text-sm text-blue-600 dark:text-blue-400"
-                >
-                  {isDegrees ? 'DEG' : 'RAD'}
-                </button>
-              </div>
-            </div>
-
-            {/* Calculator Buttons */}
-            <div className="grid grid-cols-5 gap-1 p-2">
-              {/* First Row */}
-              <button onClick={() => handleTrigFunction('sin')} className="btn">sin</button>
-              <button onClick={() => handleTrigFunction('cos')} className="btn">cos</button>
-              <button onClick={() => handleTrigFunction('tan')} className="btn">tan</button>
-              <button onClick={() => handleButtonClick('(')} className="btn">(</button>
-              <button onClick={() => handleButtonClick(')')} className="btn">)</button>
-
-              {/* Numbers and Operations */}
-              <button onClick={() => handleButtonClick('7')} className="btn">7</button>
-              <button onClick={() => handleButtonClick('8')} className="btn">8</button>
-              <button onClick={() => handleButtonClick('9')} className="btn">9</button>
-              <button onClick={() => handleButtonClick('/')} className="btn">/</button>
-              <button onClick={handleClear} className="btn">AC</button>
-
-              <button onClick={() => handleButtonClick('4')} className="btn">4</button>
-              <button onClick={() => handleButtonClick('5')} className="btn">5</button>
-              <button onClick={() => handleButtonClick('6')} className="btn">6</button>
-              <button onClick={() => handleButtonClick('*')} className="btn">×</button>
-              <button onClick={() => handleButtonClick('%')} className="btn">%</button>
-
-              <button onClick={() => handleButtonClick('1')} className="btn">1</button>
-              <button onClick={() => handleButtonClick('2')} className="btn">2</button>
-              <button onClick={() => handleButtonClick('3')} className="btn">3</button>
-              <button onClick={() => handleButtonClick('-')} className="btn">-</button>
-              <button onClick={() => handleCalculate()} className="btn row-span-2">
-                =
-              </button>
-
-              <button onClick={() => handleButtonClick('0')} className="btn col-span-2">0</button>
-              <button onClick={() => handleButtonClick('.')} className="btn">.</button>
-              <button onClick={() => handleButtonClick('+')} className="btn">+</button>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-            Calculator Categories
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category) => (
-              <div
-                key={category.title}
-                className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 p-6"
-              >
-                <div className={`absolute top-0 right-0 w-20 h-20 -mr-10 -mt-10 rounded-full ${category.color} opacity-10 group-hover:opacity-20 transition-opacity`} />
-                <category.icon className={`h-12 w-12 ${category.color.replace('bg-', 'text-')} mb-4`} />
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  {category.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {category.description}
-                </p>
-                <ul className="space-y-2">
-                  {category.items.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                      >
-                        {item.name}
-                        <ArrowRight className="ml-1 h-4 w-4" />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-  )
+      </div>
+    </div>
+  );
 }
