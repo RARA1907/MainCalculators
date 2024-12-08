@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import LoanCalculator from '@/components/calculators/LoanCalculator'
-import MortgageCalculator from '@/components/calculators/MortgageCalculator'
-import InvestmentCalculator from '@/components/calculators/InvestmentCalculator'
+import LoanCalculator from '../components/calculators/LoanCalculator'
+import MortgageCalculator from '../components/calculators/MortgageCalculator'
+import InvestmentCalculator from '../components/calculators/InvestmentCalculator'
 
 const calculators = [
   {
