@@ -3,6 +3,7 @@ import './globals.css'
 import { Layout } from '@/components/layout/Layout'
 import { Footer } from '@/components/layout/Footer'
 import { Metadata } from 'next'
+import { ThemeProvider } from '@/components/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -79,14 +80,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
-          <main className="flex-grow">
-            <Layout>{children}</Layout>
-          </main>
-          <Footer />
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">
+              <Layout>{children}</Layout>
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
