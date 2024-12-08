@@ -10,17 +10,17 @@ const relatedCalculators = [
   {
     name: 'Basic Calculator',
     description: 'Simple arithmetic calculations for everyday use',
-    href: '/calculators/basic'
+    href: '/basic-calculator'
   },
   {
     name: 'Unit Converter',
     description: 'Convert between different units of measurement',
-    href: '/calculators/unit-converter'
+    href: '/unit-converter'
   },
   {
     name: 'Percentage Calculator',
     description: 'Calculate percentages, increases, and decreases',
-    href: '/calculators/percentage'
+    href: '/percentage-calculator'
   }
 ];
 
@@ -30,8 +30,8 @@ export default function ScientificCalculatorPage() {
       {/* Breadcrumb */}
       <Breadcrumb
         items={[
-          { label: 'Calculators', href: '/calculators' },
-          { label: 'Scientific Calculator', href: '/calculators/scientific' }
+          { label: 'Home', href: '/' },
+          { label: 'Scientific Calculator', href: '/scientific-calculator' }
         ]}
       />
 
@@ -105,7 +105,7 @@ export default function ScientificCalculatorPage() {
           {/* Social Share */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
             <SocialShare
-              url="https://yourcalculatorsite.com/calculators/scientific"
+              url="https://yourcalculatorsite.com/scientific-calculator"
               title="Scientific Calculator - Your Calculator Hub"
             />
           </div>
