@@ -44,7 +44,7 @@ export default function HomePage() {
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-            Swift Calculators Hub
+            Main Calculators
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8">
             Your comprehensive toolkit for financial and scientific calculations
@@ -54,7 +54,7 @@ export default function HomePage() {
               href="/calculators/scientific"
               className="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
             >
-              Get Started
+              Try Scientific Calculator
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
