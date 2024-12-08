@@ -4,7 +4,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
-export function Header() {
+interface HeaderProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (isOpen: boolean) => void;
+}
+
+export function Header({ isSidebarOpen, setIsSidebarOpen }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
@@ -34,11 +39,11 @@ export function Header() {
           <div className="md:hidden">
             <button
               type="button"
-              className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             >
               <span className="sr-only">Open menu</span>
-              {isMobileMenuOpen ? (
+              {isSidebarOpen ? (
                 <X className="h-6 w-6" aria-hidden="true" />
               ) : (
                 <Menu className="h-6 w-6" aria-hidden="true" />
