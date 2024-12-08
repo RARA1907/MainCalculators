@@ -30,9 +30,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
 
         {/* Main Content Area */}
-        <main className="flex-1 p-4 lg:p-8">
+        <div className="flex-1 px-4 py-8 md:px-6 lg:px-8">
           {children}
-        </main>
+        </div>
       </div>
     </div>
   );

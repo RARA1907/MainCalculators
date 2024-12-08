@@ -36,17 +36,17 @@ export function Header({ isSidebarOpen, setIsSidebarOpen }: HeaderProps) {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               type="button"
-              className="text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             >
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">Open main menu</span>
               {isSidebarOpen ? (
-                <X className="h-6 w-6" aria-hidden="true" />
+                <X className="block h-6 w-6" aria-hidden="true" />
               ) : (
-                <Menu className="h-6 w-6" aria-hidden="true" />
+                <Menu className="block h-6 w-6" aria-hidden="true" />
               )}
             </button>
           </div>

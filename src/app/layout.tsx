@@ -60,14 +60,17 @@ export const metadata: Metadata = {
     },
   },
   manifest: '/site.webmanifest',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+  metadataBase: new URL('https://swift-calculators-hub.vercel.app'),
   verification: {
     google: 'your-google-site-verification',
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({
