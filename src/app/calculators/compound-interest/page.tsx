@@ -1,38 +1,33 @@
+'use client';
+
+import * as React from 'react';
 import { CalculatorPageLayout } from '@/components/calculator/CalculatorPageLayout';
 import { Formula } from '@/components/calculator/Formula';
 import { FAQList } from '@/components/calculator/FAQ';
 import Image from 'next/image';
-import type { Metadata, Viewport } from 'next';
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-};
-
-export const metadata: Metadata = {
-  title: 'Compound Interest Calculator',
-  description: 'Calculate compound interest with our easy-to-use calculator. Learn about compound interest formulas and concepts.',
-  keywords: ['compound interest', 'interest calculator', 'finance calculator', 'investment calculator'],
-  openGraph: {
-    title: 'Compound Interest Calculator',
-    description: 'Calculate compound interest with our easy-to-use calculator. Learn about compound interest formulas and concepts.',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Compound Interest Calculator',
-    description: 'Calculate compound interest with our easy-to-use calculator. Learn about compound interest formulas and concepts.',
-  },
-};
+export { metadata, viewport } from './metadata';
 
 function CompoundInterestCalculator() {
+  const [principal, setPrincipal] = React.useState<number>(10000);
+  const [rate, setRate] = React.useState<number>(5);
+  const [time, setTime] = React.useState<number>(5);
+  const [result, setResult] = React.useState<number | null>(null);
+
+  const calculateCompoundInterest = (e: React.FormEvent) => {
+    e.preventDefault();
+    const amount = principal * Math.pow(1 + rate / 100, time);
+    setResult(amount);
+  };
+
   return (
-    <form className="space-y-4">
+    <form className="space-y-4" onSubmit={calculateCompoundInterest}>
       <div className="space-y-2">
         <label className="block text-sm font-medium">Principal Amount ($)</label>
         <input
           type="number"
+          value={principal}
+          onChange={(e) => setPrincipal(Number(e.target.value))}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent"
           placeholder="10000"
         />
@@ -41,6 +36,8 @@ function CompoundInterestCalculator() {
         <label className="block text-sm font-medium">Annual Interest Rate (%)</label>
         <input
           type="number"
+          value={rate}
+          onChange={(e) => setRate(Number(e.target.value))}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent"
           placeholder="5"
         />
@@ -49,6 +46,8 @@ function CompoundInterestCalculator() {
         <label className="block text-sm font-medium">Time Period (Years)</label>
         <input
           type="number"
+          value={time}
+          onChange={(e) => setTime(Number(e.target.value))}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0EA5E9] focus:border-transparent"
           placeholder="5"
         />
@@ -59,6 +58,18 @@ function CompoundInterestCalculator() {
       >
         Calculate
       </button>
+      
+      {result !== null && (
+        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <p className="font-medium">Final Amount:</p>
+          <p className="text-2xl font-bold text-[#0EA5E9]">
+            ${result.toFixed(2)}
+          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            Interest Earned: ${(result - principal).toFixed(2)}
+          </p>
+        </div>
+      )}
     </form>
   );
 }
