@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 
 // Dynamically import the calculator component
 const ScientificCalculator = dynamic(
-  () => import('@/components/calculator/ScientificCalculator').then(mod => mod.default),
+  () => import('@/components/calculator/ScientificCalculator').then(mod => mod.ScientificCalculator),
   {
     loading: () => (
       <div className="flex items-center justify-center min-h-[400px]">
