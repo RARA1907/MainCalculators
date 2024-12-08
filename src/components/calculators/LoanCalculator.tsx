@@ -19,82 +19,123 @@ export default function LoanCalculator() {
     loanTerm: 3,
   })
   const [errors, setErrors] = useState<Partial<Record<keyof Inputs, string>>>({})
-  const [monthlyPayment, setMonthlyPayment] = useState<number | null>(null)
+  const [results, setResults] = useState<{
+    monthlyPayment: number
+    totalPayment: number
+    totalInterest: number
+  } | null>(null)
 
-  const handleInputChange = (field: keyof Inputs, value: string) => {
-    const numValue = Number(value)
-    setInputs(prev => ({ ...prev, [field]: numValue }))
-    
-    try {
-      inputSchema.shape[field].parse(numValue)
-      setErrors(prev => ({ ...prev, [field]: undefined }))
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        setErrors(prev => ({ ...prev, [field]: error.errors[0].message }))
-      }
-    }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setInputs((prev) => ({ ...prev, [name]: parseFloat(value) || 0 }))
+    setErrors((prev) => ({ ...prev, [name]: '' }))
   }
 
-  const calculateLoanPayment = () => {
+  const calculateLoan = () => {
     try {
-      const validatedInputs = inputSchema.parse(inputs)
-      
-      const monthlyInterestRate = validatedInputs.interestRate / 100 / 12
-      const numberOfPayments = validatedInputs.loanTerm * 12
-      
-      const payment = 
-        (validatedInputs.loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
-        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1)
-      
-      setMonthlyPayment(Number(payment.toFixed(2)))
+      inputSchema.parse(inputs)
       setErrors({})
+
+      const principal = inputs.loanAmount
+      const annualRate = inputs.interestRate / 100
+      const monthlyRate = annualRate / 12
+      const totalMonths = inputs.loanTerm * 12
+
+      const monthlyPayment =
+        (principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
+        (Math.pow(1 + monthlyRate, totalMonths) - 1)
+
+      const totalPayment = monthlyPayment * totalMonths
+      const totalInterest = totalPayment - principal
+
+      setResults({
+        monthlyPayment,
+        totalPayment,
+        totalInterest,
+      })
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Partial<Record<keyof Inputs, string>> = {}
-        error.errors.forEach(err => {
-          if (err.path[0]) {
-            newErrors[err.path[0] as keyof Inputs] = err.message
-          }
+        error.errors.forEach((err) => {
+          const field = err.path[0] as keyof Inputs
+          newErrors[field] = err.message
         })
         setErrors(newErrors)
       }
     }
   }
 
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(amount)
+  }
+
   return (
     <CalculatorLayout
       title="Loan Calculator"
-      description="Calculate your monthly loan payments based on loan amount, interest rate, and term."
+      description="Calculate your monthly loan payments and total interest"
       inputs={[
         {
-          label: 'Loan Amount ($)',
+          label: 'Loan Amount',
           type: 'number',
           value: inputs.loanAmount,
-          onChange: (e) => handleInputChange('loanAmount', e.target.value),
+          onChange: handleInputChange,
           error: errors.loanAmount,
+          placeholder: 'Enter loan amount',
+          min: 0,
+          name: 'loanAmount',
         },
         {
-          label: 'Annual Interest Rate (%)',
+          label: 'Interest Rate (%)',
           type: 'number',
           value: inputs.interestRate,
-          onChange: (e) => handleInputChange('interestRate', e.target.value),
+          onChange: handleInputChange,
           error: errors.interestRate,
+          placeholder: 'Enter interest rate',
+          min: 0,
+          step: 0.1,
+          name: 'interestRate',
         },
         {
           label: 'Loan Term (Years)',
           type: 'number',
           value: inputs.loanTerm,
-          onChange: (e) => handleInputChange('loanTerm', e.target.value),
+          onChange: handleInputChange,
           error: errors.loanTerm,
+          placeholder: 'Enter loan term',
+          min: 1,
+          name: 'loanTerm',
         },
       ]}
-      onCalculate={calculateLoanPayment}
-      results={monthlyPayment !== null ? [
-        {
-          label: 'Monthly Payment',
-          value: `$${monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
-        },
-      ] : []}
+      onCalculate={calculateLoan}
+      results={
+        results && (
+          <div className="grid gap-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 bg-white/50 dark:bg-gray-700/50 rounded-lg">
+                <div className="text-sm text-gray-600 dark:text-gray-300">Monthly Payment</div>
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  {formatCurrency(results.monthlyPayment)}
+                </div>
+              </div>
+              <div className="p-4 bg-white/50 dark:bg-gray-700/50 rounded-lg">
+                <div className="text-sm text-gray-600 dark:text-gray-300">Total Interest</div>
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  {formatCurrency(results.totalInterest)}
+                </div>
+              </div>
+            </div>
+            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <div className="text-sm text-gray-600 dark:text-gray-300">Total Payment</div>
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                {formatCurrency(results.totalPayment)}
+              </div>
+            </div>
+          </div>
+        )
+      }
     />
   )
 }
