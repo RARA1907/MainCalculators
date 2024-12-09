@@ -3,6 +3,7 @@
 import { Facebook, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { useEffect, useState } from 'react';
 
 interface SocialShareProps {
   url: string;
@@ -11,6 +12,12 @@ interface SocialShareProps {
 
 export function SocialShare({ url, title }: SocialShareProps) {
   const { toast } = useToast();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
   const websiteName = "MainCalculators.com";
@@ -24,6 +31,8 @@ export function SocialShare({ url, title }: SocialShareProps) {
   };
 
   const copyToClipboard = async () => {
+    if (!mounted) return;
+    
     try {
       await navigator.clipboard.writeText(url);
       toast({
@@ -35,6 +44,10 @@ export function SocialShare({ url, title }: SocialShareProps) {
       console.error('Failed to copy text: ', err);
     }
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="flex space-x-4 items-center">
@@ -52,7 +65,7 @@ export function SocialShare({ url, title }: SocialShareProps) {
         href={shareLinks.twitter}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-400 hover:text-blue-500 dark:text-blue-300 dark:hover:text-blue-200"
+        className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
         aria-label="Share on Twitter"
       >
         <Twitter className="w-5 h-5" />
@@ -61,19 +74,19 @@ export function SocialShare({ url, title }: SocialShareProps) {
         href={shareLinks.linkedin}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 hover:text-blue-600 dark:text-blue-300 dark:hover:text-blue-200"
+        className="text-blue-700 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-400"
         aria-label="Share on LinkedIn"
       >
         <Linkedin className="w-5 h-5" />
       </a>
       <Button
-        onClick={copyToClipboard}
         variant="ghost"
         size="icon"
-        className="h-9 w-9 bg-white hover:bg-white hover:opacity-80"
-        aria-label="Copy link to clipboard"
+        onClick={copyToClipboard}
+        className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+        aria-label="Copy link"
       >
-        <LinkIcon className="h-5 w-5 text-black" />
+        <LinkIcon className="w-5 h-5" />
       </Button>
     </div>
   );
