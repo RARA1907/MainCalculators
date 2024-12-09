@@ -14,9 +14,7 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
   const pathname = usePathname();
   
   // Get the current URL
-  const baseUrl = typeof window !== 'undefined' 
-    ? window.location.origin 
-    : process.env.NEXT_PUBLIC_BASE_URL || 'https://www.maincalculators.com';
+  const baseUrl = 'https://www.maincalculators.com';
   const currentUrl = `${baseUrl}${pathname}`;
   
   // Generate embed code
@@ -43,11 +41,11 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
     <Button
       variant="ghost"
       size="icon"
-      className="h-9 w-9 bg-white hover:bg-white hover:opacity-80"
+      className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
       onClick={copyToClipboard}
-      title="Copy embed code"
+      aria-label="Copy embed code"
     >
-      <Code2 className="h-5 w-5 text-black" />
+      <Code2 className="h-5 w-5" />
     </Button>
   );
 }

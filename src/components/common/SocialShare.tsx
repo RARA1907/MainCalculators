@@ -86,7 +86,7 @@ export function SocialShare({ url, title }: SocialShareProps) {
         className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
         aria-label="Copy link"
       >
-        <LinkIcon className="w-5 h-5" />
+        <LinkIcon className="h-5 w-5" />
       </Button>
     </div>
   );
