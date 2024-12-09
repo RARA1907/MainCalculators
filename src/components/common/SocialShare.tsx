@@ -20,8 +20,8 @@ export function SocialShare({ url, title }: SocialShareProps) {
 
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
-  const websiteName = "MainCalculators.com";
-  const shareText = `Check out this ${title} on ${websiteName}`;
+  const websiteName = "MainCalculators";
+  const shareText = `Check out this ${title} on MainCalculators`;
   const encodedShareText = encodeURIComponent(shareText);
 
   const shareLinks = {
