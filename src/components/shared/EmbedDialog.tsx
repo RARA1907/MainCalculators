@@ -10,7 +10,7 @@ interface EmbedDialogProps {
   title: string;
 }
 
-export default function EmbedDialog({ title }: EmbedDialogProps) {
+export function EmbedDialog({ title }: EmbedDialogProps) {
   const { toast } = useToast()
   const pathname = usePathname();
   
@@ -33,7 +33,6 @@ export default function EmbedDialog({ title }: EmbedDialogProps) {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(embedCode).then(() => {
       toast({
-        variant: "default",
         title: "Copied to clipboard",
         description: "The embed code has been copied to your clipboard",
         duration: 3000,
