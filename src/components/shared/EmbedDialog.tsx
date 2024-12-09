@@ -41,7 +41,7 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
     <Button
       variant="ghost"
       size="icon"
-      className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+      className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 p-2 rounded-full transition-colors"
       onClick={copyToClipboard}
       aria-label="Copy embed code"
     >

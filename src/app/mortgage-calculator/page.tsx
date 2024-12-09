@@ -14,6 +14,7 @@ import { Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { MortgageCalculatorContent } from "./content";
+import { Link2 } from 'lucide-react';
 
 export default function MortgageCalculator() {
   const [homePrice, setHomePrice] = useState<number>(400000);
@@ -71,6 +72,10 @@ export default function MortgageCalculator() {
     });
   };
 
+  const copyUrlToClipboard = () => {
+    navigator.clipboard.writeText("https://www.maincalculators.com/mortgage-calculator");
+  };
+
   return (
     <main className="container mx-auto px-4 py-8">
       <Breadcrumb
@@ -89,6 +94,15 @@ export default function MortgageCalculator() {
         </div>
         <div className="flex items-center gap-2">
           <SocialShare url="https://www.maincalculators.com/mortgage-calculator" title="Mortgage Calculator" />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 p-2 rounded-full transition-colors"
+            onClick={copyUrlToClipboard}
+            aria-label="Copy link"
+          >
+            <Link2 className="h-5 w-5" />
+          </Button>
           <EmbedDialog title="Mortgage Calculator" />
         </div>
       </div>
