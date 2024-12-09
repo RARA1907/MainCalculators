@@ -483,12 +483,12 @@ export default function MortgageCalculator() {
                           ],
                         }}
                         options={{
+                          responsive: true,
                           plugins: {
                             legend: {
                               display: false,
                             },
                           },
-                          responsive: true,
                           maintainAspectRatio: true,
                         }}
                       />
@@ -540,7 +540,6 @@ export default function MortgageCalculator() {
       <div className="mt-8">
         <h2 className="text-2xl font-bold mb-4">Monthly Payment Breakdown</h2>
         
-        {/* Pie Chart */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Payment Distribution</h3>
@@ -567,75 +566,64 @@ export default function MortgageCalculator() {
                       ],
                       backgroundColor: [
                         '#0EA5E9',
-                        '#F59E0B',
-                        '#10B981',
-                        '#6366F1',
+                        '#22C55E',
+                        '#EAB308',
                         '#EC4899',
                         '#8B5CF6',
+                        '#F97316',
                       ],
-                      borderColor: '#FFFFFF',
-                      borderWidth: 2,
                     },
                   ],
                 }}
                 options={{
-                  responsive: true,
                   plugins: {
                     legend: {
-                      position: 'bottom',
+                      display: true,
+                      position: 'bottom' as const,
+                      labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                      },
                     },
                   },
+                  responsive: true,
+                  maintainAspectRatio: true,
                 }}
               />
             </div>
           </Card>
 
-          {/* Detailed Table */}
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Monthly Payment Details</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left py-2">Component</th>
-                    <th className="text-right py-2">Amount</th>
-                    <th className="text-right py-2">% of Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.entries({
-                    'Principal & Interest': monthlyBreakdown.principalAndInterest,
-                    'Property Tax': monthlyBreakdown.propertyTax,
-                    'Home Insurance': monthlyBreakdown.homeInsurance,
-                    'PMI': includePMI ? monthlyBreakdown.pmiInsurance : 0,
-                    'HOA Fee': includeHOA ? monthlyBreakdown.hoaFee : 0,
-                    'Other Costs': includeOtherCosts ? monthlyBreakdown.otherCosts : 0,
-                  }).map(([label, amount]) => (
-                    <tr key={label} className="border-b">
-                      <td className="py-2">{label}</td>
-                      <td className="text-right py-2">
-                        ${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                      </td>
-                      <td className="text-right py-2">
-                        {((amount / monthlyPayment) * 100).toFixed(1)}%
-                      </td>
-                    </tr>
-                  ))}
-                  <tr className="font-semibold">
-                    <td className="py-2">Total Monthly Payment</td>
-                    <td className="text-right py-2">
-                      ${monthlyPayment.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </td>
-                    <td className="text-right py-2">100%</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                {Object.entries({
+                  'Principal & Interest': monthlyBreakdown.principalAndInterest,
+                  'Property Tax': monthlyBreakdown.propertyTax,
+                  'Home Insurance': monthlyBreakdown.homeInsurance,
+                  'PMI': includePMI ? monthlyBreakdown.pmiInsurance : 0,
+                  'HOA Fee': includeHOA ? monthlyBreakdown.hoaFee : 0,
+                  'Other Costs': includeOtherCosts ? monthlyBreakdown.otherCosts : 0,
+                }).map(([label, amount]) => (
+                  amount > 0 && (
+                    <div key={label} className="p-3 bg-secondary/20 rounded-lg">
+                      <div className="text-sm text-muted-foreground">{label}</div>
+                      <div className="text-lg font-medium mt-1">
+                        {formatCurrency(amount)}
+                      </div>
+                    </div>
+                  )
+                ))}
+              </div>
             </div>
           </Card>
         </div>
       </div>
 
-      <MortgageCalculatorContent />
+      <div className="mt-8">
+        <MortgageCalculatorContent />
+      </div>
     </main>
   );
 }
