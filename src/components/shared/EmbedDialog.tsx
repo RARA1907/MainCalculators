@@ -23,7 +23,7 @@ export default function EmbedDialog({ title }: EmbedDialogProps) {
   src="${currentUrl}"
   width="100%" 
   height="600px" 
-  frameborder="0" 
+  frameBorder="0" 
   allowtransparency="true"
   style="border: 1px solid #ddd; border-radius: 8px;"
 ></iframe>`;
