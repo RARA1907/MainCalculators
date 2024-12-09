@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -139,248 +139,285 @@ export default function MortgageCalculator() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[400px,1fr] gap-6">
-        <Card className="h-fit">
-          <div className="p-4 space-y-4">
-            <div>
-              <h2 className="text-xl font-semibold">Mortgage Calculator</h2>
-              <p className="text-sm text-muted-foreground mt-1">Calculate your estimated monthly mortgage payment</p>
-            </div>
-
-            <div className="space-y-3">
-              <div>
-                <Label htmlFor="homePrice" className="text-sm font-medium">Home Price</Label>
-                <div className="relative mt-1">
-                  <span className="absolute left-3 top-2 text-muted-foreground text-sm">$</span>
-                  <Input
-                    id="homePrice"
-                    type="number"
-                    value={homePrice}
-                    onChange={(e) => setHomePrice(Number(e.target.value))}
-                    className="pl-7"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="downPayment" className="text-sm font-medium">Down Payment %</Label>
-                <Input
-                  id="downPayment"
-                  type="number"
-                  value={downPayment}
-                  onChange={(e) => setDownPayment(Number(e.target.value))}
-                  className="text-right mt-1"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="loanTerm" className="text-sm font-medium">Loan Term</Label>
-                <Select value={String(loanTerm)} onValueChange={(value) => setLoanTerm(Number(value))}>
-                  <SelectTrigger className="mt-1">
-                    <SelectValue placeholder="Select term" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="15">15 Years</SelectItem>
-                    <SelectItem value="20">20 Years</SelectItem>
-                    <SelectItem value="30">30 Years</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label htmlFor="interestRate" className="text-sm font-medium">Interest Rate %</Label>
-                <Input
-                  id="interestRate"
-                  type="number"
-                  step="0.001"
-                  value={interestRate}
-                  onChange={(e) => setInterestRate(Number(e.target.value))}
-                  className="text-right mt-1"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="startDate" className="text-sm font-medium">Start Date</Label>
-                <Input
-                  id="startDate"
-                  type="month"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="includeTaxesCosts"
-                  checked={includeTaxesCosts}
-                  onCheckedChange={(checked) => setIncludeTaxesCosts(checked as boolean)}
-                  className="border-gray-400 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
-                />
-                <div className="grid gap-1.5 leading-none">
-                  <label
-                    htmlFor="includeTaxesCosts"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Include Taxes & Additional Costs
-                  </label>
-                  <p className="text-sm text-muted-foreground">
-                    Add property tax, insurance, and other costs to calculation
-                  </p>
-                </div>
-              </div>
-
-              {includeTaxesCosts && (
-                <div className="space-y-4">
-                  <Separator className="my-4" />
-                  <div className="space-y-2">
-                    <Label htmlFor="propertyTax" className="text-sm font-medium">Property Tax %</Label>
+      <div className="grid grid-cols-1 lg:grid-cols-[450px,1fr] gap-6">
+        <Card>
+          <CardHeader className="pb-3">
+            <h2 className="text-xl font-semibold">Mortgage Calculator</h2>
+            <p className="text-sm text-muted-foreground">Calculate your estimated monthly mortgage payment</p>
+          </CardHeader>
+          <CardContent>
+            <form className="space-y-4">
+              <div className="space-y-3">
+                <div className="grid w-full items-center gap-1.5">
+                  <Label htmlFor="homePrice" className="text-sm font-medium">
+                    Home Price
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Info className="h-3.5 w-3.5 ml-1 inline-block text-muted-foreground" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="text-sm">Enter the total price of the home</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </Label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-2.5 text-muted-foreground">$</span>
                     <Input
-                      id="propertyTax"
+                      id="homePrice"
                       type="number"
-                      step="0.1"
-                      value={propertyTax}
-                      onChange={(e) => setPropertyTax(Number(e.target.value))}
-                      className="text-right mt-1"
+                      value={homePrice}
+                      onChange={(e) => setHomePrice(Number(e.target.value))}
+                      className="pl-7 h-9 transition-colors hover:border-primary"
                     />
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="homeInsurance" className="text-sm font-medium">Home Insurance (yearly)</Label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-2 text-muted-foreground text-sm">$</span>
-                      <Input
-                        id="homeInsurance"
-                        type="number"
-                        value={homeInsurance}
-                        onChange={(e) => setHomeInsurance(Number(e.target.value))}
-                        className="pl-7"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-2 mt-4">
-                    <Checkbox
-                      id="includePMI"
-                      checked={includePMI}
-                      onCheckedChange={(checked) => {
-                        setIncludePMI(checked as boolean);
-                        if (!checked) setPmiInsurance(0);
-                      }}
-                      className="border-gray-400 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <label
-                        htmlFor="includePMI"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Include PMI Insurance
-                      </label>
-                      <p className="text-sm text-muted-foreground">
-                        Add Private Mortgage Insurance if down payment is less than 20%
-                      </p>
-                    </div>
-                  </div>
-
-                  {includePMI && (
-                    <div className="space-y-2 mt-2">
-                      <Label htmlFor="pmiInsurance" className="text-sm font-medium">PMI Insurance (yearly)</Label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-2 text-muted-foreground text-sm">$</span>
-                        <Input
-                          id="pmiInsurance"
-                          type="number"
-                          value={pmiInsurance}
-                          onChange={(e) => setPmiInsurance(Number(e.target.value))}
-                          className="pl-7"
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-center space-x-2 mt-4">
-                    <Checkbox
-                      id="includeHOA"
-                      checked={includeHOA}
-                      onCheckedChange={(checked) => {
-                        setIncludeHOA(checked as boolean);
-                        if (!checked) setHoaFee(0);
-                      }}
-                      className="border-gray-400 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <label
-                        htmlFor="includeHOA"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Include HOA Fee
-                      </label>
-                      <p className="text-sm text-muted-foreground">
-                        Add Homeowners Association fees if applicable
-                      </p>
-                    </div>
-                  </div>
-
-                  {includeHOA && (
-                    <div className="space-y-2 mt-2">
-                      <Label htmlFor="hoaFee" className="text-sm font-medium">HOA Fee (yearly)</Label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-2 text-muted-foreground text-sm">$</span>
-                        <Input
-                          id="hoaFee"
-                          type="number"
-                          value={hoaFee}
-                          onChange={(e) => setHoaFee(Number(e.target.value))}
-                          className="pl-7"
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-center space-x-2 mt-4">
-                    <Checkbox
-                      id="includeOtherCosts"
-                      checked={includeOtherCosts}
-                      onCheckedChange={(checked) => {
-                        setIncludeOtherCosts(checked as boolean);
-                        if (!checked) setOtherCosts(0);
-                      }}
-                      className="border-gray-400 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <label
-                        htmlFor="includeOtherCosts"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Include Other Costs
-                      </label>
-                      <p className="text-sm text-muted-foreground">
-                        Add maintenance, utilities, or other annual costs
-                      </p>
-                    </div>
-                  </div>
-
-                  {includeOtherCosts && (
-                    <div className="space-y-2 mt-2">
-                      <Label htmlFor="otherCosts" className="text-sm font-medium">Other Costs (yearly)</Label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-2 text-muted-foreground text-sm">$</span>
-                        <Input
-                          id="otherCosts"
-                          type="number"
-                          value={otherCosts}
-                          onChange={(e) => setOtherCosts(Number(e.target.value))}
-                          className="pl-7"
-                        />
-                      </div>
-                    </div>
-                  )}
                 </div>
-              )}
 
-              <Button onClick={calculateMortgage} className="w-full">Calculate Payment</Button>
-            </div>
-          </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="grid w-full items-center gap-1.5">
+                    <Label htmlFor="downPayment" className="text-sm font-medium">Down Payment %</Label>
+                    <Input
+                      id="downPayment"
+                      type="number"
+                      value={downPayment}
+                      onChange={(e) => setDownPayment(Number(e.target.value))}
+                      className="text-right h-9 transition-colors hover:border-primary"
+                    />
+                  </div>
+
+                  <div className="grid w-full items-center gap-1.5">
+                    <Label htmlFor="loanTerm" className="text-sm font-medium">Loan Term</Label>
+                    <Select value={String(loanTerm)} onValueChange={(value) => setLoanTerm(Number(value))}>
+                      <SelectTrigger className="h-9 transition-colors hover:border-primary">
+                        <SelectValue placeholder="Select term" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="15">15 Years</SelectItem>
+                        <SelectItem value="20">20 Years</SelectItem>
+                        <SelectItem value="30">30 Years</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="grid w-full items-center gap-1.5">
+                    <Label htmlFor="interestRate" className="text-sm font-medium">Interest Rate %</Label>
+                    <Input
+                      id="interestRate"
+                      type="number"
+                      step="0.001"
+                      value={interestRate}
+                      onChange={(e) => setInterestRate(Number(e.target.value))}
+                      className="text-right h-9 transition-colors hover:border-primary"
+                    />
+                  </div>
+
+                  <div className="grid w-full items-center gap-1.5">
+                    <Label htmlFor="startDate" className="text-sm font-medium">Start Date</Label>
+                    <Input
+                      id="startDate"
+                      type="month"
+                      value={startDate}
+                      onChange={(e) => setStartDate(e.target.value)}
+                      className="h-9 transition-colors hover:border-primary"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2 pt-2">
+                  <Checkbox
+                    id="includeTaxesCosts"
+                    checked={includeTaxesCosts}
+                    onCheckedChange={(checked) => setIncludeTaxesCosts(checked as boolean)}
+                    className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                  />
+                  <div className="grid gap-1">
+                    <label
+                      htmlFor="includeTaxesCosts"
+                      className="text-sm font-medium leading-none cursor-pointer"
+                    >
+                      Include Taxes & Additional Costs
+                    </label>
+                    <p className="text-[13px] text-muted-foreground">
+                      Add property tax, insurance, and other costs
+                    </p>
+                  </div>
+                </div>
+
+                {includeTaxesCosts && (
+                  <div className="space-y-4 pt-2">
+                    <Separator />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="grid w-full items-center gap-1.5">
+                        <Label htmlFor="propertyTax" className="text-sm font-medium">Property Tax %</Label>
+                        <Input
+                          id="propertyTax"
+                          type="number"
+                          step="0.1"
+                          value={propertyTax}
+                          onChange={(e) => setPropertyTax(Number(e.target.value))}
+                          className="text-right h-9 transition-colors hover:border-primary"
+                        />
+                      </div>
+
+                      <div className="grid w-full items-center gap-1.5">
+                        <Label htmlFor="homeInsurance" className="text-sm font-medium">Home Insurance (yearly)</Label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-2.5 text-muted-foreground">$</span>
+                          <Input
+                            id="homeInsurance"
+                            type="number"
+                            value={homeInsurance}
+                            onChange={(e) => setHomeInsurance(Number(e.target.value))}
+                            className="pl-7 h-9 transition-colors hover:border-primary"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="includePMI"
+                          checked={includePMI}
+                          onCheckedChange={(checked) => {
+                            setIncludePMI(checked as boolean);
+                            if (!checked) setPmiInsurance(0);
+                          }}
+                          className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                        />
+                        <div className="grid gap-1">
+                          <label
+                            htmlFor="includePMI"
+                            className="text-sm font-medium leading-none cursor-pointer"
+                          >
+                            PMI Insurance
+                          </label>
+                          <p className="text-[13px] text-muted-foreground">
+                            Required if down payment is less than 20%
+                          </p>
+                        </div>
+                      </div>
+
+                      {includePMI && (
+                        <div className="pl-6">
+                          <div className="grid w-full items-center gap-1.5">
+                            <Label htmlFor="pmiInsurance" className="text-sm font-medium">PMI Insurance (yearly)</Label>
+                            <div className="relative">
+                              <span className="absolute left-3 top-2.5 text-muted-foreground">$</span>
+                              <Input
+                                id="pmiInsurance"
+                                type="number"
+                                value={pmiInsurance}
+                                onChange={(e) => setPmiInsurance(Number(e.target.value))}
+                                className="pl-7 h-9 transition-colors hover:border-primary"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="includeHOA"
+                          checked={includeHOA}
+                          onCheckedChange={(checked) => {
+                            setIncludeHOA(checked as boolean);
+                            if (!checked) setHoaFee(0);
+                          }}
+                          className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                        />
+                        <div className="grid gap-1">
+                          <label
+                            htmlFor="includeHOA"
+                            className="text-sm font-medium leading-none cursor-pointer"
+                          >
+                            HOA Fee
+                          </label>
+                          <p className="text-[13px] text-muted-foreground">
+                            Homeowners Association fees if applicable
+                          </p>
+                        </div>
+                      </div>
+
+                      {includeHOA && (
+                        <div className="pl-6">
+                          <div className="grid w-full items-center gap-1.5">
+                            <Label htmlFor="hoaFee" className="text-sm font-medium">HOA Fee (yearly)</Label>
+                            <div className="relative">
+                              <span className="absolute left-3 top-2.5 text-muted-foreground">$</span>
+                              <Input
+                                id="hoaFee"
+                                type="number"
+                                value={hoaFee}
+                                onChange={(e) => setHoaFee(Number(e.target.value))}
+                                className="pl-7 h-9 transition-colors hover:border-primary"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="includeOtherCosts"
+                          checked={includeOtherCosts}
+                          onCheckedChange={(checked) => {
+                            setIncludeOtherCosts(checked as boolean);
+                            if (!checked) setOtherCosts(0);
+                          }}
+                          className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                        />
+                        <div className="grid gap-1">
+                          <label
+                            htmlFor="includeOtherCosts"
+                            className="text-sm font-medium leading-none cursor-pointer"
+                          >
+                            Other Costs
+                          </label>
+                          <p className="text-[13px] text-muted-foreground">
+                            Maintenance, utilities, or other annual costs
+                          </p>
+                        </div>
+                      </div>
+
+                      {includeOtherCosts && (
+                        <div className="pl-6">
+                          <div className="grid w-full items-center gap-1.5">
+                            <Label htmlFor="otherCosts" className="text-sm font-medium">Other Costs (yearly)</Label>
+                            <div className="relative">
+                              <span className="absolute left-3 top-2.5 text-muted-foreground">$</span>
+                              <Input
+                                id="otherCosts"
+                                type="number"
+                                value={otherCosts}
+                                onChange={(e) => setOtherCosts(Number(e.target.value))}
+                                className="pl-7 h-9 transition-colors hover:border-primary"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                <Button
+                  type="button"
+                  onClick={calculateMortgage}
+                  className="w-full bg-primary hover:bg-primary/90"
+                >
+                  Calculate Payment
+                </Button>
+              </div>
+            </form>
+          </CardContent>
         </Card>
 
         <Card className="p-6">
