@@ -83,9 +83,10 @@ export default function MortgageCalculator() {
           { title: "Calculators", href: "/calculators" },
           { title: "Mortgage Calculator", href: "/mortgage-calculator" },
         ]}
+        className="mb-8"
       />
-      
-      <div className="flex justify-between items-center mb-6">
+
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
           <h1 className="text-3xl font-bold">Mortgage Calculator</h1>
           <p className="text-muted-foreground mt-2">
@@ -184,23 +185,25 @@ export default function MortgageCalculator() {
               />
             </div>
 
-            <div className="flex items-center space-x-3 bg-secondary p-4 rounded-lg">
-              <Checkbox
-                id="includeTaxesCosts"
-                checked={includeTaxesCosts}
-                onCheckedChange={(checked) => setIncludeTaxesCosts(checked as boolean)}
-                className="h-5 w-5"
-              />
-              <div className="space-y-1">
-                <label
-                  htmlFor="includeTaxesCosts"
-                  className="text-sm font-medium leading-none cursor-pointer"
-                >
-                  Include Taxes & Additional Costs
-                </label>
-                <p className="text-sm text-muted-foreground">
-                  Add property tax, insurance, and other costs to calculation
-                </p>
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="includeTaxesCosts"
+                  checked={includeTaxesCosts}
+                  onCheckedChange={(checked) => setIncludeTaxesCosts(checked as boolean)}
+                  className="border-gray-400 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+                />
+                <div className="grid gap-1.5 leading-none">
+                  <label
+                    htmlFor="includeTaxesCosts"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Include Taxes & Additional Costs
+                  </label>
+                  <p className="text-sm text-muted-foreground">
+                    Add property tax, insurance, and other costs to calculation
+                  </p>
+                </div>
               </div>
             </div>
 
