@@ -41,13 +41,13 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
-      className="h-9 w-9 border-2 hover:bg-muted"
+      className="h-9 w-9 bg-white hover:bg-white hover:opacity-80"
       onClick={copyToClipboard}
       title="Copy embed code"
     >
-      <Code2 className="h-5 w-5" />
+      <Code2 className="h-5 w-5 text-black" />
     </Button>
   );
 }

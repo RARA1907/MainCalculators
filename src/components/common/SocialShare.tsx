@@ -1,6 +1,8 @@
 'use client';
 
 import { Facebook, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
 interface SocialShareProps {
   url: string;
@@ -8,6 +10,7 @@ interface SocialShareProps {
 }
 
 export function SocialShare({ url, title }: SocialShareProps) {
+  const { toast } = useToast();
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
   const websiteName = "MainCalculators.com";
@@ -23,7 +26,11 @@ export function SocialShare({ url, title }: SocialShareProps) {
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      alert('Link copied to clipboard!');
+      toast({
+        title: "Link copied!",
+        description: "The calculator link has been copied to your clipboard.",
+        duration: 3000,
+      });
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
@@ -59,13 +66,15 @@ export function SocialShare({ url, title }: SocialShareProps) {
       >
         <Linkedin className="w-5 h-5" />
       </a>
-      <button
+      <Button
         onClick={copyToClipboard}
-        className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+        variant="ghost"
+        size="icon"
+        className="h-9 w-9 bg-white hover:bg-white hover:opacity-80"
         aria-label="Copy link to clipboard"
       >
-        <LinkIcon className="w-5 h-5" />
-      </button>
+        <LinkIcon className="h-5 w-5 text-black" />
+      </Button>
     </div>
   );
 }
