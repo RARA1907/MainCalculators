@@ -1,8 +1,7 @@
 'use client';
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Code2, Copy } from "lucide-react"
+import { Code2 } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import { usePathname } from "next/navigation"
 
@@ -33,43 +32,22 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(embedCode).then(() => {
       toast({
-        title: "Copied to clipboard",
-        description: "The embed code has been copied to your clipboard",
+        title: "Embed code copied!",
+        description: "You can now paste the embed code into your website to display this calculator.",
         duration: 3000,
       });
     });
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="icon" className="h-9 w-9">
-          <Code2 className="h-4 w-4" />
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Embed {title}</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-4">
-          <div className="relative">
-            <pre className="bg-muted rounded-lg p-4 overflow-x-auto text-sm">
-              {embedCode}
-            </pre>
-            <Button
-              size="icon"
-              variant="ghost"
-              className="absolute top-2 right-2"
-              onClick={copyToClipboard}
-            >
-              <Copy className="h-4 w-4" />
-            </Button>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Copy and paste this code into your website to embed this calculator.
-          </p>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <Button
+      variant="outline"
+      size="icon"
+      className="h-9 w-9 border-2 hover:bg-muted"
+      onClick={copyToClipboard}
+      title="Copy embed code"
+    >
+      <Code2 className="h-5 w-5" />
+    </Button>
   );
 }
