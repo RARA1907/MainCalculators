@@ -10,7 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { SocialShare } from "@/components/common/SocialShare";
 import { EmbedDialog } from "@/components/shared/EmbedDialog";
 import { Separator } from "@/components/ui/separator";
-import { InfoCircle } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function MortgageCalculator() {
@@ -69,7 +69,7 @@ export default function MortgageCalculator() {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
-                      <InfoCircle className="h-4 w-4" />
+                      <Info className="h-4 w-4" />
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>Enter the total price of the home</p>
