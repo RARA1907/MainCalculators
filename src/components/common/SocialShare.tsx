@@ -1,6 +1,6 @@
 'use client';
 
-import { Facebook, Twitter, Linkedin, Link2, Code2 } from 'lucide-react';
+import { Share2, Link2, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { useEmbedDialog } from '@/hooks/useEmbedDialog';
@@ -35,30 +35,26 @@ export function SocialShare({ url, title }: SocialShareProps) {
       <Button
         variant="outline"
         size="icon"
+        className="bg-white hover:bg-blue-50 border-blue-200 hover:border-blue-300"
         onClick={() => window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, '_blank')}
       >
-        <Twitter className="h-5 w-5" />
+        <Share2 className="h-5 w-5 text-blue-500 hover:text-blue-600" />
       </Button>
       <Button
         variant="outline"
         size="icon"
-        onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank')}
-      >
-        <Facebook className="h-5 w-5" />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
+        className="bg-white hover:bg-blue-50 border-blue-200 hover:border-blue-300"
         onClick={handleCopyLink}
       >
-        <Link2 className="h-5 w-5" />
+        <Link2 className="h-5 w-5 text-blue-500 hover:text-blue-600" />
       </Button>
       <Button
         variant="outline"
         size="icon"
+        className="bg-white hover:bg-blue-50 border-blue-200 hover:border-blue-300"
         onClick={() => setIsOpen(true)}
       >
-        <Code2 className="h-5 w-5" />
+        <Code2 className="h-5 w-5 text-blue-500 hover:text-blue-600" />
       </Button>
     </div>
   );
