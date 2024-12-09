@@ -154,7 +154,7 @@ export default function MortgageCalculator() {
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <Info className="h-3.5 w-3.5 ml-1 inline-block text-muted-foreground" />
+                          <Info className="h-3.5 w-3.5 ml-1 inline-block text-muted-foreground hover:text-foreground transition-colors" />
                         </TooltipTrigger>
                         <TooltipContent>
                           <p className="text-sm">Enter the total price of the home</p>
@@ -231,7 +231,7 @@ export default function MortgageCalculator() {
                     id="includeTaxesCosts"
                     checked={includeTaxesCosts}
                     onCheckedChange={(checked) => setIncludeTaxesCosts(checked as boolean)}
-                    className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                    className="border-input bg-background data-[state=checked]:bg-background data-[state=checked]:text-foreground"
                   />
                   <div className="grid gap-1">
                     <label
@@ -286,7 +286,7 @@ export default function MortgageCalculator() {
                             setIncludePMI(checked as boolean);
                             if (!checked) setPmiInsurance(0);
                           }}
-                          className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                          className="border-input bg-background data-[state=checked]:bg-background data-[state=checked]:text-foreground"
                         />
                         <div className="grid gap-1">
                           <label
@@ -329,7 +329,7 @@ export default function MortgageCalculator() {
                             setIncludeHOA(checked as boolean);
                             if (!checked) setHoaFee(0);
                           }}
-                          className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                          className="border-input bg-background data-[state=checked]:bg-background data-[state=checked]:text-foreground"
                         />
                         <div className="grid gap-1">
                           <label
@@ -372,7 +372,7 @@ export default function MortgageCalculator() {
                             setIncludeOtherCosts(checked as boolean);
                             if (!checked) setOtherCosts(0);
                           }}
-                          className="border-input data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                          className="border-input bg-background data-[state=checked]:bg-background data-[state=checked]:text-foreground"
                         />
                         <div className="grid gap-1">
                           <label
