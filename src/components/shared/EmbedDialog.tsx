@@ -15,7 +15,9 @@ export default function EmbedDialog({ title }: EmbedDialogProps) {
   const pathname = usePathname();
   
   // Get the current URL
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.maincalculators.com';
+  const baseUrl = typeof window !== 'undefined' 
+    ? window.location.origin 
+    : process.env.NEXT_PUBLIC_BASE_URL || 'https://www.maincalculators.com';
   const currentUrl = `${baseUrl}${pathname}`;
   
   // Generate embed code
@@ -24,7 +26,7 @@ export default function EmbedDialog({ title }: EmbedDialogProps) {
   width="100%" 
   height="600px" 
   frameBorder="0" 
-  allowtransparency="true"
+  allowTransparency="true"
   style="border: 1px solid #ddd; border-radius: 8px;"
 ></iframe>`;
 
