@@ -54,16 +54,12 @@ export const metadata: Metadata = {
     creator: '@maincalculators',
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
-    other: {
-      rel: 'apple-touch-icon-precomposed',
-      url: '/apple-touch-icon-precomposed.png',
-    },
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
   manifest: '/site.webmanifest',
-  metadataBase: new URL('https://swift-calculators-hub.vercel.app'),
+  metadataBase: new URL('https://maincalculators.com'),
   verification: {
     google: 'your-google-site-verification',
   },
