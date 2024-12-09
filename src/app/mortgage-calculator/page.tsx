@@ -117,26 +117,12 @@ export default function MortgageCalculator() {
         className="mb-8"
       />
 
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl font-bold">Mortgage Calculator</h1>
-          <p className="text-muted-foreground mt-2">
-            Calculate your monthly mortgage payments and see a detailed breakdown of costs
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <SocialShare url="https://www.maincalculators.com/mortgage-calculator" title="Mortgage Calculator" />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 p-2 rounded-full transition-colors"
-            onClick={copyUrlToClipboard}
-            aria-label="Copy link"
-          >
-            <Link2 className="h-5 w-5" />
-          </Button>
-          <EmbedDialog title="Mortgage Calculator" />
-        </div>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">Mortgage Calculator</h1>
+        <SocialShare
+          url={typeof window !== 'undefined' ? window.location.href : ''}
+          title="Mortgage Calculator"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[450px,1fr] gap-6">
