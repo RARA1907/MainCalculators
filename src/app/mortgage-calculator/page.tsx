@@ -15,6 +15,10 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { MortgageCalculatorContent } from "./content";
 import { Link2 } from 'lucide-react';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend } from 'chart.js';
+
+ChartJS.register(ArcElement, ChartTooltip, Legend);
 
 export default function MortgageCalculator() {
   const [homePrice, setHomePrice] = useState<number>(400000);
@@ -32,6 +36,21 @@ export default function MortgageCalculator() {
   const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
   const [totalPayment, setTotalPayment] = useState<number>(0);
   const [principalAndInterest, setPrincipalAndInterest] = useState<number>(0);
+  const [monthlyBreakdown, setMonthlyBreakdown] = useState<{
+    propertyTax: number;
+    homeInsurance: number;
+    pmiInsurance: number;
+    hoaFee: number;
+    otherCosts: number;
+    principalAndInterest: number;
+  }>({
+    propertyTax: 0,
+    homeInsurance: 0,
+    pmiInsurance: 0,
+    hoaFee: 0,
+    otherCosts: 0,
+    principalAndInterest: 0,
+  });
 
   const calculateMonthlyPayment = (principal: number, annualRate: number, years: number) => {
     const monthlyRate = annualRate / 100 / 12;
@@ -58,6 +77,15 @@ export default function MortgageCalculator() {
     const totalMonthly = includeTaxesCosts
       ? baseMonthlyPayment + monthlyPropertyTax + monthlyHomeInsurance + monthlyPMI + monthlyHOA + monthlyOther
       : baseMonthlyPayment;
+
+    setMonthlyBreakdown({
+      propertyTax: monthlyPropertyTax,
+      homeInsurance: monthlyHomeInsurance,
+      pmiInsurance: monthlyPMI,
+      hoaFee: monthlyHOA,
+      otherCosts: monthlyOther,
+      principalAndInterest: baseMonthlyPayment,
+    });
 
     setMonthlyPayment(totalMonthly);
     setTotalPayment(totalMonthly * loanTerm * 12);
@@ -346,6 +374,104 @@ export default function MortgageCalculator() {
             )}
           </div>
         </Card>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Monthly Payment Breakdown</h2>
+        
+        {/* Pie Chart */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <Card className="p-6">
+            <h3 className="text-lg font-semibold mb-4">Payment Distribution</h3>
+            <div className="aspect-square">
+              <Pie
+                data={{
+                  labels: [
+                    'Principal & Interest',
+                    'Property Tax',
+                    'Home Insurance',
+                    'PMI',
+                    'HOA Fee',
+                    'Other Costs',
+                  ],
+                  datasets: [
+                    {
+                      data: [
+                        monthlyBreakdown.principalAndInterest,
+                        monthlyBreakdown.propertyTax,
+                        monthlyBreakdown.homeInsurance,
+                        monthlyBreakdown.pmiInsurance,
+                        monthlyBreakdown.hoaFee,
+                        monthlyBreakdown.otherCosts,
+                      ],
+                      backgroundColor: [
+                        '#0EA5E9',
+                        '#F59E0B',
+                        '#10B981',
+                        '#6366F1',
+                        '#EC4899',
+                        '#8B5CF6',
+                      ],
+                      borderColor: '#FFFFFF',
+                      borderWidth: 2,
+                    },
+                  ],
+                }}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: 'bottom',
+                    },
+                  },
+                }}
+              />
+            </div>
+          </Card>
+
+          {/* Detailed Table */}
+          <Card className="p-6">
+            <h3 className="text-lg font-semibold mb-4">Monthly Payment Details</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-left py-2">Component</th>
+                    <th className="text-right py-2">Amount</th>
+                    <th className="text-right py-2">% of Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries({
+                    'Principal & Interest': monthlyBreakdown.principalAndInterest,
+                    'Property Tax': monthlyBreakdown.propertyTax,
+                    'Home Insurance': monthlyBreakdown.homeInsurance,
+                    'PMI': monthlyBreakdown.pmiInsurance,
+                    'HOA Fee': monthlyBreakdown.hoaFee,
+                    'Other Costs': monthlyBreakdown.otherCosts,
+                  }).map(([label, amount]) => (
+                    <tr key={label} className="border-b">
+                      <td className="py-2">{label}</td>
+                      <td className="text-right py-2">
+                        ${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </td>
+                      <td className="text-right py-2">
+                        {((amount / monthlyPayment) * 100).toFixed(1)}%
+                      </td>
+                    </tr>
+                  ))}
+                  <tr className="font-semibold">
+                    <td className="py-2">Total Monthly Payment</td>
+                    <td className="text-right py-2">
+                      ${monthlyPayment.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </td>
+                    <td className="text-right py-2">100%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </div>
       </div>
 
       <MortgageCalculatorContent />
