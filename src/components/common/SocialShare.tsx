@@ -50,40 +50,39 @@ export function SocialShare({ url, title }: SocialShareProps) {
   }
 
   return (
-    <div className="flex space-x-4 items-center">
-      <span className="text-sm text-gray-600 dark:text-gray-400">Share:</span>
-      <a
-        href={shareLinks.facebook}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-        aria-label="Share on Facebook"
-      >
-        <Facebook className="w-5 h-5" />
-      </a>
-      <a
-        href={shareLinks.twitter}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
-        aria-label="Share on Twitter"
-      >
-        <Twitter className="w-5 h-5" />
-      </a>
-      <a
-        href={shareLinks.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-700 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-400"
-        aria-label="Share on LinkedIn"
-      >
-        <Linkedin className="w-5 h-5" />
-      </a>
+    <div className="flex items-center gap-2">
       <Button
         variant="ghost"
         size="icon"
-        onClick={copyToClipboard}
+        className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+        onClick={() => window.open(shareLinks.facebook, '_blank')}
+        aria-label="Share on Facebook"
+      >
+        <Facebook className="h-5 w-5" />
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+        onClick={() => window.open(shareLinks.twitter, '_blank')}
+        aria-label="Share on Twitter"
+      >
+        <Twitter className="h-5 w-5" />
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="text-blue-700 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+        onClick={() => window.open(shareLinks.linkedin, '_blank')}
+        aria-label="Share on LinkedIn"
+      >
+        <Linkedin className="h-5 w-5" />
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
         className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+        onClick={copyToClipboard}
         aria-label="Copy link"
       >
         <LinkIcon className="h-5 w-5" />
