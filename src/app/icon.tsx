@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server'
+import { ImageResponse } from 'next/og'
  
 // Route segment config
 export const runtime = 'edge'
@@ -11,7 +11,7 @@ export const size = {
 export const contentType = 'image/png'
  
 // Image generation
-export default function Icon() {
+export default async function Icon() {
   return new ImageResponse(
     (
       // ImageResponse JSX element
@@ -33,9 +33,8 @@ export default function Icon() {
     ),
     // ImageResponse options
     {
-      // For convenience, we can re-use the exported size metadata
-      // config to also set the ImageResponse's width and height.
-      ...size,
+      width: 32,
+      height: 32,
     }
   )
 }
