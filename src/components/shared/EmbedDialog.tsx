@@ -1,9 +1,11 @@
 'use client';
 
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Code2 } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import { usePathname } from "next/navigation"
+import { useEmbedDialog } from "@/hooks/useEmbedDialog"
 
 interface EmbedDialogProps {
   title: string;
@@ -12,6 +14,7 @@ interface EmbedDialogProps {
 export function EmbedDialog({ title }: EmbedDialogProps) {
   const { toast } = useToast()
   const pathname = usePathname();
+  const { isOpen, setIsOpen } = useEmbedDialog();
   
   // Get the current URL
   const baseUrl = 'https://www.maincalculators.com';
@@ -19,33 +22,50 @@ export function EmbedDialog({ title }: EmbedDialogProps) {
   
   // Generate embed code
   const embedCode = `<iframe 
-  src="${currentUrl}"
-  width="100%" 
-  height="600px" 
-  frameBorder="0" 
-  allowTransparency="true"
-  style="border: 1px solid #ddd; border-radius: 8px;"
-></iframe>`;
+    src="${currentUrl}"
+    width="100%"
+    height="600px"
+    frameborder="0"
+    title="${title}"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>`;
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(embedCode).then(() => {
+  const handleCopyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(embedCode);
       toast({
         title: "Embed code copied!",
-        description: "You can now paste the embed code into your website to display this calculator.",
-        duration: 3000,
+        description: "The embed code has been copied to your clipboard.",
       });
-    });
+      setIsOpen(false);
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 p-2 rounded-full transition-colors"
-      onClick={copyToClipboard}
-      aria-label="Copy embed code"
-    >
-      <Code2 className="h-5 w-5" />
-    </Button>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Embed Calculator</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Copy the code below to embed this calculator on your website:
+          </p>
+          <pre className="p-4 bg-secondary/20 rounded-lg overflow-x-auto text-sm">
+            {embedCode}
+          </pre>
+          <Button onClick={handleCopyCode} className="w-full">
+            Copy Embed Code
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
