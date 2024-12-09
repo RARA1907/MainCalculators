@@ -4,6 +4,17 @@ import { type ToastProps, ToastProvider, ToastViewport } from "@radix-ui/react-t
 const TOAST_LIMIT = 3
 const TOAST_REMOVE_DELAY = 1000
 
+type ToasterToastProps = Omit<
+  ToastProps & {
+    title?: React.ReactNode
+    description?: React.ReactNode
+    action?: React.ReactNode
+    variant?: "default" | "destructive"
+    duration?: number
+  },
+  "id"
+>
+
 type ToasterToast = ToastProps & {
   id: string
   title?: React.ReactNode
@@ -98,10 +109,10 @@ function dispatch(action: Action) {
   })
 }
 
-function toast({ ...props }: ToasterToast) {
+function toast(props: ToasterToastProps) {
   const id = genId()
 
-  const update = (props: ToasterToast) =>
+  const update = (props: ToasterToastProps) =>
     dispatch({
       type: actionTypes.UPDATE_TOAST,
       toast: { ...props, id },
