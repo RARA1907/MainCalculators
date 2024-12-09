@@ -55,7 +55,7 @@ export default function MortgageCalculator() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Mortgage Calculator</h1>
         <div className="flex items-center gap-2">
-          <SocialShare url={window?.location.href} title="Mortgage Calculator" />
+          <SocialShare url="https://www.maincalculators.com/mortgage-calculator" title="Mortgage Calculator" />
           <EmbedDialog title="Mortgage Calculator" />
         </div>
       </div>
