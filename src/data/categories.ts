@@ -1,7 +1,7 @@
 export const categories = [
   {
     title: 'Finance Calculators',
-    description: 'Comprehensive financial planning tools for all your needs',
+    description: 'Comprehensive financial planning tools for all your needs.',
     subcategories: [
       {
         title: 'Mortgage & Real Estate',
