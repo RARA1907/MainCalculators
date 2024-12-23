@@ -119,9 +119,8 @@ export default function HouseAffordabilityCalculator() {
         <div className="mb-6 mt-6">
           <Breadcrumb
             items={breadcrumbItems}
-            className="mb-6 mt-6 bg-base-100"
           />
-          <h1 className="text-3xl font-bold text-base-content">House Affordability Calculator</h1>
+          <h1 className="text-3xl font-bold pt-4 text-base-content">House Affordability Calculator</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
