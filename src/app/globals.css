@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  [data-theme="light"] {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -38,7 +38,7 @@
     --link-active: 45 93% 47%;
   }
 
-  .dark {
+  [data-theme="dark"] {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -49,7 +49,7 @@
     --popover-foreground: 210 40% 98%;
 
     --primary: 199 89% 48%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
     --secondary: 186 94% 82%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -58,7 +58,7 @@
     --muted-foreground: 215 20.2% 65.1%;
 
     --accent: 45 93% 47%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -71,6 +71,20 @@
     --link-hover: 186 94% 82%;
     --link-active: 45 93% 47%;
   }
+}
+
+/* DaisyUI Base Styles */
+:root {
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: .2s;
+  --btn-text-case: uppercase;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
 }
 
 @layer base {

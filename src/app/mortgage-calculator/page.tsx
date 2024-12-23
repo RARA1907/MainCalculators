@@ -6,12 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { SocialShare } from "@/components/common/SocialShare";
-import { EmbedDialog } from "@/components/shared/EmbedDialog";
 import { Separator } from "@/components/ui/separator";
 import { Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { SocialShare } from "@/components/common/SocialShare";
+import { EmbedDialog } from "@/components/shared/EmbedDialog";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { MortgageCalculatorContent } from "./content";
 import { Link2 } from 'lucide-react';
@@ -108,485 +107,336 @@ export default function MortgageCalculator() {
   };
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       <Breadcrumb
         segments={[
-          { title: "Calculators", href: "/calculators" },
+          { title: "Home", href: "/" },
           { title: "Mortgage Calculator", href: "/mortgage-calculator" },
         ]}
         className="mb-8"
       />
 
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Mortgage Calculator</h1>
-        <SocialShare
-          url={typeof window !== 'undefined' ? window.location.href : ''}
-          title="Mortgage Calculator"
-        />
-      </div>
+      <div className="flex flex-col gap-6">
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold">Mortgage Calculator</h1>
+          <div className="flex gap-2">
+            <SocialShare
+              url={typeof window !== 'undefined' ? window.location.href : ''}
+              title="Mortgage Calculator"
+            />
+            <EmbedDialog />
+          </div>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[450px,1fr] gap-6">
-        <Card>
-          <CardHeader className="pb-3">
-            <h2 className="text-xl font-semibold">Mortgage Calculator</h2>
-            <p className="text-sm text-muted-foreground">Calculate your estimated monthly mortgage payment</p>
-          </CardHeader>
-          <CardContent>
-            <form className="space-y-4">
-              <div className="space-y-3">
-                <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="homePrice" className="text-sm font-medium">
-                    Home Price
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Input Form */}
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title text-base-content mb-4">Loan Details</h2>
+              
+              <div className="form-control gap-6">
+                {/* Home Price */}
+                <div className="form-control">
+                  <div className="flex items-center gap-2 mb-2">
+                    <label className="text-base-content">Home Price</label>
                     <TooltipProvider>
                       <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Info className="h-3.5 w-3.5 ml-1 inline-block text-muted-foreground hover:text-foreground transition-colors" />
+                        <TooltipTrigger>
+                          <Info className="h-4 w-4 text-base-content/70" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p className="text-sm">Enter the total price of the home</p>
+                          <p>Enter the total price of the home</p>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-2.5 text-muted-foreground">$</span>
-                    <Input
-                      id="homePrice"
+                  </div>
+                  <div className="input-group">
+                    <span className="input-group-text bg-base-200 text-base-content border-base-300">$</span>
+                    <input
                       type="number"
+                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
                       value={homePrice}
                       onChange={(e) => setHomePrice(Number(e.target.value))}
-                      className="bg-white hover:bg-white focus:bg-white border-input pl-7 h-9 transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="grid w-full items-center gap-1.5">
-                    <Label htmlFor="downPayment" className="text-sm font-medium">Down Payment %</Label>
-                    <Input
-                      id="downPayment"
+                {/* Down Payment */}
+                <div className="form-control">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-base-content">Down Payment</label>
+                    <span className="text-sm text-base-content/70">
+                      (${(homePrice * (downPayment / 100)).toLocaleString()})
+                    </span>
+                  </div>
+                  <div className="input-group">
+                    <input
                       type="number"
+                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
                       value={downPayment}
                       onChange={(e) => setDownPayment(Number(e.target.value))}
-                      className="bg-white hover:bg-white focus:bg-white border-input text-right h-9 transition-colors"
                     />
-                  </div>
-
-                  <div className="grid w-full items-center gap-1.5">
-                    <Label htmlFor="loanTerm" className="text-sm font-medium">Loan Term</Label>
-                    <Select value={String(loanTerm)} onValueChange={(value) => setLoanTerm(Number(value))}>
-                      <SelectTrigger className="h-9 transition-colors hover:border-primary">
-                        <SelectValue placeholder="Select term" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="15">15 Years</SelectItem>
-                        <SelectItem value="20">20 Years</SelectItem>
-                        <SelectItem value="30">30 Years</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <span className="input-group-text bg-base-200 text-base-content border-base-300">%</span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="grid w-full items-center gap-1.5">
-                    <Label htmlFor="interestRate" className="text-sm font-medium">Interest Rate %</Label>
-                    <Input
-                      id="interestRate"
+                {/* Interest Rate */}
+                <div className="form-control">
+                  <label className="text-base-content mb-2">Interest Rate</label>
+                  <div className="input-group">
+                    <input
                       type="number"
                       step="0.001"
+                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
                       value={interestRate}
                       onChange={(e) => setInterestRate(Number(e.target.value))}
-                      className="bg-white hover:bg-white focus:bg-white border-input text-right h-9 transition-colors"
                     />
-                  </div>
-
-                  <div className="grid w-full items-center gap-1.5">
-                    <Label htmlFor="startDate" className="text-sm font-medium">Start Date</Label>
-                    <Input
-                      id="startDate"
-                      type="month"
-                      value={startDate}
-                      onChange={(e) => setStartDate(e.target.value)}
-                      className="bg-white hover:bg-white focus:bg-white border-input h-9 transition-colors"
-                    />
+                    <span className="input-group-text bg-base-200 text-base-content border-base-300">%</span>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-2 pt-2">
-                  <Checkbox
-                    id="includeTaxesCosts"
-                    checked={includeTaxesCosts}
-                    onCheckedChange={(checked) => setIncludeTaxesCosts(checked as boolean)}
-                    className="border-input bg-white hover:bg-white data-[state=checked]:bg-white data-[state=checked]:text-black"
+                {/* Loan Term */}
+                <div className="form-control">
+                  <label className="text-base-content mb-2">Loan Term</label>
+                  <select 
+                    className="select select-bordered w-full bg-base-100 text-base-content border-base-300"
+                    value={loanTerm}
+                    onChange={(e) => setLoanTerm(Number(e.target.value))}
+                  >
+                    <option value={30}>30 Years</option>
+                    <option value={20}>20 Years</option>
+                    <option value={15}>15 Years</option>
+                    <option value={10}>10 Years</option>
+                  </select>
+                </div>
+
+                {/* Start Date */}
+                <div className="form-control">
+                  <label className="text-base-content mb-2">Start Date</label>
+                  <input
+                    type="month"
+                    className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
                   />
-                  <div className="grid gap-1">
-                    <label
-                      htmlFor="includeTaxesCosts"
-                      className="text-sm font-medium leading-none cursor-pointer"
-                    >
-                      Include Taxes & Additional Costs
-                    </label>
-                    <p className="text-[13px] text-muted-foreground">
-                      Add property tax, insurance, and other costs
-                    </p>
+                </div>
+
+                <div className="divider">Additional Costs</div>
+
+                {/* Include Taxes & Insurance Toggle */}
+                <div className="form-control">
+                  <label className="flex items-center justify-between cursor-pointer">
+                    <span className="text-base-content">Include Taxes & Insurance</span>
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-primary"
+                      checked={includeTaxesCosts}
+                      onChange={(e) => setIncludeTaxesCosts(e.target.checked)}
+                    />
+                  </label>
+                </div>
+
+                {includeTaxesCosts && (
+                  <>
+                    {/* Property Tax */}
+                    <div className="form-control">
+                      <label className="text-base-content mb-2">Property Tax Rate (Annual)</label>
+                      <div className="input-group">
+                        <input
+                          type="number"
+                          step="0.01"
+                          className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
+                          value={propertyTax}
+                          onChange={(e) => setPropertyTax(Number(e.target.value))}
+                        />
+                        <span className="input-group-text bg-base-200 text-base-content border-base-300">%</span>
+                      </div>
+                    </div>
+
+                    {/* Home Insurance */}
+                    <div className="form-control">
+                      <label className="text-base-content mb-2">Home Insurance (Annual)</label>
+                      <div className="input-group">
+                        <span className="input-group-text bg-base-200 text-base-content border-base-300">$</span>
+                        <input
+                          type="number"
+                          className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
+                          value={homeInsurance}
+                          onChange={(e) => setHomeInsurance(Number(e.target.value))}
+                        />
+                      </div>
+                    </div>
+
+                    {/* PMI Insurance Toggle & Input */}
+                    <div className="form-control">
+                      <label className="flex items-center justify-between cursor-pointer">
+                        <span className="text-base-content">Private Mortgage Insurance (PMI)</span>
+                        <input
+                          type="checkbox"
+                          className="checkbox checkbox-primary"
+                          checked={includePMI}
+                          onChange={(e) => setIncludePMI(e.target.checked)}
+                        />
+                      </label>
+                      {includePMI && (
+                        <div className="mt-2">
+                          <div className="input-group">
+                            <span className="input-group-text bg-base-200 text-base-content border-base-300">$</span>
+                            <input
+                              type="number"
+                              className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
+                              value={pmiInsurance}
+                              onChange={(e) => setPmiInsurance(Number(e.target.value))}
+                              placeholder="Annual PMI"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* HOA Fee Toggle & Input */}
+                    <div className="form-control">
+                      <label className="flex items-center justify-between cursor-pointer">
+                        <span className="text-base-content">Homeowners Association Fee (HOA)</span>
+                        <input
+                          type="checkbox"
+                          className="checkbox checkbox-primary"
+                          checked={includeHOA}
+                          onChange={(e) => setIncludeHOA(e.target.checked)}
+                        />
+                      </label>
+                      {includeHOA && (
+                        <div className="mt-2">
+                          <div className="input-group">
+                            <span className="input-group-text bg-base-200 text-base-content border-base-300">$</span>
+                            <input
+                              type="number"
+                              className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
+                              value={hoaFee}
+                              onChange={(e) => setHoaFee(Number(e.target.value))}
+                              placeholder="Monthly HOA Fee"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Other Costs Toggle & Input */}
+                    <div className="form-control">
+                      <label className="flex items-center justify-between cursor-pointer">
+                        <span className="text-base-content">Other Costs (Annual)</span>
+                        <input
+                          type="checkbox"
+                          className="checkbox checkbox-primary"
+                          checked={includeOtherCosts}
+                          onChange={(e) => setIncludeOtherCosts(e.target.checked)}
+                        />
+                      </label>
+                      {includeOtherCosts && (
+                        <div className="mt-2">
+                          <div className="input-group">
+                            <span className="input-group-text bg-base-200 text-base-content border-base-300">$</span>
+                            <input
+                              type="number"
+                              className="input input-bordered w-full bg-base-100 text-base-content border-base-300"
+                              value={otherCosts}
+                              onChange={(e) => setOtherCosts(Number(e.target.value))}
+                              placeholder="Annual Other Costs"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+                <button 
+                  className="btn bg-blue-500 hover:bg-blue-600 text-white mt-4 w-full border-0"
+                  onClick={calculateMortgage}
+                >
+                  Calculate
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Results Card */}
+          <div className="card bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title text-base-content mb-4">Monthly Payment Breakdown</h2>
+              
+              <div className="stats stats-vertical shadow bg-base-200">
+                <div className="stat">
+                  <div className="stat-title text-base-content/70">Monthly Payment</div>
+                  <div className="stat-value text-primary">
+                    ${monthlyPayment.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                  </div>
+                </div>
+
+                <div className="stat">
+                  <div className="stat-title text-base-content/70">Principal & Interest</div>
+                  <div className="stat-value text-secondary">
+                    ${principalAndInterest.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                   </div>
                 </div>
 
                 {includeTaxesCosts && (
-                  <div className="space-y-4 mt-4">
-                    <div className="grid gap-2">
-                      <Label htmlFor="propertyTax">Annual Property Tax</Label>
-                      <Input
-                        type="number"
-                        id="propertyTax"
-                        value={propertyTax}
-                        onChange={(e) => setPropertyTax(Number(e.target.value))}
-                        className="bg-white hover:bg-white focus:bg-white border-input"
-                      />
+                  <>
+                    <div className="stat">
+                      <div className="stat-title text-base-content/70">Property Tax</div>
+                      <div className="stat-value text-accent">
+                        ${monthlyBreakdown.propertyTax.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                      </div>
                     </div>
 
-                    <div className="grid gap-2">
-                      <Label htmlFor="homeInsurance">Annual Home Insurance</Label>
-                      <Input
-                        type="number"
-                        id="homeInsurance"
-                        value={homeInsurance}
-                        onChange={(e) => setHomeInsurance(Number(e.target.value))}
-                        className="bg-white hover:bg-white focus:bg-white border-input"
-                      />
+                    <div className="stat">
+                      <div className="stat-title text-base-content/70">Home Insurance</div>
+                      <div className="stat-value">
+                        ${monthlyBreakdown.homeInsurance.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                      </div>
                     </div>
 
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="includePMI"
-                          checked={includePMI}
-                          onCheckedChange={(checked) => {
-                            setIncludePMI(checked as boolean);
-                            if (!checked) setPmiInsurance(0);
-                          }}
-                          className="border-input bg-white hover:bg-white data-[state=checked]:bg-white data-[state=checked]:text-black"
-                        />
-                        <div className="grid gap-1">
-                          <label
-                            htmlFor="includePMI"
-                            className="text-sm font-medium leading-none cursor-pointer"
-                          >
-                            Include PMI
-                          </label>
-                          <p className="text-[13px] text-muted-foreground">
-                            Private Mortgage Insurance
-                          </p>
+                    {includePMI && (
+                      <div className="stat">
+                        <div className="stat-title text-base-content/70">PMI</div>
+                        <div className="stat-value">
+                          ${monthlyBreakdown.pmiInsurance.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                         </div>
                       </div>
+                    )}
 
-                      {includePMI && (
-                        <div className="mt-2">
-                          <Label htmlFor="pmiInsurance">Monthly PMI</Label>
-                          <Input
-                            type="number"
-                            id="pmiInsurance"
-                            value={pmiInsurance}
-                            onChange={(e) => setPmiInsurance(Number(e.target.value))}
-                            className="bg-white hover:bg-white focus:bg-white border-input mt-1"
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="includeHOA"
-                          checked={includeHOA}
-                          onCheckedChange={(checked) => {
-                            setIncludeHOA(checked as boolean);
-                            if (!checked) setHoaFee(0);
-                          }}
-                          className="border-input bg-white hover:bg-white data-[state=checked]:bg-white data-[state=checked]:text-black"
-                        />
-                        <div className="grid gap-1">
-                          <label
-                            htmlFor="includeHOA"
-                            className="text-sm font-medium leading-none cursor-pointer"
-                          >
-                            Include HOA Fee
-                          </label>
-                          <p className="text-[13px] text-muted-foreground">
-                            Homeowners Association Fee
-                          </p>
+                    {includeHOA && (
+                      <div className="stat">
+                        <div className="stat-title text-base-content/70">HOA Fee</div>
+                        <div className="stat-value">
+                          ${monthlyBreakdown.hoaFee.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                         </div>
                       </div>
+                    )}
 
-                      {includeHOA && (
-                        <div className="mt-2">
-                          <Label htmlFor="hoaFee">Monthly HOA Fee</Label>
-                          <Input
-                            type="number"
-                            id="hoaFee"
-                            value={hoaFee}
-                            onChange={(e) => setHoaFee(Number(e.target.value))}
-                            className="bg-white hover:bg-white focus:bg-white border-input mt-1"
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="includeOtherCosts"
-                          checked={includeOtherCosts}
-                          onCheckedChange={(checked) => {
-                            setIncludeOtherCosts(checked as boolean);
-                            if (!checked) setOtherCosts(0);
-                          }}
-                          className="border-input bg-white hover:bg-white data-[state=checked]:bg-white data-[state=checked]:text-black"
-                        />
-                        <div className="grid gap-1">
-                          <label
-                            htmlFor="includeOtherCosts"
-                            className="text-sm font-medium leading-none cursor-pointer"
-                          >
-                            Include Other Costs
-                          </label>
-                          <p className="text-[13px] text-muted-foreground">
-                            Additional monthly expenses
-                          </p>
+                    {includeOtherCosts && (
+                      <div className="stat">
+                        <div className="stat-title text-base-content/70">Other Costs</div>
+                        <div className="stat-value">
+                          ${monthlyBreakdown.otherCosts.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                         </div>
                       </div>
-
-                      {includeOtherCosts && (
-                        <div className="mt-2">
-                          <Label htmlFor="otherCosts">Monthly Other Costs</Label>
-                          <Input
-                            type="number"
-                            id="otherCosts"
-                            value={otherCosts}
-                            onChange={(e) => setOtherCosts(Number(e.target.value))}
-                            className="bg-white hover:bg-white focus:bg-white border-input mt-1"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                    )}
+                  </>
                 )}
-                <Button
-                  type="button"
-                  onClick={calculateMortgage}
-                  className="w-full bg-primary hover:bg-primary/90"
-                >
-                  Calculate Payment
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
 
-        <Card className="p-6">
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-semibold">Payment Summary</h2>
-              <p className="text-muted-foreground mt-1">Estimated monthly payments and total cost</p>
-            </div>
-
-            <div className="space-y-4">
-              <div className="p-4 bg-primary/5 rounded-lg">
-                <div className="text-sm text-muted-foreground">Monthly Payment</div>
-                <div className="text-3xl font-bold mt-1">
-                  {formatCurrency(monthlyPayment)}
-                </div>
-              </div>
-
-              <div className="p-4 bg-secondary rounded-lg">
-                <div className="text-sm text-muted-foreground">Total of {loanTerm * 12} Payments</div>
-                <div className="text-2xl font-semibold mt-1">
-                  {formatCurrency(totalPayment)}
+                <div className="stat">
+                  <div className="stat-title text-base-content/70">Total Payment (Loan Term)</div>
+                  <div className="stat-value text-base-content">
+                    ${totalPayment.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                  </div>
                 </div>
               </div>
             </div>
-
-            {includeTaxesCosts && monthlyPayment > 0 && (
-              <>
-                <Separator />
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-medium">Payment Distribution</h3>
-                    <div className="aspect-square max-w-[240px]">
-                      <Pie
-                        data={{
-                          labels: [
-                            'Principal & Interest',
-                            'Property Tax',
-                            'Home Insurance',
-                            'PMI',
-                            'HOA Fee',
-                            'Other Costs',
-                          ],
-                          datasets: [
-                            {
-                              data: [
-                                monthlyBreakdown.principalAndInterest,
-                                monthlyBreakdown.propertyTax,
-                                monthlyBreakdown.homeInsurance,
-                                includePMI ? monthlyBreakdown.pmiInsurance : 0,
-                                includeHOA ? monthlyBreakdown.hoaFee : 0,
-                                includeOtherCosts ? monthlyBreakdown.otherCosts : 0,
-                              ],
-                              backgroundColor: [
-                                '#0EA5E9',
-                                '#22C55E',
-                                '#EAB308',
-                                '#EC4899',
-                                '#8B5CF6',
-                                '#F97316',
-                              ],
-                            },
-                          ],
-                        }}
-                        options={{
-                          responsive: true,
-                          plugins: {
-                            legend: {
-                              display: false,
-                            },
-                          },
-                          maintainAspectRatio: true,
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-medium">Monthly Payment Details</h3>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Principal & Interest</span>
-                        <span>{formatCurrency(principalAndInterest)}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Property Tax</span>
-                        <span>{formatCurrency((homePrice * (propertyTax / 100)) / 12)}</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Home Insurance</span>
-                        <span>{formatCurrency(homeInsurance / 12)}</span>
-                      </div>
-                      {includePMI && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">PMI</span>
-                          <span>{formatCurrency(pmiInsurance / 12)}</span>
-                        </div>
-                      )}
-                      {includeHOA && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">HOA Fee</span>
-                          <span>{formatCurrency(hoaFee / 12)}</span>
-                        </div>
-                      )}
-                      {includeOtherCosts && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Other Costs</span>
-                          <span>{formatCurrency(otherCosts / 12)}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
           </div>
-        </Card>
-      </div>
-
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Monthly Payment Breakdown</h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Payment Distribution</h3>
-            <div className="aspect-square">
-              <Pie
-                data={{
-                  labels: [
-                    'Principal & Interest',
-                    'Property Tax',
-                    'Home Insurance',
-                    'PMI',
-                    'HOA Fee',
-                    'Other Costs',
-                  ],
-                  datasets: [
-                    {
-                      data: [
-                        monthlyBreakdown.principalAndInterest,
-                        monthlyBreakdown.propertyTax,
-                        monthlyBreakdown.homeInsurance,
-                        includePMI ? monthlyBreakdown.pmiInsurance : 0,
-                        includeHOA ? monthlyBreakdown.hoaFee : 0,
-                        includeOtherCosts ? monthlyBreakdown.otherCosts : 0,
-                      ],
-                      backgroundColor: [
-                        '#0EA5E9',
-                        '#22C55E',
-                        '#EAB308',
-                        '#EC4899',
-                        '#8B5CF6',
-                        '#F97316',
-                      ],
-                    },
-                  ],
-                }}
-                options={{
-                  plugins: {
-                    legend: {
-                      display: true,
-                      position: 'bottom' as const,
-                      labels: {
-                        padding: 20,
-                        usePointStyle: true,
-                        pointStyle: 'circle',
-                      },
-                    },
-                  },
-                  responsive: true,
-                  maintainAspectRatio: true,
-                }}
-              />
-            </div>
-          </Card>
-
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Monthly Payment Details</h3>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                {Object.entries({
-                  'Principal & Interest': monthlyBreakdown.principalAndInterest,
-                  'Property Tax': monthlyBreakdown.propertyTax,
-                  'Home Insurance': monthlyBreakdown.homeInsurance,
-                  'PMI': includePMI ? monthlyBreakdown.pmiInsurance : 0,
-                  'HOA Fee': includeHOA ? monthlyBreakdown.hoaFee : 0,
-                  'Other Costs': includeOtherCosts ? monthlyBreakdown.otherCosts : 0,
-                }).map(([label, amount]) => (
-                  amount > 0 && (
-                    <div key={label} className="p-3 bg-secondary/20 rounded-lg">
-                      <div className="text-sm text-muted-foreground">{label}</div>
-                      <div className="text-lg font-medium mt-1">
-                        {formatCurrency(amount)}
-                      </div>
-                    </div>
-                  )
-                ))}
-              </div>
-            </div>
-          </Card>
         </div>
-      </div>
 
-      <div className="mt-8">
         <MortgageCalculatorContent />
       </div>
-    </main>
+    </div>
   );
 }
