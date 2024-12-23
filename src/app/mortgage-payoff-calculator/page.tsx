@@ -126,7 +126,7 @@ export default function MortgagePayoffCalculator() {
             items={breadcrumbItems}
             className="mb-6 mt-6 bg-base-100"
           />
-          <h1 className="text-3xl font-bold text-base-content">Mortgage Payoff Calculator</h1>
+          <h1 className="text-3xl font-bold pt-4 text-base-content">Mortgage Payoff Calculator</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
