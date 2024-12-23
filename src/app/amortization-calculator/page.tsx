@@ -76,7 +76,7 @@ export default function AmortizationCalculator() {
         <div className="mb-6 mt-6">
           <Breadcrumb
             items={breadcrumbItems}
-            className="mb-6"
+            className="mb-6 mt-6 bg-base-100"
           />
           <h1 className="text-3xl font-bold text-base-content">Amortization Calculator</h1>
         </div>
@@ -344,6 +344,157 @@ export default function AmortizationCalculator() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="prose prose-lg max-w-none">
+            <h1 className="text-4xl font-bold mb-8">Amortization Calculator: A Complete Guide to Understanding and Using It</h1>
+            
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
+              <p className="mb-4">
+                An amortization calculator is a vital tool for anyone managing loans or planning to borrow money. 
+                This tool simplifies the complex process of calculating your monthly payments, interest charges, 
+                and principal reductions over the life of a loan. Whether you're purchasing a home, financing a car, 
+                or taking out a personal loan, understanding amortization is essential to making informed financial decisions.
+              </p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">What Is an Amortization Calculator?</h2>
+              <p className="mb-4">
+                An amortization calculator is a digital tool or software application that calculates how a loan's 
+                payments are divided into principal and interest over time. It uses specific inputs like loan amount, 
+                interest rate, and loan term to generate a detailed payment schedule.
+              </p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Why Is Amortization Important in Finance?</h2>
+              <p className="mb-4">Amortization allows borrowers to understand:</p>
+              <ul className="list-disc pl-6 mb-4">
+                <li>Monthly payment obligations</li>
+                <li>How much of each payment goes toward interest and principal</li>
+                <li>The total cost of the loan over time</li>
+              </ul>
+              <p>This clarity can help borrowers choose the right loan product and budget effectively.</p>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Understanding Amortization</h2>
+              
+              <h3 className="text-xl font-semibold mb-3">Definition of Amortization</h3>
+              <p className="mb-4">
+                Amortization refers to the gradual repayment of a debt through scheduled payments, 
+                where each installment covers both interest and a portion of the principal balance.
+              </p>
+
+              <h3 className="text-xl font-semibold mb-3">Types of Amortization</h3>
+              <ul className="list-disc pl-6 mb-4">
+                <li><strong>Loan Amortization:</strong> Applicable to mortgages, auto loans, and personal loans</li>
+                <li><strong>Intangible Asset Amortization:</strong> Relates to spreading out the cost of intangible assets over their useful lives</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold mb-3">Key Components of Amortization</h3>
+              <ul className="list-disc pl-6 mb-4">
+                <li><strong>Principal:</strong> The original loan amount borrowed</li>
+                <li><strong>Interest Rate:</strong> The percentage charged by the lender for borrowing</li>
+                <li><strong>Loan Term:</strong> The duration over which the loan will be repaid</li>
+              </ul>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">How an Amortization Calculator Works</h2>
+              
+              <div className="bg-base-200 p-6 rounded-lg mb-6">
+                <h3 className="text-xl font-semibold mb-3">The Mathematical Formula</h3>
+                <p className="mb-2">The standard formula for calculating loan payments is:</p>
+                <div className="bg-base-100 p-4 rounded-md font-mono text-sm mb-4">
+                  M = P [r(1+r)^n] / [(1+r)^n - 1]
+                </div>
+                <p>Where:</p>
+                <ul className="list-none space-y-2">
+                  <li>M = Monthly payment</li>
+                  <li>P = Loan amount</li>
+                  <li>r = Monthly interest rate</li>
+                  <li>n = Number of payments</li>
+                </ul>
+              </div>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Common Use Cases</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="card bg-base-200">
+                  <div className="card-body">
+                    <h3 className="card-title">Home Loans</h3>
+                    <p>Calculate mortgage payments and understand interest costs</p>
+                  </div>
+                </div>
+                <div className="card bg-base-200">
+                  <div className="card-body">
+                    <h3 className="card-title">Car Loans</h3>
+                    <p>Plan auto financing effectively</p>
+                  </div>
+                </div>
+                <div className="card bg-base-200">
+                  <div className="card-body">
+                    <h3 className="card-title">Personal Loans</h3>
+                    <p>Manage short-term borrowing</p>
+                  </div>
+                </div>
+                <div className="card bg-base-200">
+                  <div className="card-body">
+                    <h3 className="card-title">Business Loans</h3>
+                    <p>Analyze repayment schedules for commercial financing</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
+              <div className="space-y-4">
+                <div className="collapse collapse-plus bg-base-200">
+                  <input type="radio" name="my-accordion-3" /> 
+                  <div className="collapse-title text-xl font-medium">
+                    What is the difference between amortization and depreciation?
+                  </div>
+                  <div className="collapse-content"> 
+                    <p>Amortization applies to loans or intangible assets, while depreciation is used for tangible assets.</p>
+                  </div>
+                </div>
+                <div className="collapse collapse-plus bg-base-200">
+                  <input type="radio" name="my-accordion-3" /> 
+                  <div className="collapse-title text-xl font-medium">
+                    Can an amortization calculator help reduce my loan term?
+                  </div>
+                  <div className="collapse-content"> 
+                    <p>Yes, by evaluating the impact of extra payments, you can shorten the loan term.</p>
+                  </div>
+                </div>
+                <div className="collapse collapse-plus bg-base-200">
+                  <input type="radio" name="my-accordion-3" /> 
+                  <div className="collapse-title text-xl font-medium">
+                    What is the amortization period?
+                  </div>
+                  <div className="collapse-content"> 
+                    <p>It's the total duration over which the loan is repaid, including principal and interest.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Conclusion</h2>
+              <p className="mb-4">
+                In summary, understanding how to use an amortization calculator can greatly enhance your 
+                financial planning capabilities. By leveraging technology effectively, you can make informed 
+                decisions about your loans and manage your finances more efficiently.
+              </p>
+            </section>
           </div>
         </div>
       </div>
