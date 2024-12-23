@@ -23,8 +23,8 @@ export default function VAMortgageCalculator() {
 
   // Property Details
   const [homePrice, setHomePrice] = useState<number>(300000);
-  const [downPayment, setDownPaymentAmount] = useState<number>(0);
-  const [downPaymentPercent, setDownPaymentPercent] = useState<number>(0);
+  const [downPaymentPercent, setDownPaymentPercent] = useState<number>(10);
+  const [downPayment, setDownPaymentAmount] = useState<number>(30000);
   const [interestRate, setInterestRate] = useState<number>(6.5);
   const [loanTerm, setLoanTerm] = useState<number>(30);
 
@@ -86,7 +86,7 @@ export default function VAMortgageCalculator() {
 
   const calculateVALoan = () => {
     // Calculate base loan amount
-    const baseAmount = homePrice - downPaymentAmount;
+    const baseAmount = homePrice - downPayment;
     setLoanAmount(baseAmount);
 
     // Calculate VA Funding Fee
@@ -263,7 +263,7 @@ export default function VAMortgageCalculator() {
                   <div className="flex gap-4">
                     <input
                       type="number"
-                      value={downPaymentAmount}
+                      value={downPayment}
                       onChange={(e) => updateDownPayment(Number(e.target.value), false)}
                       className="input input-bordered w-1/2"
                       min="0"
