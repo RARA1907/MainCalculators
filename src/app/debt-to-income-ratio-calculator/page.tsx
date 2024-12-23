@@ -112,7 +112,6 @@ export default function DebtToIncomeCalculator() {
         <div className="mb-6 mt-6">
           <Breadcrumb
             items={breadcrumbItems}
-            className="mb-6 mt-6 bg-base-100"
           />
           <h1 className="text-3xl font-bold pt-4 text-base-content">Debt-to-Income Ratio Calculator</h1>
         </div>
