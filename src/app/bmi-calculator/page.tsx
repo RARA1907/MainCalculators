@@ -27,7 +27,7 @@ const bmiCategories: { [key: string]: BMICategory } = {
   underweight: {
     range: '< 18.5',
     description: 'Underweight',
-    color: '#3B82F6', // blue
+    color: '#3B82F6',
     risks: [
       'Weakened immune system',
       'Nutrient deficiencies',
@@ -44,7 +44,7 @@ const bmiCategories: { [key: string]: BMICategory } = {
   normal: {
     range: '18.5 - 24.9',
     description: 'Normal Weight',
-    color: '#22C55E', // green
+    color: '#22C55E',
     risks: [
       'Lowest risk for health issues',
       'Good baseline for fitness',
@@ -61,7 +61,7 @@ const bmiCategories: { [key: string]: BMICategory } = {
   overweight: {
     range: '25 - 29.9',
     description: 'Overweight',
-    color: '#EAB308', // yellow
+    color: '#EAB308',
     risks: [
       'Increased heart disease risk',
       'Type 2 diabetes risk',
@@ -78,7 +78,7 @@ const bmiCategories: { [key: string]: BMICategory } = {
   obese: {
     range: '≥ 30',
     description: 'Obese',
-    color: '#EF4444', // red
+    color: '#EF4444',
     risks: [
       'High heart disease risk',
       'High diabetes risk',
@@ -97,12 +97,8 @@ const bmiCategories: { [key: string]: BMICategory } = {
 export default function BMICalculator() {
   const breadcrumbItems = [
     {
-      label: 'Health Calculators',
-      href: '/health'
-    },
-    {
       label: 'BMI Calculator',
-      href: '/health/bmi-calculator'
+      href: '/bmi-calculator'
     }
   ];
 
@@ -123,16 +119,13 @@ export default function BMICalculator() {
     let calculatedBMI: number;
     
     if (unit === 'metric') {
-      // Metric calculation (kg/m²)
       calculatedBMI = weight / Math.pow(height / 100, 2);
     } else {
-      // Imperial calculation ((lb/in²) × 703)
       calculatedBMI = (weight / Math.pow(height, 2)) * 703;
     }
     
-    setBMI(calculatedBMI);
+    setBMI(Number(calculatedBMI.toFixed(1)));
 
-    // Determine category
     if (calculatedBMI < 18.5) {
       setCategory('underweight');
     } else if (calculatedBMI < 25) {
@@ -143,31 +136,31 @@ export default function BMICalculator() {
       setCategory('obese');
     }
 
-    // Calculate healthy weight range
     const heightInMeters = unit === 'metric' ? height / 100 : height * 0.0254;
     const minWeight = 18.5 * Math.pow(heightInMeters, 2);
     const maxWeight = 24.9 * Math.pow(heightInMeters, 2);
     
     if (unit === 'imperial') {
       setHealthyWeightRange({
-        min: minWeight * 2.20462, // Convert kg to lbs
-        max: maxWeight * 2.20462
+        min: Number((minWeight * 2.20462).toFixed(1)),
+        max: Number((maxWeight * 2.20462).toFixed(1))
       });
     } else {
-      setHealthyWeightRange({ min: minWeight, max: maxWeight });
+      setHealthyWeightRange({
+        min: Number(minWeight.toFixed(1)),
+        max: Number(maxWeight.toFixed(1))
+      });
     }
   };
 
   // Handle unit change
   const handleUnitChange = (newUnit: 'metric' | 'imperial') => {
-    if (newUnit === 'imperial') {
-      // Convert metric to imperial
-      setHeight(Math.round(height / 2.54)); // cm to inches
-      setWeight(Math.round(weight * 2.20462)); // kg to lbs
-    } else {
-      // Convert imperial to metric
-      setHeight(Math.round(height * 2.54)); // inches to cm
-      setWeight(Math.round(weight / 2.20462)); // lbs to kg
+    if (newUnit === 'imperial' && unit === 'metric') {
+      setHeight(Math.round(height / 2.54));
+      setWeight(Math.round(weight * 2.20462));
+    } else if (newUnit === 'metric' && unit === 'imperial') {
+      setHeight(Math.round(height * 2.54));
+      setWeight(Math.round(weight / 2.20462));
     }
     setUnit(newUnit);
   };
