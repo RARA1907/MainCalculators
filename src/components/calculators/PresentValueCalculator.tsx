@@ -13,27 +13,34 @@ export function PresentValueCalculator() {
   const [presentValue, setPresentValue] = useState<number>(0)
   const [timelineData, setTimelineData] = useState<any[]>([])
 
+  // Define input interface to match CalculatorLayout requirements
+  interface CalculatorInput {
+    label: string;
+    type: string;
+    value: number;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: string;
+    placeholder?: string;
+    min?: number;
+    max?: number;
+    step?: number;
+    name: string;
+  }
+
+  const frequencyToNumber = (freq: string): number => {
+    switch (freq) {
+      case 'annually': return 1;
+      case 'semi-annually': return 2;
+      case 'quarterly': return 4;
+      case 'monthly': return 12;
+      case 'daily': return 365;
+      default: return 12;
+    }
+  }
+
   const calculatePresentValue = () => {
     const rate = interestRate / 100
-    let n = 1 // compounding frequency per year
-
-    switch (compoundingFrequency) {
-      case 'annually':
-        n = 1
-        break
-      case 'semi-annually':
-        n = 2
-        break
-      case 'quarterly':
-        n = 4
-        break
-      case 'monthly':
-        n = 12
-        break
-      case 'daily':
-        n = 365
-        break
-    }
+    let n = frequencyToNumber(compoundingFrequency)
 
     // Calculate Present Value
     const totalPeriods = timePeriod * n
@@ -54,7 +61,7 @@ export function PresentValueCalculator() {
     setTimelineData(timelinePoints)
   }
 
-  const inputs = [
+  const inputs: CalculatorInput[] = [
     {
       label: 'Future Value ($)',
       type: 'number',
@@ -91,18 +98,13 @@ export function PresentValueCalculator() {
     },
     {
       label: 'Compounding Frequency',
-      type: 'select',
-      value: compoundingFrequency,
-      onChange: (e: React.ChangeEvent<HTMLSelectElement>) => 
+      type: 'number',
+      value: frequencyToNumber(compoundingFrequency),
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => 
         setCompoundingFrequency(e.target.value),
-      options: [
-        { value: 'annually', label: 'Annually' },
-        { value: 'semi-annually', label: 'Semi-annually' },
-        { value: 'quarterly', label: 'Quarterly' },
-        { value: 'monthly', label: 'Monthly' },
-        { value: 'daily', label: 'Daily' }
-      ],
-      name: 'compoundingFrequency'
+      name: 'compoundingFrequency',
+      min: 1,
+      max: 365
     }
   ]
 
