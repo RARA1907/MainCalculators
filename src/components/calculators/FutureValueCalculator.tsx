@@ -108,7 +108,32 @@ export function FutureValueCalculator() {
     setTimelineData(timelinePoints)
   }
 
-  const inputs = [
+  // Define input interface to match CalculatorLayout requirements
+  interface CalculatorInput {
+    label: string;
+    type: string;
+    value: number;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: string;
+    placeholder?: string;
+    min?: number;
+    max?: number;
+    step?: number;
+    name: string;
+  }
+
+  const frequencyToNumber = (freq: string): number => {
+    switch (freq) {
+      case 'annually': return 1;
+      case 'semi-annually': return 2;
+      case 'quarterly': return 4;
+      case 'monthly': return 12;
+      case 'daily': return 365;
+      default: return 12;
+    }
+  }
+
+  const inputs: CalculatorInput[] = [
     {
       label: 'Present Value ($)',
       type: 'number',
@@ -138,25 +163,21 @@ export function FutureValueCalculator() {
       value: timePeriod,
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => 
         setTimePeriod(Number(e.target.value)),
-      min: 0,
+      min: 1,
+      max: 100,
       step: 1,
       name: 'timePeriod',
       placeholder: '5'
     },
     {
       label: 'Compounding Frequency',
-      type: 'select',
-      value: compoundingFrequency,
-      onChange: (e: React.ChangeEvent<HTMLSelectElement>) => 
+      type: 'number',
+      value: frequencyToNumber(compoundingFrequency),
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => 
         setCompoundingFrequency(e.target.value),
-      options: [
-        { value: 'annually', label: 'Annually' },
-        { value: 'semi-annually', label: 'Semi-annually' },
-        { value: 'quarterly', label: 'Quarterly' },
-        { value: 'monthly', label: 'Monthly' },
-        { value: 'daily', label: 'Daily' }
-      ],
-      name: 'compoundingFrequency'
+      name: 'compoundingFrequency',
+      min: 1,
+      max: 365
     },
     {
       label: 'Additional Contributions ($)',
@@ -171,17 +192,13 @@ export function FutureValueCalculator() {
     },
     {
       label: 'Contribution Frequency',
-      type: 'select',
-      value: contributionFrequency,
-      onChange: (e: React.ChangeEvent<HTMLSelectElement>) => 
+      type: 'number',
+      value: frequencyToNumber(contributionFrequency),
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => 
         setContributionFrequency(e.target.value),
-      options: [
-        { value: 'monthly', label: 'Monthly' },
-        { value: 'quarterly', label: 'Quarterly' },
-        { value: 'semi-annually', label: 'Semi-annually' },
-        { value: 'annually', label: 'Annually' }
-      ],
-      name: 'contributionFrequency'
+      name: 'contributionFrequency',
+      min: 1,
+      max: 12
     }
   ]
 
