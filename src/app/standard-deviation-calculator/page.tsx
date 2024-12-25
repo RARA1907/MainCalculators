@@ -250,12 +250,12 @@ export default function StandardDeviationCalculator() {
                     value={type}
                     onValueChange={(value: 'population' | 'sample') => setType(value)}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-blue-600 text-white hover:bg-blue-700">
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="population">Population Standard Deviation (σ)</SelectItem>
-                      <SelectItem value="sample">Sample Standard Deviation (s)</SelectItem>
+                      <SelectItem value="population" className="hover:bg-blue-50">Population Standard Deviation (σ)</SelectItem>
+                      <SelectItem value="sample" className="hover:bg-blue-50">Sample Standard Deviation (s)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
