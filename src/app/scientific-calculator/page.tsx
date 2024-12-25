@@ -191,11 +191,27 @@ export default function ScientificCalculatorPage() {
         'l': 'log',
         'n': 'ln',
         'p': 'pow2',
-        'r': 'sqrt'
+        'r': 'sqrt',
+        'e': 'exp',
+        'i': 'reciprocal'
       };
 
-      if (key.toLowerCase() in scientificMap) {
+      if (key.toLowerCase() in scientificMap && event.ctrlKey) {
         handleScientificFunction(scientificMap[key.toLowerCase()]);
+      }
+
+      // Memory operations
+      const memoryMap: { [key: string]: 'MC' | 'MR' | 'M+' | 'M-' | 'MS' } = {
+        'm': 'MS',  // Ctrl+M: Memory Store
+        'r': 'MR',  // Ctrl+R: Memory Recall
+        'c': 'MC',  // Ctrl+C: Memory Clear
+        'p': 'M+',  // Ctrl+P: Memory Plus
+        'n': 'M-'   // Ctrl+N: Memory Minus
+      };
+
+      if (event.ctrlKey && key.toLowerCase() in memoryMap) {
+        event.preventDefault();
+        handleMemoryOperation(memoryMap[key.toLowerCase()]);
       }
     };
 
@@ -387,41 +403,57 @@ export default function ScientificCalculatorPage() {
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-base-200 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">Trigonometric Functions</h4>
+                    <h4 className="font-semibold mb-2">Keyboard Shortcuts</h4>
                     <ul className="list-disc list-inside space-y-1">
-                      <li>sin, cos, tan</li>
-                      <li>asin, acos, atan</li>
-                      <li>Switch between DEG/RAD</li>
+                      <li>Numbers: 0-9</li>
+                      <li>Operators: +, -, *, /</li>
+                      <li>Enter/= for equals</li>
+                      <li>Backspace/Delete to delete</li>
+                      <li>Escape to clear</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-base-200 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">Scientific Shortcuts (Ctrl+Key)</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>S: Sine</li>
+                      <li>C: Cosine</li>
+                      <li>T: Tangent</li>
+                      <li>L: Log</li>
+                      <li>N: Natural Log</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-base-200 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2">Memory Shortcuts (Ctrl+Key)</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>M: Store</li>
+                      <li>R: Recall</li>
+                      <li>C: Clear</li>
+                      <li>P: Add to Memory</li>
+                      <li>N: Subtract from Memory</li>
                     </ul>
                   </div>
                   
                   <div className="bg-base-200 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">Logarithmic Functions</h4>
+                    <h4 className="font-semibold mb-2">Additional Functions</h4>
                     <ul className="list-disc list-inside space-y-1">
-                      <li>log (base 10)</li>
-                      <li>ln (natural log)</li>
-                      <li>ex (exponential)</li>
+                      <li>E: Exponential</li>
+                      <li>P: Square</li>
+                      <li>R: Square Root</li>
+                      <li>I: Reciprocal</li>
                     </ul>
                   </div>
-                  
-                  <div className="bg-base-200 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">Memory Operations</h4>
-                    <ul className="list-disc list-inside space-y-1">
-                      <li>MC - Memory Clear</li>
-                      <li>MR - Memory Recall</li>
-                      <li>M+ - Memory Add</li>
-                      <li>M- - Memory Subtract</li>
-                      <li>MS - Memory Store</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="bg-base-200 p-4 rounded-lg">
-                    <h4 className="font-semibold mb-2">Constants</h4>
-                    <ul className="list-disc list-inside space-y-1">
-                      <li>π (Pi) = 3.14159...</li>
-                      <li>e = 2.71828...</li>
-                    </ul>
-                  </div>
+                </div>
+
+                <div className="bg-base-200 p-4 rounded-lg mt-4">
+                  <h4 className="font-semibold mb-2">History Features</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Click any history item to reuse the result</li>
+                    <li>History is saved in your browser</li>
+                    <li>Last 100 calculations are kept</li>
+                    <li>Clear history button to start fresh</li>
+                  </ul>
                 </div>
               </div>
             </CardContent>
