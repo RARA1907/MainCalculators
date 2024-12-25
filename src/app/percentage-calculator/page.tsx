@@ -227,10 +227,10 @@ export default function PercentageCalculator() {
                         setResult(null);
                         setError('');
                       }}
-                      className={`p-4 rounded-lg text-left transition-all ${
+                      className={`p-4 rounded-lg text-left transition-all duration-300 transform hover:scale-105 ${
                         mode === calcMode.id
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-card-secondary hover:bg-primary/10'
+                          ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg'
+                          : 'bg-blue-600 text-white hover:from-cyan-200 hover:to-blue-200 hover:shadow-md'
                       }`}
                     >
                       <div className="font-semibold">{calcMode.name}</div>
@@ -268,7 +268,7 @@ export default function PercentageCalculator() {
                     </div>
                     <button
                       onClick={calculateBasicPercentage}
-                      className="btn btn-primary w-full"
+                      className="btn w-full bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 hover:shadow-lg"
                     >
                       Calculate
                     </button>
@@ -303,7 +303,7 @@ export default function PercentageCalculator() {
                     </div>
                     <button
                       onClick={calculatePercentageChange}
-                      className="btn btn-primary w-full"
+                      className="btn w-full bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 hover:shadow-lg"
                     >
                       Calculate Change
                     </button>
@@ -336,7 +336,7 @@ export default function PercentageCalculator() {
                     </div>
                     <button
                       onClick={calculateDistribution}
-                      className="btn btn-primary w-full"
+                      className="btn w-full bg-blue-600 text-white hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 hover:shadow-lg"
                     >
                       Calculate Distribution
                     </button>
