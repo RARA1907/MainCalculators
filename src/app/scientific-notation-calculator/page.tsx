@@ -58,7 +58,7 @@ export default function ScientificNotationCalculator() {
   const [mode, setMode] = useState<string>('convert');
   const [number1, setNumber1] = useState<string>('');
   const [number2, setNumber2] = useState<string>('');
-  const [operation, setOperation] = useState<'+' | '-'>('');
+  const [operation, setOperation] = useState<'+' | '-' | ''>('');
   const [result, setResult] = useState<string>('');
   const [steps, setSteps] = useState<string[]>([]);
   const [error, setError] = useState<string>('');
@@ -331,6 +331,23 @@ export default function ScientificNotationCalculator() {
                   ))}
                 </div>
 
+                {mode === 'add' && (
+                  <div className="flex justify-center space-x-4">
+                    <button
+                      onClick={() => setOperation('+')}
+                      className={`btn ${operation === '+' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                    >
+                      +
+                    </button>
+                    <button
+                      onClick={() => setOperation('-')}
+                      className={`btn ${operation === '-' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                    >
+                      -
+                    </button>
+                  </div>
+                )}
+
                 {/* Input Fields */}
                 <div className="space-y-4">
                   <div className="form-control">
@@ -357,37 +374,18 @@ export default function ScientificNotationCalculator() {
                   </div>
 
                   {mode !== 'convert' && (
-                    <>
-                      {mode === 'add' && (
-                        <div className="flex justify-center space-x-4">
-                          <button
-                            onClick={() => setOperation('+')}
-                            className={`btn ${operation === '+' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                          >
-                            +
-                          </button>
-                          <button
-                            onClick={() => setOperation('-')}
-                            className={`btn ${operation === '-' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                          >
-                            -
-                          </button>
-                        </div>
-                      )}
-
-                      <div className="form-control">
-                        <label className="label">
-                          <span className="label-text">Number 2</span>
-                        </label>
-                        <input
-                          type="text"
-                          value={number2}
-                          onChange={(e) => setNumber2(e.target.value)}
-                          placeholder="Enter a number"
-                          className="input input-bordered w-full"
-                        />
-                      </div>
-                    </>
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Number 2</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={number2}
+                        onChange={(e) => setNumber2(e.target.value)}
+                        placeholder="Enter a number"
+                        className="input input-bordered w-full"
+                      />
+                    </div>
                   )}
                 </div>
 
@@ -470,7 +468,7 @@ export default function ScientificNotationCalculator() {
                 <h3 className="font-semibold text-sm">Basic Concepts</h3>
                 <ul className="list-disc list-inside text-xs space-y-1">
                   <li className="break-words">Format: a × 10^n</li>
-                  <li className="break-words">1 ≤ |a| < 10</li>
+                  <li className="break-words">1 ≤ |a|  10</li>
                   <li className="break-words">n is an integer</li>
                   <li className="break-words">Used for very large/small numbers</li>
                 </ul>
