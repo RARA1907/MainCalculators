@@ -306,7 +306,7 @@ export default function PercentErrorCalculator() {
 
                 <button
                   onClick={calculateError}
-                  className="btn btn-primary w-full"
+                  className="btn btn-primary bg-[#0EA5E9] hover:bg-blue-600 text-white w-full"
                 >
                   Calculate Error
                 </button>
