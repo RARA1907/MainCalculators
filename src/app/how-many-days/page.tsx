@@ -96,7 +96,7 @@ export default function HowManyDays() {
                     <SelectTrigger>
                       <SelectValue placeholder="Select an event" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="max-h-[300px]">
                       {Object.entries(IMPORTANT_DATES).map(([key]) => (
                         <SelectItem key={key} value={key}>
                           {key}
