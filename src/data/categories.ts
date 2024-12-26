@@ -244,7 +244,7 @@ export const categories = [
           { name: 'Date Calculator', href: '/date-calculator' },
           { name: 'Time Calculator', href: '/time-calculator' },
           { name: 'Hours Calculator', href: '/hours-calculator' },
-          { name: 'Time Card Calculator', href: '/time-card-calculator' },
+          { name: 'How Many Days', href: '/how-many-days' },
           { name: 'Time Zone Calculator', href: '/time-zone-calculator' },
           { name: 'Time Duration Calculator', href: '/time-duration-calculator' },
           { name: 'Day Counter', href: '/day-counter' },
