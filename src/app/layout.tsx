@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Main Calculators Team' }],
   creator: 'Main Calculators',
   publisher: 'Main Calculators',
+  verification: {
+    google: 'google-site-verification=yKFcNDXhrn4qzd4j7miHnj8B_crVlmNJs27hwbLWZWQ'
+  },
   robots: {
     index: true,
     follow: true,
@@ -60,9 +63,6 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   metadataBase: new URL('https://maincalculators.com'),
-  verification: {
-    google: 'your-google-site-verification',
-  },
 }
 
 export const viewport = {
