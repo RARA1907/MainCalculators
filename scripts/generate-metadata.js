@@ -198,11 +198,15 @@ function generateMetadataFiles() {
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name);
 
+  let created = 0;
+  let skipped = 0;
+
   // Process each calculator
   directories.forEach(dir => {
     // Skip if not in our metadata config
     if (!calculatorMetadata[dir]) {
       console.log(`Skipping ${dir} - no metadata config found`);
+      skipped++;
       return;
     }
 
@@ -210,25 +214,41 @@ function generateMetadataFiles() {
     const metadata = calculatorMetadata[dir];
 
     try {
-      // Create metadata.ts
+      // Check and create metadata.ts
       const metadataPath = path.join(calculatorDir, 'metadata.ts');
-      fs.writeFileSync(metadataPath, createMetadataContent(metadata));
-      console.log(`Created metadata.ts for ${dir}`);
+      if (!fs.existsSync(metadataPath)) {
+        fs.writeFileSync(metadataPath, createMetadataContent(metadata));
+        console.log(`Created metadata.ts for ${dir}`);
+        created++;
+      } else {
+        console.log(`Skipping metadata.ts for ${dir} - file already exists`);
+        skipped++;
+      }
 
-      // Create layout.tsx
+      // Check and create layout.tsx
       const layoutPath = path.join(calculatorDir, 'layout.tsx');
-      fs.writeFileSync(layoutPath, createLayoutContent());
-      console.log(`Created layout.tsx for ${dir}`);
+      if (!fs.existsSync(layoutPath)) {
+        fs.writeFileSync(layoutPath, createLayoutContent());
+        console.log(`Created layout.tsx for ${dir}`);
+        created++;
+      } else {
+        console.log(`Skipping layout.tsx for ${dir} - file already exists`);
+        skipped++;
+      }
     } catch (error) {
       console.error(`Error processing ${dir}:`, error);
     }
   });
+
+  return { created, skipped };
 }
 
 // Run the generator
 try {
-  generateMetadataFiles();
-  console.log('Metadata generation completed successfully!');
+  const { created, skipped } = generateMetadataFiles();
+  console.log(`\nMetadata generation completed successfully!`);
+  console.log(`Created ${created} new files`);
+  console.log(`Skipped ${skipped} existing files`);
 } catch (error) {
   console.error('Error generating metadata:', error);
 }
