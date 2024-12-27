@@ -234,7 +234,7 @@ export default function BTUCalculator() {
                         <span className="label-text">Room Type</span>
                       </label>
                       <Select
-                        value={roomType}
+                        value={String(roomType)}
                         onValueChange={(value) => setRoomType(value as keyof RoomFactors)}
                       >
                         <SelectTrigger>
@@ -255,8 +255,8 @@ export default function BTUCalculator() {
                         <span className="label-text">Insulation Quality</span>
                       </label>
                       <Select
-                        value={insulation}
-                        onValueChange={(value) => setInsulation(value as keyof InsulationFactors)}
+                        value={insulation as string}
+                        onValueChange={(value: string) => setInsulation(value as keyof InsulationFactors)}
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select insulation quality" />
@@ -275,8 +275,8 @@ export default function BTUCalculator() {
                         <span className="label-text">Climate Condition</span>
                       </label>
                       <Select
-                        value={climate}
-                        onValueChange={(value) => setClimate(value as keyof ClimateFactors)}
+                        value={climate as string}
+                        onValueChange={(value: string) => setClimate(value as keyof ClimateFactors)}
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select climate condition" />
