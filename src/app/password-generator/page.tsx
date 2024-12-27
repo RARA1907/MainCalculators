@@ -207,44 +207,33 @@ const PasswordGenerator = () => {
                       className="pr-24 font-mono"
                     />
                     <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={generatePassword}
-                              className="h-8 w-8"
-                            >
-                              <RefreshCw className="h-4 w-4" />
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Generate New Password</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={copyToClipboard}
-                              className="h-8 w-8"
-                            >
-                              {copied ? (
-                                <Check className="h-4 w-4 text-green-500" />
-                              ) : (
-                                <Copy className="h-4 w-4" />
-                              )}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Copy to Clipboard</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={generatePassword}
+                        className="flex items-center gap-2 bg-blue-500 text-white hover:bg-blue-600 border-blue-500"
+                      >
+                        <RefreshCw className="h-4 w-4" />
+                        Generate
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={copyToClipboard}
+                        className="flex items-center gap-2 bg-blue-500 text-white hover:bg-blue-600 border-blue-500"
+                      >
+                        {copied ? (
+                          <>
+                            <Check className="h-4 w-4" />
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="h-4 w-4" />
+                            Copy
+                          </>
+                        )}
+                      </Button>
                     </div>
                   </div>
 
