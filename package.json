@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-metadata": "ts-node scripts/generate-metadata.ts"
+    "generate-metadata": "node scripts/generate-metadata.js"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.2",
