@@ -23,7 +23,7 @@ interface PasswordStrength {
   message: string;
 }
 
-export default function PasswordGenerator() {
+const PasswordGenerator = () => {
   const breadcrumbItems = [
     {
       label: 'Password Generator',
@@ -207,26 +207,44 @@ export default function PasswordGenerator() {
                       className="pr-24 font-mono"
                     />
                     <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={generatePassword}
-                        className="h-8 w-8"
-                      >
-                        <RefreshCw className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={copyToClipboard}
-                        className="h-8 w-8"
-                      >
-                        {copied ? (
-                          <Check className="h-4 w-4 text-green-500" />
-                        ) : (
-                          <Copy className="h-4 w-4" />
-                        )}
-                      </Button>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={generatePassword}
+                              className="h-8 w-8"
+                            >
+                              <RefreshCw className="h-4 w-4" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Generate New Password</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={copyToClipboard}
+                              className="h-8 w-8"
+                            >
+                              {copied ? (
+                                <Check className="h-4 w-4 text-green-500" />
+                              ) : (
+                                <Copy className="h-4 w-4" />
+                              )}
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Copy to Clipboard</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </div>
                   </div>
 
@@ -371,7 +389,7 @@ export default function PasswordGenerator() {
                           <Info className="h-4 w-4" />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <p>Excludes ambiguous characters like { } [ ] ( ) / \ ' " ` ~ , ; : . < ></p>
+                          <p>Excludes ambiguous characters like { } [ ] ( ) / \ ' " ` ~ , ; : . </p>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
@@ -433,4 +451,6 @@ export default function PasswordGenerator() {
       </div>
     </div>
   );
-}
+};
+
+export default PasswordGenerator;
