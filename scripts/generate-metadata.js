@@ -9,26 +9,26 @@ const APP_DIR = path.join(__dirname, '..', 'src', 'app');
 // Function to create metadata file content
 function createMetadataContent(metadata) {
   return `import { Metadata } from 'next';
+import { generateCalculatorStructuredData, generateCalculatorMetaTags } from '../utils/structured-data';
 
-export const metadata: Metadata = {
-  title: '${metadata.title}',
-  description: '${metadata.description}',
-  keywords: ${JSON.stringify(metadata.keywords)},
-  openGraph: {
-    title: '${metadata.title}',
-    description: '${metadata.description}',
-  },
-  twitter: {
-    title: '${metadata.title}',
-    description: '${metadata.description}',
-  }
-};`;
+const structuredData = generateCalculatorStructuredData(
+  '${metadata.title}',
+  '${metadata.description}'
+);
+
+export const metadata: Metadata = generateCalculatorMetaTags(
+  '${metadata.title}',
+  '${metadata.description}',
+  ${JSON.stringify(metadata.keywords)},
+  structuredData
+);`;
 }
 
 // Function to create layout file content
 function createLayoutContent() {
   return `import { Metadata } from 'next';
 import { metadata } from './metadata';
+import StructuredDataScript from '../components/StructuredDataScript';
 
 export { metadata };
 
@@ -37,7 +37,12 @@ export default function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <StructuredDataScript data={metadata.other?.['structured-data']} />
+      {children}
+    </>
+  );
 }`;
 }
 
