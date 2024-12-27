@@ -624,6 +624,11 @@ export const calculatorMetadata = {
     description: 'Calculate tips easily with our tip calculator. Split bills, calculate gratuity, and determine per-person costs for any bill amount and party size.',
     keywords: ['tip calculator', 'gratuity calculator', 'restaurant tip calculator', 'bill splitter', 'tip percentage calculator', 'split bill calculator', 'dining calculator']
   },
+  'tire-size-calculator': {
+    title: 'Tire Size Calculator | Tire Comparison Calculator',
+    description: 'Compare tire sizes, calculate differences in diameter, circumference, and speedometer readings. Find the right tire size for your vehicle with our tire size calculator.',
+    keywords: ['tire size calculator', 'tire comparison calculator', 'tire diameter calculator', 'tire circumference calculator', 'wheel size calculator', 'tire fitment calculator', 'speedometer calculator']
+  },
   'triangle-calculator': {
     title: 'Triangle Calculator | Geometry Calculator',
     description: 'Calculate triangle measurements including area, perimeter, and angles.',
@@ -708,5 +713,40 @@ export const calculatorMetadata = {
     title: 'Dew Point Calculator | Condensation Point Calculator',
     description: 'Calculate dew point temperature based on air temperature and relative humidity. Determine when water vapor will condense with our dew point calculator.',
     keywords: ['dew point calculator', 'condensation calculator', 'humidity calculator', 'weather calculator', 'temperature calculator', 'moisture calculator', 'atmospheric calculator']
+  },
+  'fuel-cost-calculator': {
+    title: 'Fuel Cost Calculator | Gas Cost Calculator',
+    description: 'Calculate fuel costs for your trips based on distance, fuel efficiency, and gas prices. Plan your travel expenses with our accurate fuel cost calculator.',
+    keywords: ['fuel cost calculator', 'gas cost calculator', 'mileage calculator', 'trip cost calculator', 'fuel expense calculator', 'gas mileage calculator', 'road trip calculator']
+  },
+  'gas-mileage-calculator': {
+    title: 'Gas Mileage Calculator | MPG Calculator',
+    description: 'Calculate your vehicle\'s gas mileage (MPG) and fuel efficiency. Track fuel consumption and compare different vehicles with our accurate gas mileage calculator.',
+    keywords: ['gas mileage calculator', 'mpg calculator', 'fuel efficiency calculator', 'fuel consumption calculator', 'miles per gallon calculator', 'vehicle efficiency calculator', 'fuel economy calculator']
+  },
+  'horsepower-calculator': {
+    title: 'Horsepower Calculator | Engine Power Calculator',
+    description: 'Calculate engine horsepower and convert between different power units. Estimate engine power using torque and RPM with our accurate horsepower calculator.',
+    keywords: ['horsepower calculator', 'engine power calculator', 'hp calculator', 'torque to horsepower calculator', 'power converter', 'engine performance calculator', 'mechanical power calculator']
+  },
+  'engine-horsepower-calculator': {
+    title: 'Engine Horsepower Calculator | Engine Power Calculator',
+    description: 'Calculate engine horsepower using multiple methods including displacement, compression ratio, and dyno results. Estimate engine power with our comprehensive engine horsepower calculator.',
+    keywords: ['engine horsepower calculator', 'engine power calculator', 'engine hp calculator', 'displacement calculator', 'compression ratio calculator', 'dyno calculator', 'engine performance calculator']
+  },
+  'mileage-calculator': {
+    title: 'Mileage Calculator | MPG Calculator | Fuel Economy Calculator',
+    description: 'Calculate your vehicle\'s fuel efficiency with our mileage calculator. Convert between MPG, L/100km, and km/L. Track fuel costs and analyze your vehicle\'s performance.',
+    keywords: ['mileage calculator', 'mpg calculator', 'fuel economy calculator', 'fuel efficiency calculator', 'gas mileage calculator', 'km/l calculator', 'l/100km calculator']
+  },
+  'dice-roller': {
+    title: 'Dice Roller | RPG Dice Calculator | DnD Dice Roller',
+    description: 'Roll virtual dice for tabletop RPGs, board games, and more. Features d4, d6, d8, d10, d12, d20, d100, and custom dice with modifiers.',
+    keywords: ['dice roller', 'rpg dice calculator', 'dnd dice roller', 'd20 roller', 'virtual dice', 'dice calculator', 'tabletop dice', 'probability calculator']
+  },
+  'love-calculator': {
+    title: 'Love Calculator | Relationship Compatibility Calculator',
+    description: 'Calculate love compatibility between two names with our fun Love Calculator. A playful way to test romantic compatibility and relationship potential.',
+    keywords: ['love calculator', 'relationship compatibility calculator', 'name compatibility', 'romance calculator', 'couples calculator', 'love meter', 'love test', 'compatibility test']
   }
 };
