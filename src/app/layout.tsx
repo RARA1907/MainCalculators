@@ -10,9 +10,10 @@ import { Toaster } from '@/components/ui/toaster'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://maincalculators.com'),
   title: {
-    default: 'Main Calculators - Your Financial Calculator Hub',
-    template: '%s | Main Calculators'
+    template: '%s | Main Calculators',
+    default: 'Main Calculators - Your Financial Calculator Hub'
   },
   description: 'Access a comprehensive suite of financial calculators for all your calculation needs. Simple, accurate, and easy to use.',
   keywords: ['financial calculators', 'calculator hub', 'finance tools', 'calculation tools', 'math calculators'],
@@ -62,7 +63,6 @@ export const metadata: Metadata = {
     apple: '/icon.png',
   },
   manifest: '/site.webmanifest',
-  metadataBase: new URL('https://maincalculators.com'),
 }
 
 export const viewport = {

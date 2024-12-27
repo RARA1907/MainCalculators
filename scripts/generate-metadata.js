@@ -168,6 +168,14 @@ function createMetadataContent(metadata) {
   title: '${metadata.title}',
   description: '${metadata.description}',
   keywords: ${JSON.stringify(metadata.keywords, null, 2)},
+  openGraph: {
+    title: '${metadata.title}',
+    description: '${metadata.description}',
+  },
+  twitter: {
+    title: '${metadata.title}',
+    description: '${metadata.description}',
+  }
 };`;
 }
 
