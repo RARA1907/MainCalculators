@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-metadata": "ts-node scripts/generate-metadata.ts"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.2",
@@ -62,6 +63,7 @@
     "shadcn-ui": "^0.9.3",
     "tailwindcss": "^3.4.16",
     "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
