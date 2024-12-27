@@ -586,8 +586,8 @@ export const calculatorMetadata = {
   },
   'sleep-calculator': {
     title: 'Sleep Calculator | Bedtime Calculator',
-    description: 'Calculate optimal bedtime and wake times for better sleep.',
-    keywords: ['sleep calculator', 'bedtime calculator', 'sleep cycle calculator', 'wake time calculator']
+    description: 'Calculate optimal sleep and wake times based on sleep cycles. Find the best bedtime for your schedule and wake up feeling refreshed with our sleep cycle calculator.',
+    keywords: ['sleep calculator', 'bedtime calculator', 'sleep cycle calculator', 'wake up time calculator', 'sleep schedule calculator', 'rem sleep calculator', 'optimal sleep calculator']
   },
   'standard-deviation-calculator': {
     title: 'Standard Deviation Calculator | Statistics Calculator',
@@ -620,9 +620,9 @@ export const calculatorMetadata = {
     keywords: ['time calculator', 'duration calculator', 'hour calculator', 'time difference calculator']
   },
   'tip-calculator': {
-    title: 'Tip Calculator | Gratuity Calculator',
-    description: 'Calculate tip amount and split bills among people.',
-    keywords: ['tip calculator', 'gratuity calculator', 'bill calculator', 'restaurant calculator']
+    title: 'Tip Calculator | Restaurant Bill & Gratuity Calculator',
+    description: 'Calculate tips easily with our tip calculator. Split bills, calculate gratuity, and determine per-person costs for any bill amount and party size.',
+    keywords: ['tip calculator', 'gratuity calculator', 'restaurant tip calculator', 'bill splitter', 'tip percentage calculator', 'split bill calculator', 'dining calculator']
   },
   'triangle-calculator': {
     title: 'Triangle Calculator | Geometry Calculator',
@@ -660,9 +660,9 @@ export const calculatorMetadata = {
     keywords: ['weight loss calculator', 'diet calculator', 'calorie calculator', 'fitness calculator']
   },
   'wind-chill-calculator': {
-    title: 'Wind Chill Calculator | Weather Calculator',
-    description: 'Calculate wind chill temperature based on air temperature and wind speed.',
-    keywords: ['wind chill calculator', 'weather calculator', 'temperature calculator', 'outdoor calculator']
+    title: 'Wind Chill Calculator | Feels Like Temperature Calculator',
+    description: 'Calculate wind chill temperature and real feel temperature based on air temperature and wind speed. Determine how cold it actually feels outside with our wind chill calculator.',
+    keywords: ['wind chill calculator', 'feels like calculator', 'wind chill temperature', 'real feel calculator', 'weather calculator', 'temperature calculator', 'wind chill index']
   },
   'yearly-salary-calculator': {
     title: 'Yearly Salary Calculator | Annual Income Calculator',
@@ -678,5 +678,35 @@ export const calculatorMetadata = {
     title: 'VA Mortgage Calculator | VA Home Loan Calculator',
     description: 'Calculate VA loan payments and estimate your monthly mortgage costs with our VA mortgage calculator.',
     keywords: ['VA mortgage calculator', 'VA loan calculator', 'veterans mortgage', 'military loan calculator']
+  },
+  'gpa-calculator': {
+    title: 'GPA Calculator | Grade Point Average Calculator',
+    description: 'Calculate your Grade Point Average (GPA) easily with our free GPA calculator. Convert letter grades to grade points and calculate cumulative GPA.',
+    keywords: ['gpa calculator', 'grade point average calculator', 'college gpa calculator', 'high school gpa calculator', 'cumulative gpa calculator', 'semester gpa calculator']
+  },
+  'grade-calculator': {
+    title: 'Grade Calculator | Final Grade Calculator',
+    description: 'Calculate your final grade with our easy-to-use grade calculator. Input your assignments, tests, and their weights to determine your course grade.',
+    keywords: ['grade calculator', 'final grade calculator', 'weighted grade calculator', 'course grade calculator', 'assignment grade calculator', 'test grade calculator']
+  },
+  'bra-size-calculator': {
+    title: 'Bra Size Calculator | Find Your Perfect Bra Size',
+    description: 'Calculate your perfect bra size with our easy-to-use calculator. Get accurate measurements and find your ideal band and cup size for maximum comfort.',
+    keywords: ['bra size calculator', 'bra measurement calculator', 'cup size calculator', 'band size calculator', 'bra fitting calculator', 'find my bra size', 'measure bra size']
+  },
+  'golf-handicap-calculator': {
+    title: 'Golf Handicap Calculator | Golf Index Calculator',
+    description: 'Calculate your golf handicap index easily with our golf handicap calculator. Track your scores, course ratings, and slope ratings to determine your official handicap.',
+    keywords: ['golf handicap calculator', 'golf index calculator', 'golf handicap index', 'course handicap calculator', 'golf score calculator', 'USGA handicap calculator']
+  },
+  'heat-index-calculator': {
+    title: 'Heat Index Calculator | Feels Like Temperature Calculator',
+    description: 'Calculate heat index and real feel temperature based on air temperature and humidity. Determine how hot it actually feels outside with our heat index calculator.',
+    keywords: ['heat index calculator', 'feels like calculator', 'humidity calculator', 'real feel calculator', 'weather calculator', 'temperature calculator', 'heat stress calculator']
+  },
+  'dew-point-calculator': {
+    title: 'Dew Point Calculator | Condensation Point Calculator',
+    description: 'Calculate dew point temperature based on air temperature and relative humidity. Determine when water vapor will condense with our dew point calculator.',
+    keywords: ['dew point calculator', 'condensation calculator', 'humidity calculator', 'weather calculator', 'temperature calculator', 'moisture calculator', 'atmospheric calculator']
   }
 };
