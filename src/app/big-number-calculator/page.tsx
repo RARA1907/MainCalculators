@@ -58,7 +58,7 @@ export default function BigNumberCalculator() {
   const [mode, setMode] = useState<string>('arithmetic');
   const [number1, setNumber1] = useState<string>('');
   const [number2, setNumber2] = useState<string>('');
-  const [operation, setOperation] = useState<'+' | '-' | '*' | '/' | '^' | 'root'>('');
+  const [operation, setOperation] = useState<'+' | '-' | '*' | '/' | '^' | 'root'>('+');
   const [result, setResult] = useState<string>('');
   const [steps, setSteps] = useState<string[]>([]);
   const [error, setError] = useState<string>('');
@@ -141,14 +141,13 @@ export default function BigNumberCalculator() {
         if (parseFloat(number2) > 1000) {
           throw new Error('Exponent too large');
         }
-        result = num1.pow(parseInt(number2));
+        result = num1.pow(Number(number2));
         steps.push('Step 2: Calculate power');
       } else { // root
         if (parseFloat(number2) <= 0) {
           throw new Error('Root must be positive');
         }
-        const exp = new Big(1).div(number2);
-        result = num1.pow(exp);
+        result = num1.pow(1 / Number(number2));
         steps.push('Step 2: Calculate root');
       }
 
@@ -276,7 +275,7 @@ export default function BigNumberCalculator() {
                         setResult('');
                         setSteps([]);
                         setError('');
-                        setOperation('');
+                        setOperation('+');
                       }}
                       className={`p-4 rounded-lg text-left transition-all duration-300 transform hover:scale-105 ${
                         mode === calcMode.id
