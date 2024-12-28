@@ -1,15 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { Info, Car, GasPump, DollarSign } from 'lucide-react';
+import { Separator } from '@radix-ui/react-separator';
+import { Info, Car, Fuel, DollarSign } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from '@radix-ui/react-tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { motion } from 'framer-motion';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -130,139 +129,133 @@ export default function MileageCalculator() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Section */}
-          <Card className="bg-card">
-            <CardHeader>
-              <h2 className="text-2xl font-semibold">Calculate Fuel Efficiency</h2>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {/* Unit Selection */}
-                <div className="flex space-x-4">
-                  <button
-                    className={`btn flex-1 ${unit === 'imperial' ? 'btn-primary' : 'btn-outline'}`}
-                    onClick={() => setUnit('imperial')}
-                  >
-                    Imperial (mi/gal)
-                  </button>
-                  <button
-                    className={`btn flex-1 ${unit === 'metric' ? 'btn-primary' : 'btn-outline'}`}
-                    onClick={() => setUnit('metric')}
-                  >
-                    Metric (km/L)
-                  </button>
-                </div>
-
-                {/* Distance Input */}
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Distance Traveled
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="inline-block ml-2 h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Enter distance in {unit === 'imperial' ? 'miles' : 'kilometers'}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <div className="relative">
-                    <Car className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
-                    <input
-                      type="number"
-                      className="input input-bordered w-full pl-10"
-                      value={distance}
-                      onChange={(e) => setDistance(e.target.value)}
-                      placeholder={`Distance in ${unit === 'imperial' ? 'miles' : 'kilometers'}`}
-                      min="0"
-                      step="0.1"
-                    />
-                  </div>
-                </div>
-
-                {/* Fuel Amount Input */}
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Fuel Used
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="inline-block ml-2 h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Enter fuel amount in {unit === 'imperial' ? 'gallons' : 'liters'}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <div className="relative">
-                    <GasPump className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
-                    <input
-                      type="number"
-                      className="input input-bordered w-full pl-10"
-                      value={fuel}
-                      onChange={(e) => setFuel(e.target.value)}
-                      placeholder={`Fuel in ${unit === 'imperial' ? 'gallons' : 'liters'}`}
-                      min="0"
-                      step="0.1"
-                    />
-                  </div>
-                </div>
-
-                {/* Fuel Price Input */}
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Fuel Price (Optional)
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="inline-block ml-2 h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Enter price per {unit === 'imperial' ? 'gallon' : 'liter'}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <div className="relative">
-                    <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
-                    <input
-                      type="number"
-                      className="input input-bordered w-full pl-10"
-                      value={fuelPrice}
-                      onChange={(e) => setFuelPrice(e.target.value)}
-                      placeholder={`Price per ${unit === 'imperial' ? 'gallon' : 'liter'}`}
-                      min="0"
-                      step="0.01"
-                    />
-                  </div>
-                </div>
-
-                {error && (
-                  <div className="alert alert-error">
-                    <span>{error}</span>
-                  </div>
-                )}
-
+          <div className="bg-card p-4 rounded-lg">
+            <h2 className="text-2xl font-semibold">Calculate Fuel Efficiency</h2>
+            <div className="space-y-6">
+              {/* Unit Selection */}
+              <div className="flex space-x-4">
                 <button
-                  className="btn btn-primary w-full"
-                  onClick={handleCalculate}
-                  disabled={!distance || !fuel}
+                  className={`btn flex-1 ${unit === 'imperial' ? 'btn-primary' : 'btn-outline'}`}
+                  onClick={() => setUnit('imperial')}
                 >
-                  Calculate Mileage
+                  Imperial (mi/gal)
+                </button>
+                <button
+                  className={`btn flex-1 ${unit === 'metric' ? 'btn-primary' : 'btn-outline'}`}
+                  onClick={() => setUnit('metric')}
+                >
+                  Metric (km/L)
                 </button>
               </div>
-            </CardContent>
-          </Card>
+
+              {/* Distance Input */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Distance Traveled
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="inline-block ml-2 h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Enter distance in {unit === 'imperial' ? 'miles' : 'kilometers'}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </label>
+                <div className="relative">
+                  <Car className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
+                  <input
+                    type="number"
+                    className="input input-bordered w-full pl-10"
+                    value={distance}
+                    onChange={(e) => setDistance(e.target.value)}
+                    placeholder={`Distance in ${unit === 'imperial' ? 'miles' : 'kilometers'}`}
+                    min="0"
+                    step="0.1"
+                  />
+                </div>
+              </div>
+
+              {/* Fuel Amount Input */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Fuel Used
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="inline-block ml-2 h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Enter fuel amount in {unit === 'imperial' ? 'gallons' : 'liters'}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </label>
+                <div className="relative">
+                  <Fuel className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
+                  <input
+                    type="number"
+                    className="input input-bordered w-full pl-10"
+                    value={fuel}
+                    onChange={(e) => setFuel(e.target.value)}
+                    placeholder={`Fuel in ${unit === 'imperial' ? 'gallons' : 'liters'}`}
+                    min="0"
+                    step="0.1"
+                  />
+                </div>
+              </div>
+
+              {/* Fuel Price Input */}
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Fuel Price (Optional)
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="inline-block ml-2 h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Enter price per {unit === 'imperial' ? 'gallon' : 'liter'}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </label>
+                <div className="relative">
+                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
+                  <input
+                    type="number"
+                    className="input input-bordered w-full pl-10"
+                    value={fuelPrice}
+                    onChange={(e) => setFuelPrice(e.target.value)}
+                    placeholder={`Price per ${unit === 'imperial' ? 'gallon' : 'liter'}`}
+                    min="0"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+
+              {error && (
+                <div className="alert alert-error">
+                  <span>{error}</span>
+                </div>
+              )}
+
+              <button
+                className="btn btn-primary w-full"
+                onClick={handleCalculate}
+                disabled={!distance || !fuel}
+              >
+                Calculate Mileage
+              </button>
+            </div>
+          </div>
 
           {/* Results Section */}
           <div className="space-y-8">
-            <Card className="bg-card">
-              <CardHeader>
-                <h2 className="text-2xl font-semibold">Fuel Efficiency Results</h2>
-              </CardHeader>
-              <CardContent>
+            <div className="bg-card p-4 rounded-lg">
+              <h2 className="text-2xl font-semibold">Fuel Efficiency Results</h2>
+              <div className="space-y-6">
                 {result ? (
                   <div className="space-y-6">
                     {/* Circular Progress */}
@@ -341,83 +334,79 @@ export default function MileageCalculator() {
                     Enter trip details to calculate fuel efficiency
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Information Section */}
-            <Card>
-              <CardHeader>
-                <h2 className="text-2xl font-semibold">Fuel Efficiency Guide</h2>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  <section>
-                    <h3 className="text-lg font-semibold mb-3">Understanding Fuel Economy</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="bg-base-200 p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">MPG Ratings</h4>
-                        <ul className="list-disc pl-4 text-sm">
-                          <li>Excellent: 50+ MPG</li>
-                          <li>Very Good: 40-49 MPG</li>
-                          <li>Good: 30-39 MPG</li>
-                          <li>Fair: 20-29 MPG</li>
-                          <li>Poor: Below 20 MPG</li>
-                        </ul>
-                      </div>
-                      <div className="bg-base-200 p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">Vehicle Types</h4>
-                        <ul className="list-disc pl-4 text-sm">
-                          <li>Hybrid: 45-55 MPG</li>
-                          <li>Compact Car: 30-40 MPG</li>
-                          <li>Midsize Car: 25-35 MPG</li>
-                          <li>SUV: 20-30 MPG</li>
-                          <li>Truck: 15-25 MPG</li>
-                        </ul>
-                      </div>
+            <div className="bg-card p-4 rounded-lg">
+              <h2 className="text-2xl font-semibold">Fuel Efficiency Guide</h2>
+              <div className="space-y-6">
+                <section>
+                  <h3 className="text-lg font-semibold mb-3">Understanding Fuel Economy</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-base-200 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2">MPG Ratings</h4>
+                      <ul className="list-disc pl-4 text-sm">
+                        <li>Excellent: 50+ MPG</li>
+                        <li>Very Good: 40-49 MPG</li>
+                        <li>Good: 30-39 MPG</li>
+                        <li>Fair: 20-29 MPG</li>
+                        <li>Poor: Below 20 MPG</li>
+                      </ul>
                     </div>
-                  </section>
-
-                  <Separator />
-
-                  <section>
-                    <h3 className="text-lg font-semibold mb-3">Improving Fuel Economy</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="bg-base-200 p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">Driving Tips</h4>
-                        <ul className="list-disc pl-4 text-sm">
-                          <li>Maintain steady speed</li>
-                          <li>Avoid rapid acceleration</li>
-                          <li>Remove excess weight</li>
-                          <li>Use cruise control</li>
-                          <li>Plan efficient routes</li>
-                        </ul>
-                      </div>
-                      <div className="bg-base-200 p-4 rounded-lg">
-                        <h4 className="font-medium mb-2">Maintenance Tips</h4>
-                        <ul className="list-disc pl-4 text-sm">
-                          <li>Regular oil changes</li>
-                          <li>Proper tire pressure</li>
-                          <li>Clean air filters</li>
-                          <li>Tune-ups as needed</li>
-                          <li>Fix issues promptly</li>
-                        </ul>
-                      </div>
+                    <div className="bg-base-200 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2">Vehicle Types</h4>
+                      <ul className="list-disc pl-4 text-sm">
+                        <li>Hybrid: 45-55 MPG</li>
+                        <li>Compact Car: 30-40 MPG</li>
+                        <li>Midsize Car: 25-35 MPG</li>
+                        <li>SUV: 20-30 MPG</li>
+                        <li>Truck: 15-25 MPG</li>
+                      </ul>
                     </div>
-                  </section>
+                  </div>
+                </section>
 
-                  <section>
-                    <h3 className="text-lg font-semibold mb-3">Important Notes</h3>
-                    <ul className="list-disc pl-6 space-y-2">
-                      <li>Results may vary based on driving conditions and vehicle maintenance</li>
-                      <li>EPA ratings are typically based on controlled testing conditions</li>
-                      <li>Highway MPG is usually higher than city MPG</li>
-                      <li>Regular maintenance can improve fuel efficiency</li>
-                      <li>Consider tracking multiple trips for more accurate averages</li>
-                    </ul>
-                  </section>
-                </div>
-              </CardContent>
-            </Card>
+                <Separator />
+
+                <section>
+                  <h3 className="text-lg font-semibold mb-3">Improving Fuel Economy</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-base-200 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2">Driving Tips</h4>
+                      <ul className="list-disc pl-4 text-sm">
+                        <li>Maintain steady speed</li>
+                        <li>Avoid rapid acceleration</li>
+                        <li>Remove excess weight</li>
+                        <li>Use cruise control</li>
+                        <li>Plan efficient routes</li>
+                      </ul>
+                    </div>
+                    <div className="bg-base-200 p-4 rounded-lg">
+                      <h4 className="font-medium mb-2">Maintenance Tips</h4>
+                      <ul className="list-disc pl-4 text-sm">
+                        <li>Regular oil changes</li>
+                        <li>Proper tire pressure</li>
+                        <li>Clean air filters</li>
+                        <li>Tune-ups as needed</li>
+                        <li>Fix issues promptly</li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold mb-3">Important Notes</h3>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li>Results may vary based on driving conditions and vehicle maintenance</li>
+                    <li>EPA ratings are typically based on controlled testing conditions</li>
+                    <li>Highway MPG is usually higher than city MPG</li>
+                    <li>Regular maintenance can improve fuel efficiency</li>
+                    <li>Consider tracking multiple trips for more accurate averages</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
           </div>
         </div>
       </div>
