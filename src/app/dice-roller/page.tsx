@@ -1,15 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@radix-ui/react-separator';
 import { Info, Dice1, Plus, Minus } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from '@radix-ui/react-tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -110,11 +109,11 @@ export default function DiceRoller() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Dice Selection Section */}
-          <Card className="bg-card">
-            <CardHeader>
+          <div className="card bg-base-100">
+            <div className="card-header">
               <h2 className="text-2xl font-semibold">Select Dice</h2>
-            </CardHeader>
-            <CardContent>
+            </div>
+            <div className="card-body">
               <div className="space-y-6">
                 {/* Standard Dice Buttons */}
                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
@@ -212,16 +211,16 @@ export default function DiceRoller() {
                   Roll Dice
                 </button>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Results Section */}
           <div className="space-y-8">
-            <Card className="bg-card">
-              <CardHeader>
+            <div className="card bg-base-100">
+              <div className="card-header">
                 <h2 className="text-2xl font-semibold">Roll Results</h2>
-              </CardHeader>
-              <CardContent>
+              </div>
+              <div className="card-body">
                 <div className="space-y-6">
                   <AnimatePresence>
                     {rollHistory.map((roll, index) => (
@@ -267,15 +266,15 @@ export default function DiceRoller() {
                     </div>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Information Section */}
-            <Card>
-              <CardHeader>
+            <div className="card">
+              <div className="card-header">
                 <h2 className="text-2xl font-semibold">Dice Rolling Guide</h2>
-              </CardHeader>
-              <CardContent>
+              </div>
+              <div className="card-body">
                 <div className="space-y-6">
                   <section>
                     <h3 className="text-lg font-semibold mb-3">Standard RPG Dice</h3>
@@ -340,8 +339,8 @@ export default function DiceRoller() {
                     </ul>
                   </section>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </div>
