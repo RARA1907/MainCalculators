@@ -3,7 +3,6 @@ import './globals.css'
 import { Layout } from '@/components/layout/Layout'
 import { Footer } from '@/components/layout/Footer'
 import { Metadata } from 'next'
-import { ThemeProvider } from '@/components/theme-provider'
 import { ScrollToTop } from '@/components/ScrollToTop'
 import { Toaster } from '@/components/ui/toaster'
 
@@ -80,20 +79,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-          themes={['light', 'dark']}
-        >
+        <div className="relative min-h-screen">
           <Layout>
             {children}
             <Footer />
             <ScrollToTop />
           </Layout>
           <Toaster />
-        </ThemeProvider>
+        </div>
       </body>
     </html>
   )
