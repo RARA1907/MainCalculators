@@ -92,7 +92,7 @@ const JSONLConverter = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto mb-6 mt-6 px-4 py-8">
       <Breadcrumb items={breadcrumbItems} />
       <Card>
         <CardHeader>
