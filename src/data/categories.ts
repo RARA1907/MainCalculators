@@ -296,7 +296,9 @@ export const categories = [
         items: [
           { name: 'IP Subnet Calculator', href: '/ip-subnet-calculator' },
           { name: 'Password Generator', href: '/password-generator' },
-          { name: 'Bandwidth Calculator', href: '/bandwidth-calculator' }
+          { name: 'Bandwidth Calculator', href: '/bandwidth-calculator' },
+          { name: 'JSONL Converter', href: '/jsonl-converter' },
+          { name: 'JSONL Validator', href: '/jsonl-validator' }
         ]
       },
       {
