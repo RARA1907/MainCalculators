@@ -108,7 +108,7 @@ const JSONLConverter = () => {
                 <TooltipTrigger asChild>
                   <Button
                     variant="outline"
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 bg-blue-600 text-white hover:bg-blue-700"
                     onClick={toggleConversionType}
                   >
                     <ArrowDownUp className="h-4 w-4" />
