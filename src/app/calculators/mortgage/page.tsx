@@ -99,7 +99,7 @@ function MortgageCalculator() {
 
       {result && (
         <div className="mt-6 space-y-4">
-          <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="p-4 bg-gray-50 ">
             <h3 className="text-lg font-semibold mb-3">Monthly Payment</h3>
             <p className="text-3xl font-bold text-[#0EA5E9]">
               ${result.monthlyPayment.toFixed(2)}
@@ -107,13 +107,13 @@ function MortgageCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div className="p-4 bg-gray-50 ">
               <h4 className="text-sm font-medium mb-1">Total Payment</h4>
               <p className="text-xl font-semibold text-[#0EA5E9]">
                 ${result.totalPayment.toFixed(2)}
               </p>
             </div>
-            <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div className="p-4 bg-gray-50 ">
               <h4 className="text-sm font-medium mb-1">Total Interest</h4>
               <p className="text-xl font-semibold text-[#0EA5E9]">
                 ${result.totalInterest.toFixed(2)}
@@ -150,19 +150,19 @@ function Content() {
       <section>
         <h2 className="text-2xl font-bold mb-4">Key Components of a Mortgage Payment</h2>
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="p-4 bg-gray-50 ">
             <h3 className="font-semibold mb-2">Principal</h3>
             <p>The amount you borrow from the lender (home price minus down payment)</p>
           </div>
-          <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="p-4 bg-gray-50 ">
             <h3 className="font-semibold mb-2">Interest</h3>
             <p>The cost of borrowing money, expressed as a percentage rate</p>
           </div>
-          <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="p-4 bg-gray-50 ">
             <h3 className="font-semibold mb-2">Term Length</h3>
             <p>The number of years you have to repay the loan</p>
           </div>
-          <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="p-4 bg-gray-50 ">
             <h3 className="font-semibold mb-2">Down Payment</h3>
             <p>The initial payment you make when purchasing the home</p>
           </div>

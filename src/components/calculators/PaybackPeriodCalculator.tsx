@@ -139,19 +139,19 @@ export function PaybackPeriodCalculator() {
   const results = (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Simple Payback Period</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Simple Payback Period</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             {paybackPeriod.toFixed(2)} years
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Discounted Payback Period</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Discounted Payback Period</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             {discountedPaybackPeriod.toFixed(2)} years
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400">(10% discount rate)</p>
+          <p className="text-sm text-blue-600 ">(10% discount rate)</p>
         </div>
       </div>
 

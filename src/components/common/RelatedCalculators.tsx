@@ -13,8 +13,8 @@ interface RelatedCalculatorsProps {
 
 export function RelatedCalculators({ calculators }: RelatedCalculatorsProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-      <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+    <div className="bg-white ">
+      <h2 className="text-xl font-bold mb-4 text-gray-900 ">
         Related Calculators
       </h2>
       <div className="space-y-4">
@@ -22,15 +22,15 @@ export function RelatedCalculators({ calculators }: RelatedCalculatorsProps) {
           <Link
             key={index}
             href={calc.href}
-            className="block p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+            className="block p-4 bg-gray-50 "
           >
             <div className="flex items-start space-x-3">
-              <Calculator className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1" />
+              <Calculator className="w-5 h-5 text-blue-600 " />
               <div>
-                <h3 className="font-medium text-gray-900 dark:text-white">
+                <h3 className="font-medium text-gray-900 ">
                   {calc.name}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                <p className="text-sm text-gray-600 ">
                   {calc.description}
                 </p>
               </div>

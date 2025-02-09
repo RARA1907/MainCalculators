@@ -407,7 +407,7 @@ export default function PermutationCombinationCalculator() {
               {result ? (
                 <div className="space-y-6">
                   {/* Result Value */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <div className="text-sm font-medium text-muted-foreground">
                       Result
                     </div>
@@ -420,7 +420,7 @@ export default function PermutationCombinationCalculator() {
                   </div>
 
                   {/* Visualization */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Visualization</h3>
                     <ReactECharts 
                       option={getChartOption(calculationType, result.chartData)} 
@@ -431,7 +431,7 @@ export default function PermutationCombinationCalculator() {
                   {/* Step by Step Solution */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Step by Step Solution</h3>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                    <div className="bg-gray-50 ">
                       {result.steps.map((step, index) => (
                         <div key={index} className="text-sm whitespace-pre-wrap">
                           {step}

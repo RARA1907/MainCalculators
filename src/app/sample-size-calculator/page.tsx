@@ -290,7 +290,7 @@ export default function SampleSizeCalculator() {
                 <div className="space-y-6">
                   {/* Summary Statistics */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Required Sample Size
                       </div>
@@ -298,7 +298,7 @@ export default function SampleSizeCalculator() {
                         {result.sampleSize.toLocaleString()}
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Z-Score
                       </div>
@@ -306,7 +306,7 @@ export default function SampleSizeCalculator() {
                         {result.zScore.toFixed(3)}
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Population Size
                       </div>
@@ -314,7 +314,7 @@ export default function SampleSizeCalculator() {
                         {result.populationSize.toLocaleString()}
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Margin of Error
                       </div>
@@ -325,7 +325,7 @@ export default function SampleSizeCalculator() {
                   </div>
 
                   {/* Sample Size vs Margin of Error Chart */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Sample Size vs Margin of Error</h3>
                     <ReactECharts option={getMarginChart()} style={{ height: '300px' }} />
                   </div>
@@ -333,7 +333,7 @@ export default function SampleSizeCalculator() {
                   {/* Step by Step Solution */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Step by Step Solution</h3>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                    <div className="bg-gray-50 ">
                       {result.steps.map((step, index) => (
                         <div key={index} className="text-sm whitespace-pre-wrap">
                           {step}

@@ -204,7 +204,7 @@ export function FhaLoanCalculator() {
             />
             <label
               htmlFor="isHighCostArea"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              className="text-sm font-medium text-gray-700 "
             >
               High-Cost Area
             </label>
@@ -220,19 +220,19 @@ export function FhaLoanCalculator() {
             />
             <label
               htmlFor="isFirstTime"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              className="text-sm font-medium text-gray-700 "
             >
               First-Time Homebuyer
             </label>
           </div>
         </div>
 
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Loan Limits</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Loan Limits</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${((isHighCostArea ? FHA_CONSTANTS.highCostMaxLoan : FHA_CONSTANTS.maxLoanAmount).toLocaleString())}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             {isHighCostArea ? 'High-Cost Area Limit' : 'Standard FHA Limit'}
           </p>
         </div>
@@ -240,62 +240,62 @@ export function FhaLoanCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Down Payment</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Down Payment</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${downPaymentAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             {downPaymentPercent}% of purchase price
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Loan Amount</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Loan Amount</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${loanAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             Base loan amount
           </p>
         </div>
 
-        <div className="p-4 bg-red-100 dark:bg-red-900/20 rounded-lg">
-          <h3 className="font-semibold text-red-700 dark:text-red-300">Upfront MIP</h3>
-          <p className="text-2xl font-bold text-red-800 dark:text-red-200">
+        <div className="p-4 bg-red-100 ">
+          <h3 className="font-semibold text-red-700 ">Upfront MIP</h3>
+          <p className="text-2xl font-bold text-red-800 ">
             ${upfrontMip.toFixed(2)}
           </p>
-          <p className="text-sm text-red-600 dark:text-red-400 mt-1">
+          <p className="text-sm text-red-600 ">
             {(FHA_CONSTANTS.upfrontMipRate * 100)}% of loan amount
           </p>
         </div>
 
-        <div className="p-4 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
-          <h3 className="font-semibold text-orange-700 dark:text-orange-300">Monthly MIP</h3>
-          <p className="text-2xl font-bold text-orange-800 dark:text-orange-200">
+        <div className="p-4 bg-orange-100 ">
+          <h3 className="font-semibold text-orange-700 ">Monthly MIP</h3>
+          <p className="text-2xl font-bold text-orange-800 ">
             ${monthlyMip.toFixed(2)}
           </p>
-          <p className="text-sm text-orange-600 dark:text-orange-400 mt-1">
+          <p className="text-sm text-orange-600 ">
             {(FHA_CONSTANTS.annualMipRate * 100)}% annual rate
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Monthly Payment</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Monthly Payment</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             ${monthlyPayment.toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Principal, Interest, and MIP
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h3 className="font-semibold text-amber-700 dark:text-amber-300">Total Cost</h3>
-          <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h3 className="font-semibold text-amber-700 ">Total Cost</h3>
+          <p className="text-2xl font-bold text-amber-800 ">
             ${totalPayment.toFixed(2)}
           </p>
-          <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+          <p className="text-sm text-amber-600 ">
             Over {loanTerm} years
           </p>
         </div>
@@ -303,7 +303,7 @@ export function FhaLoanCalculator() {
 
       {/* Loan Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

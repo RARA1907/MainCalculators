@@ -296,13 +296,13 @@ export function EstateTaxCalculator() {
       {/* State Selection and Options */}
       <div className="grid gap-4 md:grid-cols-3">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             State
           </label>
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {Object.entries(STATE_ESTATE_TAXES).map(([code, data]) => (
               <option key={code} value={code}>
@@ -323,7 +323,7 @@ export function EstateTaxCalculator() {
             />
             <label
               htmlFor="isMarried"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              className="text-sm font-medium text-gray-700 "
             >
               Married
             </label>
@@ -340,7 +340,7 @@ export function EstateTaxCalculator() {
             />
             <label
               htmlFor="hasPortability"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              className="text-sm font-medium text-gray-700 "
             >
               Use Portability Election
             </label>
@@ -350,23 +350,23 @@ export function EstateTaxCalculator() {
 
       {/* Exemption Information */}
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Federal Exemption</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Federal Exemption</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${((isMarried && hasPortability ? FEDERAL_EXEMPTION * 2 : FEDERAL_EXEMPTION) / 1000000).toFixed(1)}M
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             {isMarried && hasPortability ? 'Including spouse\'s portable exemption' : 'Basic exemption amount'}
           </p>
         </div>
 
         {state !== 'None' && (
-          <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-            <h3 className="font-semibold text-purple-700 dark:text-purple-300">State Exemption</h3>
-            <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+          <div className="p-4 bg-purple-100 ">
+            <h3 className="font-semibold text-purple-700 ">State Exemption</h3>
+            <p className="text-2xl font-bold text-purple-800 ">
               ${(STATE_ESTATE_TAXES[state].exemption / 1000000).toFixed(1)}M
             </p>
-            <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+            <p className="text-sm text-purple-600 ">
               Maximum rate: {STATE_ESTATE_TAXES[state].maxRate}%
             </p>
           </div>
@@ -375,42 +375,42 @@ export function EstateTaxCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Taxable Estate</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Taxable Estate</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${(taxableEstate / 1000000).toFixed(2)}M
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             After exemptions
           </p>
         </div>
         
-        <div className="p-4 bg-red-100 dark:bg-red-900/20 rounded-lg">
-          <h3 className="font-semibold text-red-700 dark:text-red-300">Federal Estate Tax</h3>
-          <p className="text-2xl font-bold text-red-800 dark:text-red-200">
+        <div className="p-4 bg-red-100 ">
+          <h3 className="font-semibold text-red-700 ">Federal Estate Tax</h3>
+          <p className="text-2xl font-bold text-red-800 ">
             ${(federalTax / 1000000).toFixed(2)}M
           </p>
-          <p className="text-sm text-red-600 dark:text-red-400 mt-1">
+          <p className="text-sm text-red-600 ">
             Federal tax liability
           </p>
         </div>
 
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">State Estate Tax</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">State Estate Tax</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${(stateTax / 1000000).toFixed(2)}M
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             State tax liability
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h3 className="font-semibold text-amber-700 dark:text-amber-300">Total Tax</h3>
-          <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h3 className="font-semibold text-amber-700 ">Total Tax</h3>
+          <p className="text-2xl font-bold text-amber-800 ">
             ${(totalTax / 1000000).toFixed(2)}M
           </p>
-          <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+          <p className="text-sm text-amber-600 ">
             Effective Rate: {effectiveRate.toFixed(2)}%
           </p>
         </div>
@@ -418,7 +418,7 @@ export function EstateTaxCalculator() {
 
       {/* Estate Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

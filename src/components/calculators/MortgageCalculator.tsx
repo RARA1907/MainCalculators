@@ -156,31 +156,31 @@ export default function MortgageCalculator() {
         results && (
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-white/50 dark:bg-gray-700/50 rounded-lg">
-                <div className="text-sm text-gray-600 dark:text-gray-300">
+              <div className="p-4 bg-white/50 ">
+                <div className="text-sm text-gray-600 ">
                   Principal & Interest
                 </div>
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-2xl font-bold text-blue-600 ">
                   {formatCurrency(results.monthlyPrincipalAndInterest)}
                 </div>
               </div>
-              <div className="p-4 bg-white/50 dark:bg-gray-700/50 rounded-lg">
-                <div className="text-sm text-gray-600 dark:text-gray-300">
+              <div className="p-4 bg-white/50 ">
+                <div className="text-sm text-gray-600 ">
                   Taxes & Insurance
                 </div>
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-2xl font-bold text-blue-600 ">
                   {formatCurrency(results.monthlyTax + results.monthlyInsurance)}
                 </div>
               </div>
             </div>
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <div className="text-sm text-gray-600 dark:text-gray-300">
+            <div className="p-4 bg-blue-50 ">
+              <div className="text-sm text-gray-600 ">
                 Total Monthly Payment
               </div>
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="text-2xl font-bold text-blue-600 ">
                 {formatCurrency(results.totalMonthlyPayment)}
               </div>
-              <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              <div className="mt-2 text-sm text-gray-500 ">
                 Loan Amount: {formatCurrency(results.totalLoanAmount)}
               </div>
             </div>

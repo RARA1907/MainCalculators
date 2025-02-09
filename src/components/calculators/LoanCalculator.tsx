@@ -114,22 +114,22 @@ export default function LoanCalculator() {
         results && (
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-white/50 dark:bg-gray-700/50 rounded-lg">
-                <div className="text-sm text-gray-600 dark:text-gray-300">Monthly Payment</div>
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="p-4 bg-white/50 ">
+                <div className="text-sm text-gray-600 ">Monthly Payment</div>
+                <div className="text-2xl font-bold text-blue-600 ">
                   {formatCurrency(results.monthlyPayment)}
                 </div>
               </div>
-              <div className="p-4 bg-white/50 dark:bg-gray-700/50 rounded-lg">
-                <div className="text-sm text-gray-600 dark:text-gray-300">Total Interest</div>
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="p-4 bg-white/50 ">
+                <div className="text-sm text-gray-600 ">Total Interest</div>
+                <div className="text-2xl font-bold text-blue-600 ">
                   {formatCurrency(results.totalInterest)}
                 </div>
               </div>
             </div>
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <div className="text-sm text-gray-600 dark:text-gray-300">Total Payment</div>
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+            <div className="p-4 bg-blue-50 ">
+              <div className="text-sm text-gray-600 ">Total Payment</div>
+              <div className="text-2xl font-bold text-blue-600 ">
                 {formatCurrency(results.totalPayment)}
               </div>
             </div>

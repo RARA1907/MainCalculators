@@ -262,39 +262,39 @@ export function FutureValueCalculator() {
   const results = (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="p-6 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Future Value</h3>
-          <p className="text-3xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-6 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Future Value</h3>
+          <p className="text-3xl font-bold text-green-800 ">
             ${futureValue.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-2">
+          <p className="text-sm text-green-600 ">
             Total value after {timePeriod} years
           </p>
         </div>
         
-        <div className="p-6 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Total Contributions</h3>
-          <p className="text-3xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-6 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Total Contributions</h3>
+          <p className="text-3xl font-bold text-blue-800 ">
             ${totalContributions.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-2">
+          <p className="text-sm text-blue-600 ">
             Sum of all contributions
           </p>
         </div>
 
-        <div className="p-6 bg-pink-100 dark:bg-pink-900/20 rounded-lg">
-          <h3 className="font-semibold text-pink-700 dark:text-pink-300">Total Interest</h3>
-          <p className="text-3xl font-bold text-pink-800 dark:text-pink-200">
+        <div className="p-6 bg-pink-100 ">
+          <h3 className="font-semibold text-pink-700 ">Total Interest</h3>
+          <p className="text-3xl font-bold text-pink-800 ">
             ${totalInterest.toFixed(2)}
           </p>
-          <p className="text-sm text-pink-600 dark:text-pink-400 mt-2">
+          <p className="text-sm text-pink-600 ">
             Interest earned over time
           </p>
         </div>
       </div>
 
       {timelineData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

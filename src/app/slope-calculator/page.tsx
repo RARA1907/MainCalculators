@@ -272,7 +272,7 @@ export default function SlopeCalculator() {
                   >
                     <SelectTrigger 
                       id="calculationType" 
-                      className="bg-white text-black dark:bg-gray-800 dark:text-white"
+                      className="bg-white text-black "
                     >
                       <SelectValue placeholder="Select calculation method" />
                     </SelectTrigger>
@@ -332,7 +332,7 @@ export default function SlopeCalculator() {
                 <div className="space-y-6">
                   {/* Slope Results */}
                   <div className="space-y-4">
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Slope (m)
                       </div>
@@ -340,7 +340,7 @@ export default function SlopeCalculator() {
                         {result.slope.toFixed(4)}
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Angle
                       </div>
@@ -351,7 +351,7 @@ export default function SlopeCalculator() {
                   </div>
 
                   {/* Line Visualization */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Line Visualization</h3>
                     <ReactECharts 
                       option={result.chartOption} 
@@ -362,7 +362,7 @@ export default function SlopeCalculator() {
                   {/* Step by Step Solution */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Step by Step Solution</h3>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                    <div className="bg-gray-50 ">
                       {result.steps.map((step, index) => (
                         <div key={index} className="text-sm whitespace-pre-wrap">
                           {step}

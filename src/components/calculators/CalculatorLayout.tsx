@@ -36,11 +36,11 @@ export default function CalculatorLayout({
 }: CalculatorLayoutProps) {
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
-      <Card className="border-0 shadow-lg bg-white/50 backdrop-blur-lg dark:bg-gray-800/50">
+      <Card className="border-0 shadow-lg bg-white/50 backdrop-blur-lg ">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">{title}</CardTitle>
           {description && (
-            <CardDescription className="text-gray-600 dark:text-gray-300">
+            <CardDescription className="text-gray-600 ">
               {description}
             </CardDescription>
           )}
@@ -53,7 +53,7 @@ export default function CalculatorLayout({
                 <div key={index} className="space-y-2">
                   <Label
                     htmlFor={`input-${index}`}
-                    className="text-sm font-medium text-gray-700 dark:text-gray-200"
+                    className="text-sm font-medium text-gray-700 "
                   >
                     {input.label}
                   </Label>
@@ -68,10 +68,10 @@ export default function CalculatorLayout({
                       max={input.max}
                       step={input.step}
                       name={input.name}
-                      className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 ${
+                      className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 
                         input.error
                           ? 'border-red-500 focus:ring-red-500'
-                          : 'border-gray-300 dark:border-gray-500'
+                          : 'border-gray-300 
                       }`}
                     />
                     {input.error && (
@@ -97,8 +97,8 @@ export default function CalculatorLayout({
 
           {/* Results Section */}
           {results && (
-            <div className="mt-8 p-6 bg-gray-50 dark:bg-gray-700/50 rounded-lg backdrop-blur-sm">
-              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+            <div className="mt-8 p-6 bg-gray-50 ">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 ">
                 Results
               </h3>
               <div className="space-y-4">{results}</div>

@@ -257,13 +257,13 @@ export function IncomeTaxCalculator() {
       {/* Filing Status and State Selection */}
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Filing Status
           </label>
           <select
             value={filingStatus}
             onChange={(e) => setFilingStatus(e.target.value as 'single' | 'married' | 'head')}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             <option value="single">Single</option>
             <option value="married">Married Filing Jointly</option>
@@ -272,13 +272,13 @@ export function IncomeTaxCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             State
           </label>
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             <option value="CA">California</option>
             <option value="NY">New York</option>
@@ -298,21 +298,21 @@ export function IncomeTaxCalculator() {
             onChange={(e) => setUseStandardDeduction(e.target.checked)}
             className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
           />
-          <label htmlFor="standardDeduction" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="standardDeduction" className="text-sm font-medium text-gray-700 ">
             Use Standard Deduction (${STANDARD_DEDUCTION_2024[filingStatus].toLocaleString()})
           </label>
         </div>
 
         {!useStandardDeduction && (
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label className="text-sm font-medium text-gray-700 ">
               Itemized Deductions ($)
             </label>
             <input
               type="number"
               value={itemizedDeductions}
               onChange={(e) => setItemizedDeductions(Number(e.target.value))}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
               min="0"
               step="100"
             />
@@ -327,7 +327,7 @@ export function IncomeTaxCalculator() {
             onChange={(e) => setChildTaxCredit(e.target.checked)}
             className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
           />
-          <label htmlFor="childTaxCredit" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label htmlFor="childTaxCredit" className="text-sm font-medium text-gray-700 ">
             Apply Child Tax Credit
           </label>
         </div>
@@ -335,42 +335,42 @@ export function IncomeTaxCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Take-Home Pay</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Take-Home Pay</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${takeHomePay.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             Annual after-tax income
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Total Tax</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Total Tax</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${totalTax.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             Federal + State + FICA
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Effective Tax Rate</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Effective Tax Rate</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             {effectiveTaxRate.toFixed(2)}%
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Total tax / Gross income
           </p>
         </div>
 
-        <div className="p-4 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
-          <h3 className="font-semibold text-orange-700 dark:text-orange-300">Marginal Tax Rate</h3>
-          <p className="text-2xl font-bold text-orange-800 dark:text-orange-200">
+        <div className="p-4 bg-orange-100 ">
+          <h3 className="font-semibold text-orange-700 ">Marginal Tax Rate</h3>
+          <p className="text-2xl font-bold text-orange-800 ">
             {marginalTaxRate.toFixed(2)}%
           </p>
-          <p className="text-sm text-orange-600 dark:text-orange-400 mt-1">
+          <p className="text-sm text-orange-600 ">
             Tax rate on next dollar
           </p>
         </div>
@@ -378,23 +378,23 @@ export function IncomeTaxCalculator() {
 
       {/* Tax Breakdown */}
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="p-4 bg-red-100 dark:bg-red-900/20 rounded-lg">
-          <h3 className="font-semibold text-red-700 dark:text-red-300">Federal Tax</h3>
-          <p className="text-xl font-bold text-red-800 dark:text-red-200">
+        <div className="p-4 bg-red-100 ">
+          <h3 className="font-semibold text-red-700 ">Federal Tax</h3>
+          <p className="text-xl font-bold text-red-800 ">
             ${federalTax.toFixed(2)}
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h3 className="font-semibold text-amber-700 dark:text-amber-300">State Tax</h3>
-          <p className="text-xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h3 className="font-semibold text-amber-700 ">State Tax</h3>
+          <p className="text-xl font-bold text-amber-800 ">
             ${stateTax.toFixed(2)}
           </p>
         </div>
 
-        <div className="p-4 bg-indigo-100 dark:bg-indigo-900/20 rounded-lg">
-          <h3 className="font-semibold text-indigo-700 dark:text-indigo-300">FICA Tax</h3>
-          <p className="text-xl font-bold text-indigo-800 dark:text-indigo-200">
+        <div className="p-4 bg-indigo-100 ">
+          <h3 className="font-semibold text-indigo-700 ">FICA Tax</h3>
+          <p className="text-xl font-bold text-indigo-800 ">
             ${ficaTax.toFixed(2)}
           </p>
         </div>
@@ -402,7 +402,7 @@ export function IncomeTaxCalculator() {
 
       {/* Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

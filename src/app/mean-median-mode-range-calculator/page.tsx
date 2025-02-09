@@ -346,7 +346,7 @@ export default function MMRCalculator() {
                 <div className="space-y-6">
                   {/* Summary Statistics */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Mean
                       </div>
@@ -354,7 +354,7 @@ export default function MMRCalculator() {
                         {result.mean.toFixed(4)}
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Median
                       </div>
@@ -362,7 +362,7 @@ export default function MMRCalculator() {
                         {result.median.toFixed(4)}
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Mode
                       </div>
@@ -370,7 +370,7 @@ export default function MMRCalculator() {
                         {result.mode.length > 0 ? result.mode.join(', ') : 'No mode'}
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Range
                       </div>
@@ -381,7 +381,7 @@ export default function MMRCalculator() {
                   </div>
 
                   {/* Data Distribution */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Data Distribution</h3>
                     <ReactECharts 
                       option={getHistogramOption(result.sortedData)} 
@@ -390,7 +390,7 @@ export default function MMRCalculator() {
                   </div>
 
                   {/* Box Plot */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Box Plot</h3>
                     <ReactECharts 
                       option={getBoxPlotOption(result.sortedData)} 
@@ -402,7 +402,7 @@ export default function MMRCalculator() {
                   <div className="space-y-4">
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Mean Calculation</h3>
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                      <div className="bg-gray-50 ">
                         {result.steps.mean.map((step, index) => (
                           <div key={index} className="text-sm whitespace-pre-wrap">
                             {step}
@@ -413,7 +413,7 @@ export default function MMRCalculator() {
 
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Median Calculation</h3>
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                      <div className="bg-gray-50 ">
                         {result.steps.median.map((step, index) => (
                           <div key={index} className="text-sm whitespace-pre-wrap">
                             {step}
@@ -424,7 +424,7 @@ export default function MMRCalculator() {
 
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Mode Calculation</h3>
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                      <div className="bg-gray-50 ">
                         {result.steps.mode.map((step, index) => (
                           <div key={index} className="text-sm whitespace-pre-wrap">
                             {step}
@@ -435,7 +435,7 @@ export default function MMRCalculator() {
 
                     <div>
                       <h3 className="text-lg font-semibold mb-2">Range Calculation</h3>
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                      <div className="bg-gray-50 ">
                         {result.steps.range.map((step, index) => (
                           <div key={index} className="text-sm whitespace-pre-wrap">
                             {step}

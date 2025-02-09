@@ -217,13 +217,13 @@ export function SalesTaxCalculator() {
       {/* State Selection and Options */}
       <div className="grid gap-4 md:grid-cols-3">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             State
           </label>
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {Object.entries(STATE_TAX_RATES).map(([code, data]) => (
               <option key={code} value={code}>
@@ -234,13 +234,13 @@ export function SalesTaxCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Discount Type
           </label>
           <select
             value={discountType}
             onChange={(e) => setDiscountType(e.target.value as 'percentage' | 'amount')}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             <option value="percentage">Percentage</option>
             <option value="amount">Fixed Amount</option>
@@ -258,7 +258,7 @@ export function SalesTaxCalculator() {
             />
             <label
               htmlFor="useLocalRate"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              className="text-sm font-medium text-gray-700 "
             >
               Include local tax
             </label>
@@ -274,7 +274,7 @@ export function SalesTaxCalculator() {
             />
             <label
               htmlFor="includeTaxOnShipping"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              className="text-sm font-medium text-gray-700 "
             >
               Tax on shipping
             </label>
@@ -290,7 +290,7 @@ export function SalesTaxCalculator() {
             />
             <label
               htmlFor="isExempt"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              className="text-sm font-medium text-gray-700 "
             >
               Tax exempt
             </label>
@@ -300,23 +300,23 @@ export function SalesTaxCalculator() {
 
       {/* Tax Rate Information */}
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">State Rate</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">State Rate</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             {STATE_TAX_RATES[state].stateRate}%
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Avg Local Rate</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Avg Local Rate</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             {STATE_TAX_RATES[state].avgLocalRate}%
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h3 className="font-semibold text-amber-700 dark:text-amber-300">Combined Rate</h3>
-          <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h3 className="font-semibold text-amber-700 ">Combined Rate</h3>
+          <p className="text-2xl font-bold text-amber-800 ">
             {STATE_TAX_RATES[state].combinedRate}%
           </p>
         </div>
@@ -324,42 +324,42 @@ export function SalesTaxCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Net Amount</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Net Amount</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${netAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             Before tax
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Sales Tax</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Sales Tax</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${taxAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             {effectiveRate.toFixed(2)}% effective rate
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Total Amount</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Total Amount</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             ${totalAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Including tax & shipping
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h3 className="font-semibold text-amber-700 dark:text-amber-300">Per Item</h3>
-          <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h3 className="font-semibold text-amber-700 ">Per Item</h3>
+          <p className="text-2xl font-bold text-amber-800 ">
             ${(totalAmount / quantity).toFixed(2)}
           </p>
-          <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+          <p className="text-sm text-amber-600 ">
             Total per item
           </p>
         </div>
@@ -367,7 +367,7 @@ export function SalesTaxCalculator() {
 
       {/* Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

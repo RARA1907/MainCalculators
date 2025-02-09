@@ -316,12 +316,12 @@ export function MarriageTaxCalculator() {
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-4">
           <h3 className="font-semibold text-lg">Person 1</h3>
-          <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-            <h4 className="font-semibold text-green-700 dark:text-green-300">Tax as Single</h4>
-            <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+          <div className="p-4 bg-green-100 ">
+            <h4 className="font-semibold text-green-700 ">Tax as Single</h4>
+            <p className="text-2xl font-bold text-green-800 ">
               ${singleTax1.toFixed(2)}
             </p>
-            <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+            <p className="text-sm text-green-600 ">
               Effective Rate: {effectiveSingleRate1.toFixed(2)}%
             </p>
           </div>
@@ -329,12 +329,12 @@ export function MarriageTaxCalculator() {
 
         <div className="space-y-4">
           <h3 className="font-semibold text-lg">Person 2</h3>
-          <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-            <h4 className="font-semibold text-blue-700 dark:text-blue-300">Tax as Single</h4>
-            <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+          <div className="p-4 bg-blue-100 ">
+            <h4 className="font-semibold text-blue-700 ">Tax as Single</h4>
+            <p className="text-2xl font-bold text-blue-800 ">
               ${singleTax2.toFixed(2)}
             </p>
-            <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+            <p className="text-sm text-blue-600 ">
               Effective Rate: {effectiveSingleRate2.toFixed(2)}%
             </p>
           </div>
@@ -343,22 +343,22 @@ export function MarriageTaxCalculator() {
 
       {/* Combined Results */}
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h4 className="font-semibold text-purple-700 dark:text-purple-300">Combined Single Tax</h4>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h4 className="font-semibold text-purple-700 ">Combined Single Tax</h4>
+          <p className="text-2xl font-bold text-purple-800 ">
             ${(singleTax1 + singleTax2).toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Total tax if filing separately
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h4 className="font-semibold text-amber-700 dark:text-amber-300">Married Filing Jointly</h4>
-          <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h4 className="font-semibold text-amber-700 ">Married Filing Jointly</h4>
+          <p className="text-2xl font-bold text-amber-800 ">
             ${marriedTax.toFixed(2)}
           </p>
-          <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+          <p className="text-sm text-amber-600 ">
             Effective Rate: {effectiveMarriedRate.toFixed(2)}%
           </p>
         </div>
@@ -367,27 +367,27 @@ export function MarriageTaxCalculator() {
       {/* Marriage Penalty/Bonus */}
       <div className={`p-4 rounded-lg ${
         marriagePenalty > 0 
-          ? 'bg-red-100 dark:bg-red-900/20' 
-          : 'bg-emerald-100 dark:bg-emerald-900/20'
+          ? 'bg-red-100 
+          : 'bg-emerald-100 
       }`}>
         <h4 className={`font-semibold ${
           marriagePenalty > 0
-            ? 'text-red-700 dark:text-red-300'
-            : 'text-emerald-700 dark:text-emerald-300'
+            ? 'text-red-700 
+            : 'text-emerald-700 
         }`}>
           {marriagePenalty > 0 ? 'Marriage Penalty' : 'Marriage Bonus'}
         </h4>
         <p className={`text-2xl font-bold ${
           marriagePenalty > 0
-            ? 'text-red-800 dark:text-red-200'
-            : 'text-emerald-800 dark:text-emerald-200'
+            ? 'text-red-800 
+            : 'text-emerald-800 
         }`}>
           ${Math.abs(marriagePenalty).toFixed(2)}
         </p>
         <p className={`text-sm mt-1 ${
           marriagePenalty > 0
-            ? 'text-red-600 dark:text-red-400'
-            : 'text-emerald-600 dark:text-emerald-400'
+            ? 'text-red-600 
+            : 'text-emerald-600 
         }`}>
           {marriagePenalty > 0
             ? 'Additional tax when married'
@@ -397,7 +397,7 @@ export function MarriageTaxCalculator() {
 
       {/* Tax Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

@@ -206,13 +206,13 @@ export function CapitalGainsCalculator() {
     <div className="space-y-6">
       {/* Holding Period Unit Toggle */}
       <div className="flex items-center space-x-4">
-        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label className="text-sm font-medium text-gray-700 ">
           Holding Period Unit:
         </label>
         <select
           value={holdingPeriodUnit}
           onChange={(e) => setHoldingPeriodUnit(e.target.value as 'months' | 'years')}
-          className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+          className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
         >
           <option value="months">Months</option>
           <option value="years">Years</option>
@@ -221,42 +221,42 @@ export function CapitalGainsCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Capital Gain/Loss</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Capital Gain/Loss</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${capitalGain.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             {isLongTerm ? 'Long-term' : 'Short-term'} gain
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Net Profit</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Net Profit</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${netProfit.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             After taxes and fees
           </p>
         </div>
 
-        <div className="p-4 bg-red-100 dark:bg-red-900/20 rounded-lg">
-          <h3 className="font-semibold text-red-700 dark:text-red-300">Tax Amount</h3>
-          <p className="text-2xl font-bold text-red-800 dark:text-red-200">
+        <div className="p-4 bg-red-100 ">
+          <h3 className="font-semibold text-red-700 ">Tax Amount</h3>
+          <p className="text-2xl font-bold text-red-800 ">
             ${taxAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-red-600 dark:text-red-400 mt-1">
+          <p className="text-sm text-red-600 ">
             Federal + State taxes
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Effective Tax Rate</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Effective Tax Rate</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             {effectiveTaxRate.toFixed(2)}%
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Combined tax rate
           </p>
         </div>
@@ -264,7 +264,7 @@ export function CapitalGainsCalculator() {
 
       {/* Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

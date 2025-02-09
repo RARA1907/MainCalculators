@@ -211,39 +211,39 @@ export function DividendCalculator() {
           onChange={(e) => setDrip(e.target.checked)}
           className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
         />
-        <label htmlFor="drip" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label htmlFor="drip" className="text-sm font-medium text-gray-700 ">
           Reinvest Dividends (DRIP)
         </label>
       </div>
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Total Dividends</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Total Dividends</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${totalDividends.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             Over {yearsToProject} years
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Final Yield</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Final Yield</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             {finalYield.toFixed(2)}%
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             Based on total investment
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Final Shares</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Final Shares</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             {finalShares.toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Including DRIP & additional investments
           </p>
         </div>
@@ -251,7 +251,7 @@ export function DividendCalculator() {
 
       {/* Timeline Chart */}
       {timelineData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

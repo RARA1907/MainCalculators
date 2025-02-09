@@ -402,7 +402,7 @@ export default function SurfaceAreaCalculator() {
                   >
                     <SelectTrigger 
                       id="shapeType" 
-                      className="bg-white text-black dark:bg-gray-800 dark:text-white"
+                      className="bg-white text-black "
                     >
                       <SelectValue placeholder="Select shape" />
                     </SelectTrigger>
@@ -465,7 +465,7 @@ export default function SurfaceAreaCalculator() {
                 <div className="space-y-6">
                   {/* Surface Area Results */}
                   <div className="space-y-4">
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Total Surface Area
                       </div>
@@ -474,7 +474,7 @@ export default function SurfaceAreaCalculator() {
                       </div>
                     </div>
                     {result.lateralArea !== undefined && (
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <div className="bg-gray-50 ">
                         <div className="text-sm font-medium text-muted-foreground">
                           Lateral Surface Area
                         </div>
@@ -484,7 +484,7 @@ export default function SurfaceAreaCalculator() {
                       </div>
                     )}
                     {result.baseArea !== undefined && (
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <div className="bg-gray-50 ">
                         <div className="text-sm font-medium text-muted-foreground">
                           Base Area
                         </div>
@@ -496,7 +496,7 @@ export default function SurfaceAreaCalculator() {
                   </div>
 
                   {/* Shape Visualization */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Shape Visualization</h3>
                     <ReactECharts 
                       option={result.chartOption} 
@@ -507,7 +507,7 @@ export default function SurfaceAreaCalculator() {
                   {/* Step by Step Solution */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Step by Step Solution</h3>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                    <div className="bg-gray-50 ">
                       {result.steps.map((step, index) => (
                         <div key={index} className="text-sm whitespace-pre-wrap">
                           {step}

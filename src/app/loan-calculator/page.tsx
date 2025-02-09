@@ -412,11 +412,11 @@ export default function LoanCalculator() {
                 </div>
 
                 {extraPayment > 0 && (
-                  <div className="bg-green-100 dark:bg-green-900 p-4 rounded-lg">
-                    <h3 className="font-semibold text-green-800 dark:text-green-200">
+                  <div className="bg-green-100 ">
+                    <h3 className="font-semibold text-green-800 ">
                       Extra Payment Savings
                     </h3>
-                    <p className="text-green-700 dark:text-green-300">
+                    <p className="text-green-700 ">
                       By making an extra monthly payment of ${extraPayment}, you will save ${interestSaved.toLocaleString()} in interest!
                     </p>
                   </div>

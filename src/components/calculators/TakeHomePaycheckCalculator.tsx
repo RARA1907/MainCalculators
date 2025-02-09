@@ -344,13 +344,13 @@ export function TakeHomePaycheckCalculator() {
       {/* Pay Frequency and Filing Status */}
       <div className="grid gap-4 md:grid-cols-3">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700">
             Pay Frequency
           </label>
           <select
             value={payFrequency}
             onChange={(e) => setPayFrequency(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="weekly">Weekly</option>
             <option value="bi-weekly">Bi-weekly</option>
@@ -360,13 +360,13 @@ export function TakeHomePaycheckCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700">
             Filing Status
           </label>
           <select
             value={filingStatus}
             onChange={(e) => setFilingStatus(e.target.value as 'single' | 'married')}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="single">Single</option>
             <option value="married">Married Filing Jointly</option>
@@ -374,13 +374,13 @@ export function TakeHomePaycheckCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700">
             State
           </label>
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             {Object.entries(STATE_TAX_RATES).map(([code, data]) => (
               <option key={code} value={code}>
@@ -393,52 +393,52 @@ export function TakeHomePaycheckCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Gross Pay</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 rounded-lg">
+          <h3 className="font-semibold text-green-700">Gross Pay</h3>
+          <p className="text-2xl font-bold text-green-800">
             ${grossPay.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 mt-1">
             Per pay period
           </p>
         </div>
         
-        <div className="p-4 bg-red-100 dark:bg-red-900/20 rounded-lg">
-          <h3 className="font-semibold text-red-700 dark:text-red-300">Federal Tax</h3>
-          <p className="text-2xl font-bold text-red-800 dark:text-red-200">
+        <div className="p-4 bg-red-100 rounded-lg">
+          <h3 className="font-semibold text-red-700">Federal Tax</h3>
+          <p className="text-2xl font-bold text-red-800">
             ${federalTax.toFixed(2)}
           </p>
-          <p className="text-sm text-red-600 dark:text-red-400 mt-1">
+          <p className="text-sm text-red-600 mt-1">
             {((federalTax / grossPay) * 100).toFixed(1)}% of gross
           </p>
         </div>
 
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">State Tax</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 rounded-lg">
+          <h3 className="font-semibold text-blue-700">State Tax</h3>
+          <p className="text-2xl font-bold text-blue-800">
             ${stateTax.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 mt-1">
             {((stateTax / grossPay) * 100).toFixed(1)}% of gross
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">FICA Taxes</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 rounded-lg">
+          <h3 className="font-semibold text-purple-700">FICA Taxes</h3>
+          <p className="text-2xl font-bold text-purple-800">
             ${(socialSecurity + medicare).toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 mt-1">
             SS: ${socialSecurity.toFixed(2)} | Medicare: ${medicare.toFixed(2)}
           </p>
         </div>
 
-        <div className="p-4 bg-orange-100 dark:bg-orange-900/20 rounded-lg col-span-2">
-          <h3 className="font-semibold text-orange-700 dark:text-orange-300">Take Home Pay</h3>
-          <p className="text-2xl font-bold text-orange-800 dark:text-orange-200">
+        <div className="p-4 bg-orange-100 rounded-lg col-span-2">
+          <h3 className="font-semibold text-orange-700">Take Home Pay</h3>
+          <p className="text-2xl font-bold text-orange-800">
             ${netPay.toFixed(2)}
           </p>
-          <p className="text-sm text-orange-600 dark:text-orange-400 mt-1">
+          <p className="text-sm text-orange-600 mt-1">
             {((netPay / grossPay) * 100).toFixed(1)}% of gross pay
           </p>
         </div>
@@ -446,7 +446,7 @@ export function TakeHomePaycheckCalculator() {
 
       {/* Paycheck Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white rounded-lg">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

@@ -256,7 +256,7 @@ export default function TimeCalculator() {
                     </div>
 
                     {result && (
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <div className="bg-gray-50 ">
                         <div className="text-sm font-medium text-muted-foreground">
                           {operation === 'difference' ? 'Time Difference' : 'Result Time'}
                         </div>
@@ -355,7 +355,7 @@ export default function TimeCalculator() {
                     </div>
 
                     {convertedTime && (
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <div className="bg-gray-50 ">
                         <div className="text-sm font-medium text-muted-foreground">
                           Time in {targetTimezone}
                         </div>

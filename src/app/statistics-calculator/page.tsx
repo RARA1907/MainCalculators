@@ -418,7 +418,7 @@ export default function StatisticsCalculator() {
                     {results.map((result, index) => (
                       <div
                         key={index}
-                        className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                        className="bg-gray-50 "
                       >
                         <div className="text-sm font-medium text-muted-foreground">
                           {result.label}

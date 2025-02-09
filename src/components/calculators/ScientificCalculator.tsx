@@ -121,13 +121,13 @@ export function ScientificCalculator() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden p-4">
+    <div className="max-w-md mx-auto bg-white ">
       {/* Display */}
-      <div className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg mb-4">
-        <div className="text-right text-2xl font-mono mb-2 text-gray-900 dark:text-white overflow-x-auto">
+      <div className="bg-gray-100 ">
+        <div className="text-right text-2xl font-mono mb-2 text-gray-900 ">
           {display}
         </div>
-        <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
+        <div className="flex justify-between items-center text-sm text-gray-600 ">
           <span>Memory: {memory}</span>
           <span>{isRad ? 'RAD' : 'DEG'}</span>
         </div>
@@ -146,8 +146,8 @@ export function ScientificCalculator() {
                   ['C', '='].includes(button)
                     ? 'bg-blue-600 hover:bg-blue-700 text-white'
                     : ['×', '÷', '+', '-', '^', '√'].includes(button)
-                    ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-blue-400'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? 'bg-gray-200 
+                    : 'bg-gray-100 
                 }
               `}
             >

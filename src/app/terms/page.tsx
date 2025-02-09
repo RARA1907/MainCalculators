@@ -1,8 +1,8 @@
 export default function TermsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Terms & Conditions</h1>
-      <div className="prose dark:prose-invert">
+      <h1 className="text-4xl font-bold mb-8 text-gray-900 ">Terms & Conditions</h1>
+      <div className="prose ">
         <p>Last updated: {new Date().toLocaleDateString()}</p>
         
         <h2>1. Acceptance of Terms</h2>

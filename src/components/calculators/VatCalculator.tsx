@@ -215,7 +215,7 @@ export function VatCalculator() {
       {/* Region and Rate Selection */}
       <div className="grid gap-4 md:grid-cols-3">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Region
           </label>
           <select
@@ -224,7 +224,7 @@ export function VatCalculator() {
               setRegion(e.target.value)
               setSelectedRate(VAT_RATES[e.target.value][0])
             }}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {Object.keys(VAT_RATES).map(r => (
               <option key={r} value={r}>
@@ -235,7 +235,7 @@ export function VatCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             VAT Rate
           </label>
           <select
@@ -244,7 +244,7 @@ export function VatCalculator() {
               const rate = VAT_RATES[region].find(r => r.label === e.target.value)
               if (rate) setSelectedRate(rate)
             }}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {VAT_RATES[region].map(rate => (
               <option key={rate.label} value={rate.label}>
@@ -255,13 +255,13 @@ export function VatCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Calculation Type
           </label>
           <select
             value={calculationType}
             onChange={(e) => setCalculationType(e.target.value as 'add' | 'remove' | 'extract')}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             <option value="add">Add VAT to net amount</option>
             <option value="remove">Remove VAT from gross amount</option>
@@ -273,13 +273,13 @@ export function VatCalculator() {
       {/* Additional Options */}
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Discount Type
           </label>
           <select
             value={discountType}
             onChange={(e) => setDiscountType(e.target.value as 'percentage' | 'amount')}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             <option value="percentage">Percentage</option>
             <option value="amount">Fixed Amount</option>
@@ -296,7 +296,7 @@ export function VatCalculator() {
           />
           <label
             htmlFor="includeVatOnShipping"
-            className="text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="text-sm font-medium text-gray-700 "
           >
             Apply VAT to shipping
           </label>
@@ -305,42 +305,42 @@ export function VatCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Net Amount</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Net Amount</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${netAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             Before VAT
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">VAT Amount</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">VAT Amount</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${vatAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             {selectedRate.rate}% VAT
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Gross Amount</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Gross Amount</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             ${grossAmount.toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Including VAT
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h3 className="font-semibold text-amber-700 dark:text-amber-300">Effective Rate</h3>
-          <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h3 className="font-semibold text-amber-700 ">Effective Rate</h3>
+          <p className="text-2xl font-bold text-amber-800 ">
             {effectiveRate.toFixed(2)}%
           </p>
-          <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+          <p className="text-sm text-amber-600 ">
             Actual VAT rate
           </p>
         </div>
@@ -348,7 +348,7 @@ export function VatCalculator() {
 
       {/* Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

@@ -23,14 +23,14 @@ export function CalculatorPageLayout({
       {/* Header Section */}
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-[#0EA5E9] mb-4">{title}</h1>
-        <p className="text-gray-600 dark:text-gray-300">{description}</p>
+        <p className="text-gray-600 ">{description}</p>
       </header>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content Area */}
         <div className="flex-1 order-2 lg:order-1">
           {/* Quick Navigation */}
-          <nav className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <nav className="mb-8 p-4 bg-gray-50 ">
             <h2 className="text-lg font-semibold mb-2">Quick Navigation</h2>
             <ul className="space-y-2">
               <li>
@@ -49,7 +49,7 @@ export function CalculatorPageLayout({
           </nav>
 
           {/* Content Sections */}
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose ">
             <section id="overview" className="mb-12">
               {content}
             </section>
@@ -66,7 +66,7 @@ export function CalculatorPageLayout({
         {/* Calculator Section - Sticky */}
         <div className="w-full lg:w-[400px] order-1 lg:order-2">
           <div className="sticky top-4">
-            <div id="calculator" className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
+            <div id="calculator" className="p-6 bg-white ">
               <h2 className="text-xl font-semibold mb-4">Calculator</h2>
               {calculator}
             </div>

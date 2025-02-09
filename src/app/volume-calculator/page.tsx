@@ -441,7 +441,7 @@ export default function VolumeCalculator() {
               {result ? (
                 <div className="space-y-6">
                   {/* Volume Result */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <div className="text-sm font-medium text-muted-foreground">
                       Volume
                     </div>
@@ -451,7 +451,7 @@ export default function VolumeCalculator() {
                   </div>
 
                   {/* Surface Area Result */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <div className="text-sm font-medium text-muted-foreground">
                       Surface Area
                     </div>
@@ -461,7 +461,7 @@ export default function VolumeCalculator() {
                   </div>
 
                   {/* Shape Visualization */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">3D Visualization</h3>
                     <ReactECharts 
                       option={result.chartOption} 
@@ -472,7 +472,7 @@ export default function VolumeCalculator() {
                   {/* Step by Step Solution */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Step by Step Solution</h3>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                    <div className="bg-gray-50 ">
                       {result.steps.map((step, index) => (
                         <div key={index} className="text-sm whitespace-pre-wrap">
                           {step}

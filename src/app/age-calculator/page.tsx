@@ -278,7 +278,7 @@ export default function AgeCalculator() {
               {result ? (
                 <div className="space-y-6">
                   {/* Exact Age */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <div className="text-sm font-medium text-muted-foreground">
                       Exact Age
                     </div>
@@ -293,7 +293,7 @@ export default function AgeCalculator() {
                   </div>
 
                   {/* Total Time Units */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <div className="text-sm font-medium text-muted-foreground">
                       Total Time Units
                     </div>
@@ -307,7 +307,7 @@ export default function AgeCalculator() {
                   </div>
 
                   {/* Next Birthday */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <div className="text-sm font-medium text-muted-foreground">
                       Next Birthday
                     </div>
@@ -318,7 +318,7 @@ export default function AgeCalculator() {
                   </div>
 
                   {/* Zodiac Signs */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <div className="text-sm font-medium text-muted-foreground">
                       Zodiac Signs
                     </div>

@@ -10,6 +10,7 @@
     "generate-metadata": "node scripts/generate-metadata.js"
   },
   "dependencies": {
+    "@next/swc-darwin-arm64": "^15.1.6",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-select": "^2.1.2",

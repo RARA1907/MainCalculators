@@ -257,13 +257,13 @@ export function SalaryCalculator() {
       {/* Period Selection */}
       <div className="grid gap-4 md:grid-cols-3">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             From Period
           </label>
           <select
             value={fromPeriod}
             onChange={(e) => setFromPeriod(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {PAY_PERIODS.map(period => (
               <option key={period.label} value={period.label}>
@@ -274,13 +274,13 @@ export function SalaryCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             To Period
           </label>
           <select
             value={toPeriod}
             onChange={(e) => setToPeriod(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {PAY_PERIODS.map(period => (
               <option key={period.label} value={period.label}>
@@ -291,13 +291,13 @@ export function SalaryCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Overtime Rate
           </label>
           <select
             value={overtimeRate}
             onChange={(e) => setOvertimeRate(Number(e.target.value))}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             <option value={1.5}>1.5x (Time and a half)</option>
             <option value={2}>2x (Double time)</option>
@@ -310,13 +310,13 @@ export function SalaryCalculator() {
       {/* Additional Compensation Frequency */}
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Bonus Frequency
           </label>
           <select
             value={bonusFrequency}
             onChange={(e) => setBonusFrequency(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {PAY_PERIODS.filter(p => p.label !== 'Hourly' && p.label !== 'Daily').map(period => (
               <option key={period.label} value={period.label}>
@@ -327,13 +327,13 @@ export function SalaryCalculator() {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 ">
             Commission Frequency
           </label>
           <select
             value={commissionFrequency}
             onChange={(e) => setCommissionFrequency(e.target.value)}
-            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 "
           >
             {PAY_PERIODS.filter(p => p.label !== 'Hourly' && p.label !== 'Daily').map(period => (
               <option key={period.label} value={period.label}>
@@ -346,42 +346,42 @@ export function SalaryCalculator() {
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Converted Salary</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Converted Salary</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${convertedSalary.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             Per {toPeriod.toLowerCase()} period
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Total Compensation</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Total Compensation</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             ${totalCompensation.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             Annual total
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Hourly Rate</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Hourly Rate</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             ${hourlyRate.toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Base rate per hour
           </p>
         </div>
 
-        <div className="p-4 bg-amber-100 dark:bg-amber-900/20 rounded-lg">
-          <h3 className="font-semibold text-amber-700 dark:text-amber-300">Daily Rate</h3>
-          <p className="text-2xl font-bold text-amber-800 dark:text-amber-200">
+        <div className="p-4 bg-amber-100 ">
+          <h3 className="font-semibold text-amber-700 ">Daily Rate</h3>
+          <p className="text-2xl font-bold text-amber-800 ">
             ${dailyRate.toFixed(2)}
           </p>
-          <p className="text-sm text-amber-600 dark:text-amber-400 mt-1">
+          <p className="text-sm text-amber-600 ">
             Base rate per day
           </p>
         </div>
@@ -389,26 +389,26 @@ export function SalaryCalculator() {
 
       {/* Additional Results */}
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="p-4 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
-          <h3 className="font-semibold text-emerald-700 dark:text-emerald-300">
+        <div className="p-4 bg-emerald-100 ">
+          <h3 className="font-semibold text-emerald-700 ">
             Effective Hourly Rate
           </h3>
-          <p className="text-2xl font-bold text-emerald-800 dark:text-emerald-200">
+          <p className="text-2xl font-bold text-emerald-800 ">
             ${effectiveHourlyRate.toFixed(2)}
           </p>
-          <p className="text-sm text-emerald-600 dark:text-emerald-400 mt-1">
+          <p className="text-sm text-emerald-600 ">
             Including all compensation
           </p>
         </div>
 
-        <div className="p-4 bg-indigo-100 dark:bg-indigo-900/20 rounded-lg">
-          <h3 className="font-semibold text-indigo-700 dark:text-indigo-300">
+        <div className="p-4 bg-indigo-100 ">
+          <h3 className="font-semibold text-indigo-700 ">
             Working Hours
           </h3>
-          <p className="text-2xl font-bold text-indigo-800 dark:text-indigo-200">
+          <p className="text-2xl font-bold text-indigo-800 ">
             {(hoursPerWeek * 52) - (vacationDays * (hoursPerWeek / daysPerWeek))}
           </p>
-          <p className="text-sm text-indigo-600 dark:text-indigo-400 mt-1">
+          <p className="text-sm text-indigo-600 ">
             Annual working hours
           </p>
         </div>
@@ -416,7 +416,7 @@ export function SalaryCalculator() {
 
       {/* Compensation Breakdown Chart */}
       {chartData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

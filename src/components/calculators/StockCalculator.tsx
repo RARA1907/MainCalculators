@@ -218,16 +218,16 @@ export function StockCalculator() {
     <div className="space-y-6">
       {/* Positions Table */}
       <div className="overflow-x-auto rounded-lg border">
-        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead className="bg-gray-50 dark:bg-gray-800">
+        <table className="min-w-full divide-y divide-gray-200 ">
+          <thead className="bg-gray-50 ">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Shares</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Entry Price</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 ">Date</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 ">Shares</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 ">Entry Price</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 ">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+          <tbody className="bg-white ">
             {positions.map((position, index) => (
               <tr key={index}>
                 <td className="px-4 py-2">
@@ -261,7 +261,7 @@ export function StockCalculator() {
                 <td className="px-4 py-2">
                   <button
                     onClick={() => removePosition(index)}
-                    className="px-3 py-1 rounded-md bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
+                    className="px-3 py-1 rounded-md bg-red-100 "
                   >
                     Remove
                   </button>
@@ -273,39 +273,39 @@ export function StockCalculator() {
       </div>
       <button
         onClick={addPosition}
-        className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+        className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 "
       >
         Add Position
       </button>
 
       {/* Results Grid */}
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Total Value</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Total Value</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             ${totalValue.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-1">
+          <p className="text-sm text-green-600 ">
             Return: {returnPercentage.toFixed(2)}%
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Risk/Reward Ratio</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Risk/Reward Ratio</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             {riskRewardRatio.toFixed(2)}
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          <p className="text-sm text-blue-600 ">
             Target: ${targetPrice} | Stop: ${stopLoss}
           </p>
         </div>
 
-        <div className="p-4 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <h3 className="font-semibold text-purple-700 dark:text-purple-300">Breakeven Price</h3>
-          <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">
+        <div className="p-4 bg-purple-100 ">
+          <h3 className="font-semibold text-purple-700 ">Breakeven Price</h3>
+          <p className="text-2xl font-bold text-purple-800 ">
             ${breakevenPrice.toFixed(2)}
           </p>
-          <p className="text-sm text-purple-600 dark:text-purple-400 mt-1">
+          <p className="text-sm text-purple-600 ">
             Including commissions
           </p>
         </div>
@@ -313,7 +313,7 @@ export function StockCalculator() {
 
       {/* P/L Chart */}
       {timelineData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

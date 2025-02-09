@@ -103,16 +103,16 @@ export function RoiCalculator() {
   const results = (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">ROI</h3>
-          <p className="text-2xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-4 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">ROI</h3>
+          <p className="text-2xl font-bold text-green-800 ">
             {roi.toFixed(2)}%
           </p>
         </div>
         
-        <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Annualized ROI</h3>
-          <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-4 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Annualized ROI</h3>
+          <p className="text-2xl font-bold text-blue-800 ">
             {annualizedRoi.toFixed(2)}%
           </p>
         </div>

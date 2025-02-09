@@ -58,12 +58,12 @@ function CompoundInterestCalculator() {
       </button>
       
       {result !== null && (
-        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div className="mt-4 p-4 bg-gray-50 ">
           <p className="font-medium">Final Amount:</p>
           <p className="text-2xl font-bold text-[#0EA5E9]">
             ${result.toFixed(2)}
           </p>
-          <p className="text-sm text-gray-600 dark:text-gray-300">
+          <p className="text-sm text-gray-600 ">
             Interest Earned: ${(result - principal).toFixed(2)}
           </p>
         </div>
@@ -93,7 +93,7 @@ function Content() {
 
       <section>
         <h2 className="text-2xl font-bold mb-4">Example Calculation</h2>
-        <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div className="p-4 bg-gray-50 ">
           <p>Let's calculate compound interest for:</p>
           <ul className="list-disc list-inside mt-2">
             <li>Principal: $10,000</li>

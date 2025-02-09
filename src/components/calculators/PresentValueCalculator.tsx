@@ -167,29 +167,29 @@ export function PresentValueCalculator() {
   const results = (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="p-6 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <h3 className="font-semibold text-green-700 dark:text-green-300">Present Value</h3>
-          <p className="text-3xl font-bold text-green-800 dark:text-green-200">
+        <div className="p-6 bg-green-100 ">
+          <h3 className="font-semibold text-green-700 ">Present Value</h3>
+          <p className="text-3xl font-bold text-green-800 ">
             ${presentValue.toFixed(2)}
           </p>
-          <p className="text-sm text-green-600 dark:text-green-400 mt-2">
+          <p className="text-sm text-green-600 ">
             This is what your future ${futureValue} is worth today
           </p>
         </div>
         
-        <div className="p-6 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <h3 className="font-semibold text-blue-700 dark:text-blue-300">Discount Factor</h3>
-          <p className="text-3xl font-bold text-blue-800 dark:text-blue-200">
+        <div className="p-6 bg-blue-100 ">
+          <h3 className="font-semibold text-blue-700 ">Discount Factor</h3>
+          <p className="text-3xl font-bold text-blue-800 ">
             {((presentValue / futureValue) * 100).toFixed(2)}%
           </p>
-          <p className="text-sm text-blue-600 dark:text-blue-400 mt-2">
+          <p className="text-sm text-blue-600 ">
             The percentage of future value in today's terms
           </p>
         </div>
       </div>
 
       {timelineData.length > 0 && (
-        <div className="h-[400px] p-4 bg-white dark:bg-gray-800 rounded-lg">
+        <div className="h-[400px] p-4 bg-white ">
           <ReactECharts option={getChartOption()} style={{ height: '100%' }} />
         </div>
       )}

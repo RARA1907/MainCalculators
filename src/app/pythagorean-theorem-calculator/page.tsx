@@ -269,7 +269,7 @@ export default function PythagoreanTheoremCalculator() {
                   >
                     <SelectTrigger 
                       id="calculationType" 
-                      className="bg-white text-black dark:bg-gray-800 dark:text-white"
+                      className="bg-white text-black "
                     >
                       <SelectValue placeholder="Select calculation type" />
                     </SelectTrigger>
@@ -330,7 +330,7 @@ export default function PythagoreanTheoremCalculator() {
                 <div className="space-y-6">
                   {/* Triangle Sides Results */}
                   <div className="space-y-4">
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Leg a
                       </div>
@@ -338,7 +338,7 @@ export default function PythagoreanTheoremCalculator() {
                         {result.a.toFixed(4)} units
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Leg b
                       </div>
@@ -346,7 +346,7 @@ export default function PythagoreanTheoremCalculator() {
                         {result.b.toFixed(4)} units
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Hypotenuse c
                       </div>
@@ -357,7 +357,7 @@ export default function PythagoreanTheoremCalculator() {
                   </div>
 
                   {/* Triangle Visualization */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Triangle Visualization</h3>
                     <ReactECharts 
                       option={result.chartOption} 
@@ -368,7 +368,7 @@ export default function PythagoreanTheoremCalculator() {
                   {/* Step by Step Solution */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Step by Step Solution</h3>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                    <div className="bg-gray-50 ">
                       {result.steps.map((step, index) => (
                         <div key={index} className="text-sm whitespace-pre-wrap">
                           {step}

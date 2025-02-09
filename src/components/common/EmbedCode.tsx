@@ -29,9 +29,9 @@ export function EmbedCode({ calculatorId }: EmbedCodeProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+    <div className="bg-white ">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-xl font-bold text-gray-900 ">
           Embed Calculator
         </h2>
         <button
@@ -51,8 +51,8 @@ export function EmbedCode({ calculatorId }: EmbedCodeProps) {
           )}
         </button>
       </div>
-      <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
-        <pre className="text-sm text-gray-800 dark:text-gray-200 overflow-x-auto">
+      <div className="bg-gray-50 ">
+        <pre className="text-sm text-gray-800 ">
           {embedCode}
         </pre>
       </div>

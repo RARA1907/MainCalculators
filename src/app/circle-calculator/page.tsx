@@ -394,7 +394,7 @@ export default function CircleCalculator() {
                 <div className="space-y-6">
                   {/* Basic Properties */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Radius
                       </div>
@@ -402,7 +402,7 @@ export default function CircleCalculator() {
                         {result.radius.toFixed(4)} units
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Diameter
                       </div>
@@ -413,7 +413,7 @@ export default function CircleCalculator() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Circumference
                       </div>
@@ -421,7 +421,7 @@ export default function CircleCalculator() {
                         {result.circumference.toFixed(4)} units
                       </div>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <div className="bg-gray-50 ">
                       <div className="text-sm font-medium text-muted-foreground">
                         Area
                       </div>
@@ -434,7 +434,7 @@ export default function CircleCalculator() {
                   {/* Arc Properties */}
                   {result.arcLength && result.sectorArea && (
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <div className="bg-gray-50 ">
                         <div className="text-sm font-medium text-muted-foreground">
                           Arc Length
                         </div>
@@ -442,7 +442,7 @@ export default function CircleCalculator() {
                           {result.arcLength.toFixed(4)} units
                         </div>
                       </div>
-                      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <div className="bg-gray-50 ">
                         <div className="text-sm font-medium text-muted-foreground">
                           Sector Area
                         </div>
@@ -454,7 +454,7 @@ export default function CircleCalculator() {
                   )}
 
                   {/* Circle Visualization */}
-                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <div className="bg-gray-50 ">
                     <h3 className="text-lg font-semibold mb-4">Visualization</h3>
                     <ReactECharts 
                       option={result.chartOption} 
@@ -465,7 +465,7 @@ export default function CircleCalculator() {
                   {/* Step by Step Solution */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Step by Step Solution</h3>
-                    <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
+                    <div className="bg-gray-50 ">
                       {result.steps.map((step, index) => (
                         <div key={index} className="text-sm whitespace-pre-wrap">
                           {step}

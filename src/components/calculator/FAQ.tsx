@@ -12,7 +12,7 @@ export function FAQItem({ question, answer }: FAQItemProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700">
+    <div className="border-b border-gray-200 ">
       <button
         className="flex justify-between items-center w-full py-4 text-left"
         onClick={() => setIsOpen(!isOpen)}
@@ -31,7 +31,7 @@ export function FAQItem({ question, answer }: FAQItemProps) {
           isOpen ? "max-h-96 pb-4" : "max-h-0"
         )}
       >
-        <div className="prose dark:prose-invert max-w-none">
+        <div className="prose ">
           {answer}
         </div>
       </div>
