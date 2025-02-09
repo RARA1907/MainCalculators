@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Search } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { getAllCalculators } from '@/utils/getAllCalculators';
 import type { Calculator } from '@/utils/getAllCalculators';
 
@@ -15,7 +15,6 @@ export function SearchBar({ className }: SearchBarProps) {
   const [results, setResults] = useState<Calculator[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -48,10 +47,9 @@ export function SearchBar({ className }: SearchBarProps) {
     setIsOpen(true);
   };
 
-  const handleSelect = (calculator: Calculator) => {
+  const handleSelect = () => {
     setQuery('');
     setIsOpen(false);
-    router.push(calculator.href);
   };
 
   return (
@@ -78,9 +76,10 @@ export function SearchBar({ className }: SearchBarProps) {
           <ul className="py-1 max-h-[280px] overflow-auto">
             {results.map((calculator) => (
               <li key={calculator.href}>
-                <button
-                  onClick={() => handleSelect(calculator)}
-                  className="w-full px-3 py-2 text-left hover:bg-gray-50 transition-colors flex items-center gap-2 group"
+                <Link
+                  href={calculator.href}
+                  onClick={handleSelect}
+                  className="block w-full px-3 py-2 text-left hover:bg-gray-50 transition-colors flex items-center gap-2 group"
                 >
                   <Search className="h-3.5 w-3.5 text-gray-400 group-hover:text-gray-600" />
                   <div className="min-w-0">
@@ -91,7 +90,7 @@ export function SearchBar({ className }: SearchBarProps) {
                       {calculator.category}
                     </div>
                   </div>
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
