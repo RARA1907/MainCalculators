@@ -367,27 +367,27 @@ export function MarriageTaxCalculator() {
       {/* Marriage Penalty/Bonus */}
       <div className={`p-4 rounded-lg ${
         marriagePenalty > 0 
-          ? 'bg-red-100 
-          : 'bg-emerald-100 
+          ? 'bg-red-100' 
+          : 'bg-emerald-100' 
       }`}>
         <h4 className={`font-semibold ${
           marriagePenalty > 0
-            ? 'text-red-700 
-            : 'text-emerald-700 
+            ? 'text-red-700' 
+            : 'text-emerald-700' 
         }`}>
           {marriagePenalty > 0 ? 'Marriage Penalty' : 'Marriage Bonus'}
         </h4>
         <p className={`text-2xl font-bold ${
           marriagePenalty > 0
-            ? 'text-red-800 
-            : 'text-emerald-800 
+            ? 'text-red-800' 
+            : 'text-emerald-800' 
         }`}>
           ${Math.abs(marriagePenalty).toFixed(2)}
         </p>
         <p className={`text-sm mt-1 ${
           marriagePenalty > 0
-            ? 'text-red-600 
-            : 'text-emerald-600 
+            ? 'text-red-600' 
+            : 'text-emerald-600' 
         }`}>
           {marriagePenalty > 0
             ? 'Additional tax when married'
