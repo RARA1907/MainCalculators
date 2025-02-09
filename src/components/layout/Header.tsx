@@ -13,7 +13,7 @@ export function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-sm sticky top-0">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -31,13 +31,13 @@ export function Header() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-gray-600 hover:text-gray-900">
-              Ana Sayfa
+              Home
             </Link>
             <Link href="/about" className="text-gray-600 hover:text-gray-900">
-              Hakkında
+              About
             </Link>
             <Link href="/contact" className="text-gray-600 hover:text-gray-900">
-              İletişim
+              Contact
             </Link>
           </div>
 
@@ -71,21 +71,21 @@ export function Header() {
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Ana Sayfa
+                Home
               </Link>
               <Link
                 href="/about"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Hakkında
+                About
               </Link>
               <Link
                 href="/contact"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                İletişim
+                Contact
               </Link>
             </div>
           </div>
