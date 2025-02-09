@@ -61,7 +61,7 @@ export function SearchBar({ className }: SearchBarProps) {
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => query.trim().length > 0 && setIsOpen(true)}
           placeholder="Search calculators..."
-          className={`w-full py-2 pl-10 pr-4 text-sm border rounded-lg focus:outline-none focus:border-blue-500 ${className}`}
+          className={`w-full py-2 pl-10 pr-4 text-sm border rounded-lg focus:outline-none focus:border-white-500 ${className}`}
         />
         <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
       </div>
