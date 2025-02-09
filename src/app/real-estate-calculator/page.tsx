@@ -11,6 +11,9 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 import ReactECharts from 'echarts-for-react';
 
 export default function RealEstateCalculator() {
@@ -176,160 +179,94 @@ export default function RealEstateCalculator() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {/* Purchase Price Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Purchase Price ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>The total purchase price of the property</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Purchase Price */}
+                <div className="space-y-2">
+                  <Label>Purchase Price ($)</Label>
+                  <Input
                     type="number"
                     value={purchasePrice}
                     onChange={(e) => setPurchasePrice(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Down Payment Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Down Payment ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Initial payment for the property</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Down Payment */}
+                <div className="space-y-2">
+                  <Label>Down Payment ($)</Label>
+                  <Input
                     type="number"
                     value={downPayment}
                     onChange={(e) => setDownPayment(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Interest Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Interest Rate (%)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Annual interest rate for the mortgage</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Interest Rate */}
+                <div className="space-y-2">
+                  <Label>Interest Rate (%)</Label>
+                  <Input
                     type="number"
+                    step="0.1"
                     value={interestRate}
                     onChange={(e) => setInterestRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
+                  />
+                </div>
+
+                {/* Property Tax */}
+                <div className="space-y-2">
+                  <Label>Annual Property Tax Rate (%)</Label>
+                  <Input
+                    type="number"
                     step="0.1"
-                  />
-                </div>
-
-                <Separator />
-
-                {/* Monthly Rent Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Rent ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Expected monthly rental income</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
-                    value={monthlyRent}
-                    onChange={(e) => setMonthlyRent(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                  />
-                </div>
-
-                {/* Property Tax Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Property Tax Rate (%)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Annual property tax rate</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
                     value={propertyTaxRate}
                     onChange={(e) => setPropertyTaxRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.1"
                   />
                 </div>
 
-                {/* Monthly Maintenance Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Maintenance ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Expected monthly maintenance costs</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Insurance */}
+                <div className="space-y-2">
+                  <Label>Annual Insurance ($)</Label>
+                  <Input
+                    type="number"
+                    value={insuranceAnnual}
+                    onChange={(e) => setInsuranceAnnual(Number(e.target.value))}
+                  />
+                </div>
+
+                {/* HOA Fees */}
+                <div className="space-y-2">
+                  <Label>Monthly HOA Fees ($)</Label>
+                  <Input
+                    type="number"
+                    value={hoaMonthly}
+                    onChange={(e) => setHoaMonthly(Number(e.target.value))}
+                  />
+                </div>
+
+                {/* Maintenance */}
+                <div className="space-y-2">
+                  <Label>Monthly Maintenance ($)</Label>
+                  <Input
                     type="number"
                     value={maintenanceMonthly}
                     onChange={(e) => setMaintenanceMonthly(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
+                {/* Rental Income */}
+                <div className="space-y-2">
+                  <Label>Monthly Rental Income ($)</Label>
+                  <Input
+                    type="number"
+                    value={monthlyRent}
+                    onChange={(e) => setMonthlyRent(Number(e.target.value))}
+                  />
+                </div>
+
+                <Button 
+                  className="w-full"
                   onClick={calculateResults}
                 >
                   Calculate Investment Returns
-                </button>
+                </Button>
               </div>
             </CardContent>
           </Card>

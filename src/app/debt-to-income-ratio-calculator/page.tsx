@@ -12,6 +12,9 @@ import {
 } from '@/components/ui/tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import ReactECharts from 'echarts-for-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 
 export default function DebtToIncomeCalculator() {
   const breadcrumbItems = [
@@ -124,159 +127,72 @@ export default function DebtToIncomeCalculator() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {/* Monthly Income Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Gross Income ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your total monthly income before taxes and deductions</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Monthly Income */}
+                <div className="space-y-2">
+                  <Label>Monthly Gross Income ($)</Label>
+                  <Input
                     type="number"
                     value={monthlyIncome}
                     onChange={(e) => setMonthlyIncome(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                <Separator />
-                <h3 className="text-lg font-semibold">Monthly Debt Payments</h3>
-
-                {/* Mortgage Payment Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Mortgage/Rent Payment ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your monthly mortgage or rent payment</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Mortgage Payment */}
+                <div className="space-y-2">
+                  <Label>Mortgage/Rent Payment ($)</Label>
+                  <Input
                     type="number"
                     value={mortgagePayment}
                     onChange={(e) => setMortgagePayment(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Car Payment Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Car Payment ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your monthly car loan payment</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Car Payment */}
+                <div className="space-y-2">
+                  <Label>Car Payment ($)</Label>
+                  <Input
                     type="number"
                     value={carPayment}
                     onChange={(e) => setCarPayment(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Student Loan Payment Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Student Loan Payment ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your monthly student loan payment</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Student Loan Payment */}
+                <div className="space-y-2">
+                  <Label>Student Loan Payment ($)</Label>
+                  <Input
                     type="number"
                     value={studentLoanPayment}
                     onChange={(e) => setStudentLoanPayment(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Credit Card Payments Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Credit Card Payments ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your total monthly credit card payments</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Credit Card Payments */}
+                <div className="space-y-2">
+                  <Label>Credit Card Minimum Payments ($)</Label>
+                  <Input
                     type="number"
                     value={creditCardPayments}
                     onChange={(e) => setCreditCardPayments(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Other Debts Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Other Monthly Debts ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Any other monthly debt payments</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Other Debts */}
+                <div className="space-y-2">
+                  <Label>Other Monthly Debt Payments ($)</Label>
+                  <Input
                     type="number"
                     value={otherDebts}
                     onChange={(e) => setOtherDebts(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
+                <Button 
+                  className="w-full"
                   onClick={calculateDTI}
                 >
                   Calculate DTI Ratio
-                </button>
+                </Button>
               </div>
             </CardContent>
           </Card>

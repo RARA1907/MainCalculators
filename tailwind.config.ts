@@ -55,8 +55,56 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate"), require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: "#2563eb",
+          secondary: "#f59e0b",
+          accent: "#10b981",
+          neutral: "#374151",
+          "base-100": "#ffffff",
+          "base-200": "#f3f4f6",
+          "base-300": "#e5e7eb",
+          info: "#3b82f6",
+          success: "#22c55e",
+          warning: "#f59e0b",
+          error: "#ef4444",
+        },
+        garden: {
+          ...require("daisyui/src/theming/themes")["garden"],
+        },
+        cupcake: {
+          ...require("daisyui/src/theming/themes")["cupcake"],
+        },
+        bumblebee: {
+          ...require("daisyui/src/theming/themes")["bumblebee"],
+        },
+      },
+    ],
+    base: true,
+    styled: true,
+    utils: true,
+    logs: false,
+    darkTheme: "light",
+  },
 }
 export default config

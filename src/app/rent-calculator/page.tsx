@@ -11,6 +11,16 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import ReactECharts from 'echarts-for-react';
 
 export default function RentCalculator() {
@@ -124,228 +134,101 @@ export default function RentCalculator() {
             <CardContent>
               <div className="space-y-4">
                 {/* Monthly Income Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Income ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your total monthly income before taxes</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Monthly Income ($)</Label>
+                  <Input
                     type="number"
                     value={monthlyIncome}
                     onChange={(e) => setMonthlyIncome(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Monthly Debts Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Debts ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Total monthly debt payments (credit cards, loans, etc.)</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Monthly Debts ($)</Label>
+                  <Input
                     type="number"
                     value={monthlyDebts}
                     onChange={(e) => setMonthlyDebts(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Rent Budget Percentage Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Rent Budget (% of Income)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Recommended: 25-30% of monthly income</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Rent Budget (% of Income)</Label>
+                  <Input
                     type="number"
                     value={rentBudgetPercentage}
                     onChange={(e) => setRentBudgetPercentage(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    max="100"
                   />
                 </div>
 
                 {/* Base Rent Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Base Rent ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Monthly base rent amount</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Base Rent ($)</Label>
+                  <Input
                     type="number"
                     value={baseRent}
                     onChange={(e) => setBaseRent(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Utilities Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Utilities ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Estimated monthly utilities (electricity, water, gas, etc.)</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Monthly Utilities ($)</Label>
+                  <Input
                     type="number"
                     value={utilities}
                     onChange={(e) => setUtilities(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Parking Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Parking Fee ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Monthly parking or garage fee, if any</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Monthly Parking Fee ($)</Label>
+                  <Input
                     type="number"
                     value={parking}
                     onChange={(e) => setParking(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Pet Rent Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Pet Rent ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Additional monthly pet rent, if applicable</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Monthly Pet Rent ($)</Label>
+                  <Input
                     type="number"
                     value={petRent}
                     onChange={(e) => setPetRent(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Renter's Insurance Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Renter's Insurance ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Monthly renter's insurance premium</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Monthly Renter's Insurance ($)</Label>
+                  <Input
                     type="number"
                     value={rentersInsurance}
                     onChange={(e) => setRentersInsurance(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Other Fees Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Other Monthly Fees ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Any additional monthly fees or charges</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Other Monthly Fees ($)</Label>
+                  <Input
                     type="number"
                     value={otherFees}
                     onChange={(e) => setOtherFees(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
+                <Button 
+                  className="w-full"
                   onClick={calculateRent}
                 >
                   Calculate Rent
-                </button>
+                </Button>
               </div>
             </CardContent>
           </Card>

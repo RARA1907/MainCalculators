@@ -12,6 +12,16 @@ import {
 } from '@/components/ui/tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import ReactECharts from 'echarts-for-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function RefinanceCalculator() {
   const breadcrumbItems = [
@@ -172,75 +182,33 @@ export default function RefinanceCalculator() {
                 <h3 className="text-lg font-semibold">Current Mortgage</h3>
                 
                 {/* Current Balance Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Current Balance ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your current mortgage balance</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Current Balance ($)</Label>
+                  <Input
                     type="number"
                     value={currentBalance}
                     onChange={(e) => setCurrentBalance(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Current Interest Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Current Interest Rate (%)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your current mortgage interest rate</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Current Interest Rate (%)</Label>
+                  <Input
                     type="number"
+                    step="0.125"
                     value={currentRate}
                     onChange={(e) => setCurrentRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.125"
                   />
                 </div>
 
                 {/* Months Remaining Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Months Remaining</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Number of months left on your current mortgage</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Months Remaining</Label>
+                  <Input
                     type="number"
                     value={monthsRemaining}
                     onChange={(e) => setMonthsRemaining(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
@@ -248,84 +216,51 @@ export default function RefinanceCalculator() {
                 <h3 className="text-lg font-semibold">New Mortgage</h3>
 
                 {/* New Interest Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">New Interest Rate (%)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>The interest rate for your new mortgage</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>New Interest Rate (%)</Label>
+                  <Input
                     type="number"
+                    step="0.125"
                     value={newRate}
                     onChange={(e) => setNewRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.125"
                   />
                 </div>
 
                 {/* New Term Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">New Loan Term (years)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>The term length of your new mortgage</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
-                    value={newTerm}
-                    onChange={(e) => setNewTerm(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                  />
+                <div className="space-y-2">
+                  <Label>New Loan Term</Label>
+                  <Select
+                    value={newTerm.toString()}
+                    onValueChange={(value) => setNewTerm(Number(value))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select term" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="30">30 Years</SelectItem>
+                      <SelectItem value="20">20 Years</SelectItem>
+                      <SelectItem value="15">15 Years</SelectItem>
+                      <SelectItem value="10">10 Years</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* Closing Costs Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Closing Costs ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Estimated costs to close the refinance</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Closing Costs ($)</Label>
+                  <Input
                     type="number"
                     value={closingCosts}
                     onChange={(e) => setClosingCosts(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
+                <Button 
+                  className="w-full"
                   onClick={calculateRefinance}
                 >
                   Calculate Refinance Savings
-                </button>
+                </Button>
               </div>
             </CardContent>
           </Card>

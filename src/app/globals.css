@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Daisy UI themes */
+@import "daisyui/dist/full.css";
+
 @layer base {
   :root {
     /* Light theme colors */

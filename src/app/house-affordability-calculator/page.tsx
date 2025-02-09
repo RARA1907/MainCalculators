@@ -11,6 +11,16 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import ReactECharts from 'echarts-for-react';
 
 export default function HouseAffordabilityCalculator() {
@@ -114,251 +124,145 @@ export default function HouseAffordabilityCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6 mt-6">
           <Breadcrumb
             items={breadcrumbItems}
           />
-          <h1 className="text-3xl font-bold pt-4 text-base-content">House Affordability Calculator</h1>
+          <h1 className="text-3xl font-bold pt-4">House Affordability Calculator</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Section */}
-          <Card className="bg-card">
+          <Card>
             <CardHeader>
               <h2 className="text-2xl font-semibold">Enter Your Financial Details</h2>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {/* Annual Income Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Annual Income ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Your total annual household income before taxes</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Annual Income */}
+                <div className="space-y-2">
+                  <Label>Annual Income ($)</Label>
+                  <Input
                     type="number"
                     value={annualIncome}
                     onChange={(e) => setAnnualIncome(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Monthly Debts Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Debts ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Total monthly payments for car loans, credit cards, student loans, etc.</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Monthly Debts */}
+                <div className="space-y-2">
+                  <Label>Monthly Debt Payments ($)</Label>
+                  <Input
                     type="number"
                     value={monthlyDebts}
                     onChange={(e) => setMonthlyDebts(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Down Payment Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Down Payment ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>How much you plan to pay upfront</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Down Payment */}
+                <div className="space-y-2">
+                  <Label>Down Payment ($)</Label>
+                  <Input
                     type="number"
                     value={downPayment}
                     onChange={(e) => setDownPayment(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* Interest Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Interest Rate (%)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Expected annual mortgage interest rate</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Interest Rate */}
+                <div className="space-y-2">
+                  <Label>Interest Rate (%)</Label>
+                  <Input
                     type="number"
+                    step="0.1"
                     value={interestRate}
                     onChange={(e) => setInterestRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.1"
                   />
                 </div>
 
-                {/* Loan Term Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Loan Term (years)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Length of the mortgage loan in years</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <select
-                    value={loanTerm}
-                    onChange={(e) => setLoanTerm(Number(e.target.value))}
-                    className="select select-bordered w-full"
+                {/* Loan Term */}
+                <div className="space-y-2">
+                  <Label>Loan Term</Label>
+                  <Select
+                    value={loanTerm.toString()}
+                    onValueChange={(value) => setLoanTerm(Number(value))}
                   >
-                    <option value={30}>30 years</option>
-                    <option value={20}>20 years</option>
-                    <option value={15}>15 years</option>
-                    <option value={10}>10 years</option>
-                  </select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select term" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="30">30 Years</SelectItem>
+                      <SelectItem value="20">20 Years</SelectItem>
+                      <SelectItem value="15">15 Years</SelectItem>
+                      <SelectItem value="10">10 Years</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
-                {/* Property Tax Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Property Tax Rate (%)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Annual property tax rate in your area</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Property Tax Rate */}
+                <div className="space-y-2">
+                  <Label>Property Tax Rate (%)</Label>
+                  <Input
                     type="number"
+                    step="0.01"
                     value={propertyTaxRate}
                     onChange={(e) => setPropertyTaxRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.1"
                   />
                 </div>
 
-                {/* Home Insurance Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Annual Home Insurance ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Estimated annual homeowner's insurance premium</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* Home Insurance */}
+                <div className="space-y-2">
+                  <Label>Annual Home Insurance ($)</Label>
+                  <Input
                     type="number"
                     value={homeInsurance}
                     onChange={(e) => setHomeInsurance(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                {/* HOA Fees Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly HOA Fees ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Monthly Homeowners Association fees, if any</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                {/* HOA Fees */}
+                <div className="space-y-2">
+                  <Label>Monthly HOA Fees ($)</Label>
+                  <Input
                     type="number"
                     value={hoa}
                     onChange={(e) => setHoa(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
+                <Button 
+                  className="w-full"
                   onClick={calculateAffordability}
                 >
                   Calculate Affordability
-                </button>
+                </Button>
               </div>
             </CardContent>
           </Card>
 
           {/* Results Section */}
-          <Card className="bg-card">
+          <Card>
             <CardHeader>
               <h2 className="text-2xl font-semibold">Results</h2>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="stat bg-base-200 rounded-lg p-4">
+                  <div className="stat">
                     <div className="stat-title">Maximum Home Price</div>
                     <div className="stat-value text-lg">${maxHomePrice.toLocaleString()}</div>
                   </div>
-                  <div className="stat bg-base-200 rounded-lg p-4">
+                  <div className="stat">
                     <div className="stat-title">Monthly Mortgage Payment</div>
                     <div className="stat-value text-lg">${monthlyPayment.toLocaleString(undefined, {maximumFractionDigits: 2})}</div>
                   </div>
-                  <div className="stat bg-base-200 rounded-lg p-4">
+                  <div className="stat">
                     <div className="stat-title">Monthly Property Taxes</div>
                     <div className="stat-value text-lg">${monthlyTaxes.toLocaleString(undefined, {maximumFractionDigits: 2})}</div>
                   </div>
-                  <div className="stat bg-base-200 rounded-lg p-4">
+                  <div className="stat">
                     <div className="stat-title">Total Monthly Payment</div>
                     <div className="stat-value text-lg">${totalMonthlyPayment.toLocaleString(undefined, {maximumFractionDigits: 2})}</div>
                   </div>
@@ -393,25 +297,25 @@ export default function HouseAffordabilityCalculator() {
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Key Factors in Home Affordability</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="card bg-base-200">
+                <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Income</h3>
                     <p>Your gross monthly income is a primary factor in determining how much you can borrow</p>
                   </div>
                 </div>
-                <div className="card bg-base-200">
+                <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Debt-to-Income Ratio</h3>
                     <p>Lenders typically prefer a DTI ratio of 43% or less</p>
                   </div>
                 </div>
-                <div className="card bg-base-200">
+                <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Down Payment</h3>
                     <p>A larger down payment increases your home buying power</p>
                   </div>
                 </div>
-                <div className="card bg-base-200">
+                <div className="card">
                   <div className="card-body">
                     <h3 className="card-title">Credit Score</h3>
                     <p>Better credit scores typically mean better interest rates</p>
@@ -432,39 +336,7 @@ export default function HouseAffordabilityCalculator() {
               </ul>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
-              <div className="space-y-4">
-                <div className="collapse collapse-plus bg-base-200">
-                  <input type="radio" name="my-accordion-3" /> 
-                  <div className="collapse-title text-xl font-medium">
-                    How much down payment do I need?
-                  </div>
-                  <div className="collapse-content"> 
-                    <p>While 20% is ideal to avoid PMI, many loans allow down payments as low as 3.5% (FHA) or 3% (conventional).</p>
-                  </div>
-                </div>
-                <div className="collapse collapse-plus bg-base-200">
-                  <input type="radio" name="my-accordion-3" /> 
-                  <div className="collapse-title text-xl font-medium">
-                    What is a good debt-to-income ratio?
-                  </div>
-                  <div className="collapse-content"> 
-                    <p>Most lenders prefer a debt-to-income ratio of 43% or less, though some may accept up to 50% in certain circumstances.</p>
-                  </div>
-                </div>
-                <div className="collapse collapse-plus bg-base-200">
-                  <input type="radio" name="my-accordion-3" /> 
-                  <div className="collapse-title text-xl font-medium">
-                    Should I include property taxes in my budget?
-                  </div>
-                  <div className="collapse-content"> 
-                    <p>Yes, property taxes are a significant ongoing expense that should be included in your home affordability calculations.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
+            
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Tips for Increasing Your Home Affordability</h2>
               <ul className="list-disc pl-6 mb-4">

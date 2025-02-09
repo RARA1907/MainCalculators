@@ -12,6 +12,9 @@ import {
 } from '@/components/ui/tooltip';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import ReactECharts from 'echarts-for-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
 
 export default function MortgagePayoffCalculator() {
   const breadcrumbItems = [
@@ -137,131 +140,62 @@ export default function MortgagePayoffCalculator() {
             <CardContent>
               <div className="space-y-4">
                 {/* Current Balance Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Current Balance ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Enter your current mortgage balance</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Current Balance ($)</Label>
+                  <Input
                     type="number"
                     value={currentBalance}
                     onChange={(e) => setCurrentBalance(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Interest Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Interest Rate (%)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Enter your current interest rate</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Interest Rate (%)</Label>
+                  <Input
                     type="number"
+                    step="0.01"
                     value={interestRate}
                     onChange={(e) => setInterestRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.01"
                   />
                 </div>
 
                 {/* Monthly Payment Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Monthly Payment ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Enter your current monthly payment amount</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Monthly Payment ($)</Label>
+                  <Input
                     type="number"
                     value={monthlyPayment}
                     onChange={(e) => setMonthlyPayment(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Extra Payment Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Extra Monthly Payment ($)</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Enter any additional monthly payment you plan to make</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Extra Monthly Payment ($)</Label>
+                  <Input
                     type="number"
                     value={extraPayment}
                     onChange={(e) => setExtraPayment(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
                   />
                 </div>
 
                 {/* Start Date Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Start Date</span>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Select when you want to start the payoff plan</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </label>
-                  <input
+                <div className="space-y-2">
+                  <Label>Start Date</Label>
+                  <Input
                     type="month"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="input input-bordered w-full"
                   />
                 </div>
 
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
+                <Button 
+                  className="w-full"
                   onClick={calculatePayoff}
                 >
                   Calculate Payoff
-                </button>
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -390,38 +324,7 @@ export default function MortgagePayoffCalculator() {
               </div>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
-              <div className="space-y-4">
-                <div className="collapse collapse-plus bg-base-200">
-                  <input type="radio" name="my-accordion-3" /> 
-                  <div className="collapse-title text-xl font-medium">
-                    Should I pay off my mortgage early?
-                  </div>
-                  <div className="collapse-content"> 
-                    <p>Paying off your mortgage early can save you thousands in interest payments, but it's important to consider your overall financial situation, including other debts and investment opportunities.</p>
-                  </div>
-                </div>
-                <div className="collapse collapse-plus bg-base-200">
-                  <input type="radio" name="my-accordion-3" /> 
-                  <div className="collapse-title text-xl font-medium">
-                    How do extra payments affect my mortgage?
-                  </div>
-                  <div className="collapse-content"> 
-                    <p>Extra payments go directly toward reducing your principal balance, which reduces the amount of interest you'll pay over the life of the loan and shortens your loan term.</p>
-                  </div>
-                </div>
-                <div className="collapse collapse-plus bg-base-200">
-                  <input type="radio" name="my-accordion-3" /> 
-                  <div className="collapse-title text-xl font-medium">
-                    Are there penalties for early mortgage payoff?
-                  </div>
-                  <div className="collapse-content"> 
-                    <p>Some mortgages have prepayment penalties. Check your loan agreement or contact your lender to understand if any penalties apply to your situation.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
+            
 
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Tips for Paying Off Your Mortgage Early</h2>
