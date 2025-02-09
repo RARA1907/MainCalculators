@@ -23,7 +23,6 @@ export function SearchBar({ allCalculators }: SearchBarProps) {
   const router = useRouter();
 
   useEffect(() => {
-    // Handle clicks outside of search component
     function handleClickOutside(event: MouseEvent) {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -34,66 +33,52 @@ export function SearchBar({ allCalculators }: SearchBarProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleSearch = (searchQuery: string) => {
-    setQuery(searchQuery);
-    
-    if (searchQuery.length < 2) {
+  useEffect(() => {
+    if (query === '') {
       setResults([]);
-      setIsOpen(false);
       return;
     }
 
-    const searchResults = allCalculators.filter(calculator =>
-      calculator.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = allCalculators.filter((calculator) =>
+      calculator.name.toLowerCase().includes(query.toLowerCase())
     );
-
-    setResults(searchResults);
+    setResults(filtered.slice(0, 5));
     setIsOpen(true);
-  };
+  }, [query, allCalculators]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && results.length > 0) {
-      router.push(results[0].href);
-      setIsOpen(false);
-    }
+  const handleSelect = (calculator: Calculator) => {
+    router.push(calculator.href);
+    setQuery('');
+    setIsOpen(false);
   };
 
   return (
-    <div ref={searchRef} className="relative w-full max-w-2xl mx-auto">
+    <div className="relative w-full" ref={searchRef}>
       <div className="relative">
         <input
           type="text"
           value={query}
-          onChange={(e) => handleSearch(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Search calculators..."
-          className="w-full px-4 py-3 pl-12 rounded-lg bg-white "
+          className="w-full py-2 pl-10 pr-4 text-sm border rounded-lg focus:outline-none focus:border-blue-500"
         />
-        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
       </div>
 
       {isOpen && results.length > 0 && (
-        <div className="absolute z-50 w-full mt-2 bg-white ">
-          {results.map((calculator, index) => (
-            <Link
-              key={calculator.href}
-              href={calculator.href}
-              onClick={() => setIsOpen(false)}
-              className={`block px-4 py-2 hover:bg-gray-100 
-                index !== results.length - 1 ? 'border-b border-gray-200 
-              }`}
-            >
-              <div className="flex items-center">
-                <Search className="h-4 w-4 mr-2 text-gray-400" />
-                <span>{calculator.name}</span>
-                {calculator.category && (
-                  <span className="ml-2 text-sm text-gray-500 ">
-                    in {calculator.category}
-                  </span>
-                )}
-              </div>
-            </Link>
-          ))}
+        <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg">
+          <ul className="py-1 text-sm">
+            {results.map((calculator) => (
+              <li key={calculator.href}>
+                <button
+                  onClick={() => handleSelect(calculator)}
+                  className="w-full px-4 py-2 text-left hover:bg-gray-100"
+                >
+                  {calculator.name}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>

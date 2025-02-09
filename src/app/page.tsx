@@ -66,25 +66,7 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <div className="bg-white ">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-gray-900 ">
-              <span className="block">Free Online Calculators</span>
-              <span className="block text-blue-600">For Every Need</span>
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 ">
-              Access hundreds of free calculators for finance, health, math, and more. Simple, accurate, and always free.
-            </p>
-            
-            {/* Search Bar */}
-            <div className="mt-8">
-              <SearchBar allCalculators={allCalculators} />
-            </div>
-          </div>
-        </div>
-      </div>
+    
 
       {/* Categories Sections */}
       <div className="bg-gray-50 ">
