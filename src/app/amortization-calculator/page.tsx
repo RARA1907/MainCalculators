@@ -10,6 +10,16 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import ReactECharts from 'echarts-for-react';
 
@@ -71,32 +81,32 @@ export default function AmortizationCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-base-200">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6 mt-6">
           <Breadcrumb
             items={breadcrumbItems}
           />
-          <h1 className="text-3xl font-bold pt-4 text-base-content">Amortization Calculator</h1>
+          <h1 className="text-3xl font-bold pt-4">Amortization Calculator</h1>
         </div>
 
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Input Form */}
             <div className="flex-1">
-              <Card className="bg-base-100">
+              <Card>
                 <CardHeader>
-                  <h3 className="text-2xl font-semibold text-base-content">Loan Details</h3>
+                  <h3 className="text-2xl font-semibold">Loan Details</h3>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {/* Loan Amount */}
-                  <div className="form-control">
-                    <div className="flex items-center gap-2 mb-2">
-                      <label className="text-base-content">Loan Amount ($)</label>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Label>Loan Amount ($)</Label>
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger>
-                            <Info className="h-4 w-4 text-base-content/70" />
+                            <Info className="h-4 w-4 text-white text-muted-foreground" />
                           </TooltipTrigger>
                           <TooltipContent>
                             <p>Enter the total amount of the loan</p>
@@ -104,219 +114,208 @@ export default function AmortizationCalculator() {
                         </Tooltip>
                       </TooltipProvider>
                     </div>
-                    <input
+                    <Input
                       type="number"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={loanAmount}
                       onChange={(e) => setLoanAmount(Number(e.target.value))}
                     />
                   </div>
 
                   {/* Interest Rate */}
-                  <div className="form-control">
-                    <label className="text-base-content mb-2">Interest Rate (%)</label>
-                    <input
+                  <div className="space-y-2">
+                    <Label>Interest Rate (%)</Label>
+                    <Input
                       type="number"
                       step="0.001"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={interestRate}
                       onChange={(e) => setInterestRate(Number(e.target.value))}
                     />
                   </div>
 
                   {/* Loan Term */}
-                  <div className="form-control">
-                    <label className="text-base-content mb-2">Loan Term</label>
-                    <select 
-                      className="select select-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
-                      value={loanTerm}
-                      onChange={(e) => setLoanTerm(Number(e.target.value))}
+                  <div className="space-y-2">
+                    <Label>Loan Term</Label>
+                    <Select
+                      value={loanTerm.toString()}
+                      onValueChange={(value) => setLoanTerm(Number(value))}
                     >
-                      <option value={30}>30 Years</option>
-                      <option value={20}>20 Years</option>
-                      <option value={15}>15 Years</option>
-                      <option value={10}>10 Years</option>
-                      <option value={5}>5 Years</option>
-                    </select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select term" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="30">30 Years</SelectItem>
+                        <SelectItem value="20">20 Years</SelectItem>
+                        <SelectItem value="15">15 Years</SelectItem>
+                        <SelectItem value="10">10 Years</SelectItem>
+                        <SelectItem value="5">5 Years</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   {/* Start Date */}
-                  <div className="form-control">
-                    <label className="text-base-content mb-2">Start Date</label>
-                    <input
+                  <div className="space-y-2">
+                    <Label>Start Date</Label>
+                    <Input
                       type="month"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
                     />
                   </div>
 
                   {/* Payment Frequency */}
-                  <div className="form-control">
-                    <label className="text-base-content mb-2">Payment Frequency</label>
-                    <select 
-                      className="select select-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
+                  <div className="space-y-2">
+                    <Label>Payment Frequency</Label>
+                    <Select
                       value={paymentFrequency}
-                      onChange={(e) => setPaymentFrequency(e.target.value)}
+                      onValueChange={setPaymentFrequency}
                     >
-                      <option value="monthly">Monthly</option>
-                      <option value="biweekly">Bi-Weekly</option>
-                      <option value="weekly">Weekly</option>
-                    </select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select frequency" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="monthly">Monthly</SelectItem>
+                        <SelectItem value="biweekly">Bi-Weekly</SelectItem>
+                        <SelectItem value="weekly">Weekly</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   {/* Extra Payment */}
-                  <div className="form-control">
-                    <label className="text-base-content mb-2">Extra Payment ($)</label>
-                    <input
+                  <div className="space-y-2">
+                    <Label>Extra Payment ($)</Label>
+                    <Input
                       type="number"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={extraPayment}
                       onChange={(e) => setExtraPayment(Number(e.target.value))}
                       placeholder="Optional"
                     />
                   </div>
 
-                  <button 
-                    className="btn bg-blue-500 hover:bg-blue-600 text-white mt-4 w-full border-0"
+                  <Button 
+                    className="w-full"
                     onClick={calculateAmortization}
                   >
                     Calculate
-                  </button>
+                  </Button>
                 </CardContent>
               </Card>
             </div>
 
             {/* Results Card */}
             <div className="flex-1">
-              <Card className="bg-base-100">
+              <Card>
                 <CardHeader>
-                  <h3 className="text-2xl font-semibold text-base-content">Payment Summary</h3>
+                  <h3 className="text-2xl font-semibold">Payment Summary</h3>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {/* Monthly Payment */}
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-base-content/70">Monthly Payment</span>
-                      <span className="text-2xl font-bold text-base-content">${monthlyPayment.toFixed(2)}</span>
+                      <span className="text-muted-foreground">Monthly Payment</span>
+                      <span className="text-2xl font-bold">${monthlyPayment.toFixed(2)}</span>
                     </div>
-                    <div className="text-sm text-base-content/70">
-                      Due on the 1st of each month
-                    </div>
+                    <Separator />
                   </div>
-
-                  <Separator />
 
                   {/* Loan Summary */}
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-base-content/70">Total Principal</span>
-                      <span className="font-medium text-base-content">${loanAmount.toLocaleString()}</span>
+                      <span className="text-muted-foreground">Total Principal</span>
+                      <span className="font-medium">${loanAmount.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-base-content/70">Total Interest</span>
-                      <span className="font-medium text-base-content">${totalInterest.toLocaleString()}</span>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Total Interest</span>
+                        <span className="text-2xl font-bold">${totalInterest.toFixed(2)}</span>
+                      </div>
+                      <Separator />
                     </div>
-                    <div className="flex justify-between items-center font-semibold">
-                      <span className="text-base-content">Total of All Payments</span>
-                      <span className="text-base-content">${totalPayment.toLocaleString()}</span>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Total Payment</span>
+                        <span className="text-2xl font-bold">${totalPayment.toFixed(2)}</span>
+                      </div>
+                      <Separator />
                     </div>
                   </div>
 
-                  {/* Payment Distribution Chart */}
-                  <div className="mt-6">
-                    <h4 className="text-lg font-semibold mb-4 text-base-content">Payment Distribution</h4>
-                    <div className="h-[300px]">
+                  {/* Charts */}
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-lg font-semibold mb-4">Payment Breakdown</h4>
                       <ReactECharts
                         option={{
                           tooltip: {
                             trigger: 'item',
                             formatter: '{b}: ${c} ({d}%)'
                           },
-                          legend: {
-                            orient: 'vertical',
-                            right: 10,
-                            top: 'center',
-                            textStyle: {
-                              color: 'var(--fallback-bc,oklch(var(--bc)/1))'
-                            }
-                          },
                           series: [
                             {
-                              name: 'Payment Distribution',
                               type: 'pie',
                               radius: ['40%', '70%'],
-                              center: ['40%', '50%'],
-                              avoidLabelOverlap: true,
+                              avoidLabelOverlap: false,
                               itemStyle: {
                                 borderRadius: 10,
-                                borderColor: 'var(--fallback-b1,oklch(var(--b1)))',
+                                borderColor: '#fff',
                                 borderWidth: 2
                               },
                               label: {
-                                show: false
+                                show: false,
+                                position: 'center'
                               },
                               emphasis: {
                                 label: {
                                   show: true,
-                                  formatter: '{b}: ${c}\n({d}%)',
-                                  fontSize: 14
+                                  fontSize: '20',
+                                  fontWeight: 'bold'
                                 }
                               },
+                              labelLine: {
+                                show: false
+                              },
                               data: [
-                                { 
-                                  value: loanAmount, 
-                                  name: 'Principal',
-                                  itemStyle: { color: '#3B82F6' }
-                                },
-                                { 
-                                  value: totalInterest, 
-                                  name: 'Interest',
-                                  itemStyle: { color: '#10B981' }
-                                }
+                                { value: loanAmount, name: 'Principal' },
+                                { value: totalInterest, name: 'Interest' }
                               ]
                             }
                           ]
                         }}
-                        style={{ height: '100%' }}
-                        opts={{ renderer: 'canvas' }}
                       />
                     </div>
-                  </div>
 
-                  {/* Amortization Schedule */}
-                  <div className="mt-6">
-                    <h4 className="text-lg font-semibold mb-4 text-base-content">Amortization Schedule</h4>
-                    <div className="overflow-x-auto">
-                      <table className="table table-zebra w-full">
-                        <thead>
-                          <tr>
-                            <th>Payment #</th>
-                            <th>Payment</th>
-                            <th>Principal</th>
-                            <th>Interest</th>
-                            <th>Balance</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {amortizationSchedule.slice(0, 12).map((payment) => (
-                            <tr key={payment.paymentNumber}>
-                              <td>{payment.paymentNumber}</td>
-                              <td>${payment.payment.toFixed(2)}</td>
-                              <td>${payment.principal.toFixed(2)}</td>
-                              <td>${payment.interest.toFixed(2)}</td>
-                              <td>${payment.balance.toFixed(2)}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                    {amortizationSchedule.length > 0 && (
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4">Amortization Schedule</h4>
+                        <div className="overflow-x-auto">
+                          <table className="w-full">
+                            <thead>
+                              <tr className="border-b">
+                                <th className="px-4 py-2 text-left">Payment</th>
+                                <th className="px-4 py-2 text-right">Principal</th>
+                                <th className="px-4 py-2 text-right">Interest</th>
+                                <th className="px-4 py-2 text-right">Balance</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {amortizationSchedule.map((payment, index) => (
+                                <tr key={index} className="border-b">
+                                  <td className="px-4 py-2">{payment.paymentNumber}</td>
+                                  <td className="px-4 py-2 text-right">${payment.principal.toFixed(2)}</td>
+                                  <td className="px-4 py-2 text-right">${payment.interest.toFixed(2)}</td>
+                                  <td className="px-4 py-2 text-right">${payment.balance.toFixed(2)}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Social Share Buttons */}
                   <div className="flex justify-end gap-2 mt-6">
                     <button 
-                      className="btn btn-circle btn-ghost"
+                      className="btn-circle btn-ghost"
                       onClick={() => window.open(`https://twitter.com/intent/tweet?text=Check%20out%20this%20Amortization%20Calculator!&url=${encodeURIComponent(window.location.href)}`, '_blank')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
@@ -324,7 +323,7 @@ export default function AmortizationCalculator() {
                       </svg>
                     </button>
                     <button 
-                      className="btn btn-circle btn-ghost"
+                      className="btn-circle btn-ghost"
                       onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
@@ -332,7 +331,7 @@ export default function AmortizationCalculator() {
                       </svg>
                     </button>
                     <button 
-                      className="btn btn-circle btn-ghost"
+                      className="btn-circle btn-ghost"
                       onClick={() => window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=Amortization%20Calculator`, '_blank')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
@@ -407,10 +406,10 @@ export default function AmortizationCalculator() {
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">How an Amortization Calculator Works</h2>
               
-              <div className="bg-base-200 p-6 rounded-lg mb-6">
+              <div className="bg-background p-6 rounded-lg mb-6">
                 <h3 className="text-xl font-semibold mb-3">The Mathematical Formula</h3>
                 <p className="mb-2">The standard formula for calculating loan payments is:</p>
-                <div className="bg-base-100 p-4 rounded-md font-mono text-sm mb-4">
+                <div className="bg-background p-4 rounded-md font-mono text-sm mb-4">
                   M = P [r(1+r)^n] / [(1+r)^n - 1]
                 </div>
                 <p>Where:</p>
@@ -426,25 +425,25 @@ export default function AmortizationCalculator() {
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Common Use Cases</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="card bg-base-200">
+                <div className="card bg-background">
                   <div className="card-body">
                     <h3 className="card-title">Home Loans</h3>
                     <p>Calculate mortgage payments and understand interest costs</p>
                   </div>
                 </div>
-                <div className="card bg-base-200">
+                <div className="card bg-background">
                   <div className="card-body">
                     <h3 className="card-title">Car Loans</h3>
                     <p>Plan auto financing effectively</p>
                   </div>
                 </div>
-                <div className="card bg-base-200">
+                <div className="card bg-background">
                   <div className="card-body">
                     <h3 className="card-title">Personal Loans</h3>
                     <p>Manage short-term borrowing</p>
                   </div>
                 </div>
-                <div className="card bg-base-200">
+                <div className="card bg-background">
                   <div className="card-body">
                     <h3 className="card-title">Business Loans</h3>
                     <p>Analyze repayment schedules for commercial financing</p>
@@ -456,7 +455,7 @@ export default function AmortizationCalculator() {
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Frequently Asked Questions</h2>
               <div className="space-y-4">
-                <div className="collapse collapse-plus bg-base-200">
+                <div className="collapse collapse-plus bg-background">
                   <input type="radio" name="my-accordion-3" /> 
                   <div className="collapse-title text-xl font-medium">
                     What is the difference between amortization and depreciation?
@@ -465,7 +464,7 @@ export default function AmortizationCalculator() {
                     <p>Amortization applies to loans or intangible assets, while depreciation is used for tangible assets.</p>
                   </div>
                 </div>
-                <div className="collapse collapse-plus bg-base-200">
+                <div className="collapse collapse-plus bg-background">
                   <input type="radio" name="my-accordion-3" /> 
                   <div className="collapse-title text-xl font-medium">
                     Can an amortization calculator help reduce my loan term?
@@ -474,7 +473,7 @@ export default function AmortizationCalculator() {
                     <p>Yes, by evaluating the impact of extra payments, you can shorten the loan term.</p>
                   </div>
                 </div>
-                <div className="collapse collapse-plus bg-base-200">
+                <div className="collapse collapse-plus bg-background">
                   <input type="radio" name="my-accordion-3" /> 
                   <div className="collapse-title text-xl font-medium">
                     What is the amortization period?

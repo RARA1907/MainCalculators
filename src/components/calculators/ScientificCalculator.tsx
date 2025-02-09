@@ -121,37 +121,33 @@ export function ScientificCalculator() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white ">
-      {/* Display */}
-      <div className="bg-gray-100 ">
-        <div className="text-right text-2xl font-mono mb-2 text-gray-900 ">
-          {display}
-        </div>
-        <div className="flex justify-between items-center text-sm text-gray-600 ">
-          <span>Memory: {memory}</span>
-          <span>{isRad ? 'RAD' : 'DEG'}</span>
-        </div>
+    <div className="p-4">
+      <div className="mb-4 bg-gray-600 rounded-lg p-2 shadow-sm">
+        <input
+          type="text"
+          value={display}
+          readOnly
+          className="w-full text-right text-2xl p-4 bg-gray-50 rounded-lg text-gray-900 focus:outline-none"
+        />
       </div>
-
-      {/* Buttons Grid */}
       <div className="grid grid-cols-6 gap-2">
-        {buttons.map((row, rowIndex) =>
-          row.map((button, buttonIndex) => (
+        {buttons.map((row, i) =>
+          row.map((btn, j) => (
             <button
-              key={`${rowIndex}-${buttonIndex}`}
-              onClick={() => handleButton(button)}
+              key={`${i}-${j}`}
+              onClick={() => handleButton(btn)}
               className={`
-                p-2 text-sm md:text-base rounded-lg transition-colors
-                ${
-                  ['C', '='].includes(button)
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                    : ['×', '÷', '+', '-', '^', '√'].includes(button)
-                    ? 'bg-gray-200 
-                    : 'bg-gray-100 
-                }
+                p-4 text-lg rounded-lg transition-colors
+                ${btn === '=' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 
+                  ['C', '⌫'].includes(btn) ? 'bg-red-500 hover:bg-red-600 text-white' : 
+                  ['sin', 'cos', 'tan', 'log', '√', '^'].includes(btn) ? 'bg-gray-700 hover:bg-gray-800 text-white' :
+                  ['×', '÷', '+', '-'].includes(btn) ? 'bg-gray-600 hover:bg-gray-700 text-white' :
+                  ['MC', 'MR', 'M+', 'M-'].includes(btn) ? 'bg-gray-500 hover:bg-gray-600 text-white' :
+                  ['π', 'e', '(', ')', '%', '±'].includes(btn) ? 'bg-gray-600 hover:bg-gray-700 text-white' :
+                  'bg-gray-700 hover:bg-gray-800 text-white'}
               `}
             >
-              {button}
+              {btn}
             </button>
           ))
         )}

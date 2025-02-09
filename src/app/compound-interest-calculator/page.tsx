@@ -1,15 +1,33 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { 
+  Card, 
+  CardContent, 
+  CardHeader 
+} from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Info } from 'lucide-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
+import { 
+  Tooltip, 
+  TooltipContent, 
+  TooltipProvider, 
+  TooltipTrigger 
 } from '@/components/ui/tooltip';
+import { 
+  Input 
+} from '@/components/ui/input';
+import { 
+  Label 
+} from '@/components/ui/label';
+import { 
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from "@/components/ui/select";
+import { Button } from '@/components/ui/button';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import ReactECharts from 'echarts-for-react';
 
@@ -232,9 +250,15 @@ export default function CompoundInterestCalculator() {
             <CardContent>
               <div className="space-y-4">
                 {/* Principal Amount Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Initial Investment ($)</span>
+                <div>
+                  <Label>Initial Investment ($)</Label>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={principal}
+                      onChange={(e) => setPrincipal(Number(e.target.value))}
+                      min="0"
+                    />
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -245,20 +269,19 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
-                    value={principal}
-                    onChange={(e) => setPrincipal(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                  />
+                  </div>
                 </div>
 
                 {/* Annual Contribution Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Annual Contribution ($)</span>
+                <div>
+                  <Label>Annual Contribution ($)</Label>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={annualContribution}
+                      onChange={(e) => setAnnualContribution(Number(e.target.value))}
+                      min="0"
+                    />
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -269,20 +292,20 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
-                    value={annualContribution}
-                    onChange={(e) => setAnnualContribution(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                  />
+                  </div>
                 </div>
 
                 {/* Interest Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Annual Interest Rate (%)</span>
+                <div>
+                  <Label>Annual Interest Rate (%)</Label>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={interestRate}
+                      onChange={(e) => setInterestRate(Number(e.target.value))}
+                      min="0"
+                      step="0.1"
+                    />
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -293,21 +316,19 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
-                    value={interestRate}
-                    onChange={(e) => setInterestRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.1"
-                  />
+                  </div>
                 </div>
 
                 {/* Time Period Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Investment Period (years)</span>
+                <div>
+                  <Label>Investment Period (years)</Label>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={timeInYears}
+                      onChange={(e) => setTimeInYears(Number(e.target.value))}
+                      min="1"
+                    />
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -318,20 +339,29 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
-                    value={timeInYears}
-                    onChange={(e) => setTimeInYears(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="1"
-                  />
+                  </div>
                 </div>
 
                 {/* Compounding Frequency Selection */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Compounding Frequency</span>
+                <div>
+                  <Label>Compounding Frequency</Label>
+                  <div className="flex items-center gap-2">
+                    <Select
+                      value={compoundingFrequency}
+                      onValueChange={(value) => setCompoundingFrequency(value)}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select frequency" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="daily">Daily</SelectItem>
+                        <SelectItem value="weekly">Weekly</SelectItem>
+                        <SelectItem value="monthly">Monthly</SelectItem>
+                        <SelectItem value="quarterly">Quarterly</SelectItem>
+                        <SelectItem value="semiannually">Semi-annually</SelectItem>
+                        <SelectItem value="annually">Annually</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -342,25 +372,26 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <select
-                    value={compoundingFrequency}
-                    onChange={(e) => setCompoundingFrequency(e.target.value)}
-                    className="select select-bordered w-full"
-                  >
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="quarterly">Quarterly</option>
-                    <option value="semiannually">Semi-annually</option>
-                    <option value="annually">Annually</option>
-                  </select>
+                  </div>
                 </div>
 
                 {/* Contribution Frequency Selection */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Contribution Frequency</span>
+                <div>
+                  <Label>Contribution Frequency</Label>
+                  <div className="flex items-center gap-2">
+                    <Select
+                      value={contributionFrequency}
+                      onValueChange={(value) => setContributionFrequency(value)}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select frequency" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="monthly">Monthly</SelectItem>
+                        <SelectItem value="quarterly">Quarterly</SelectItem>
+                        <SelectItem value="annually">Annually</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -371,22 +402,25 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <select
-                    value={contributionFrequency}
-                    onChange={(e) => setContributionFrequency(e.target.value)}
-                    className="select select-bordered w-full"
-                  >
-                    <option value="monthly">Monthly</option>
-                    <option value="quarterly">Quarterly</option>
-                    <option value="annually">Annually</option>
-                  </select>
+                  </div>
                 </div>
 
                 {/* Contribution Timing Selection */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Contribution Timing</span>
+                <div>
+                  <Label>Contribution Timing</Label>
+                  <div className="flex items-center gap-2">
+                    <Select
+                      value={contributionTiming}
+                      onValueChange={(value) => setContributionTiming(value as 'beginning' | 'end')}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select timing" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="beginning">Beginning of Period</SelectItem>
+                        <SelectItem value="end">End of Period</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -397,21 +431,20 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <select
-                    value={contributionTiming}
-                    onChange={(e) => setContributionTiming(e.target.value as 'beginning' | 'end')}
-                    className="select select-bordered w-full"
-                  >
-                    <option value="beginning">Beginning of Period</option>
-                    <option value="end">End of Period</option>
-                  </select>
+                  </div>
                 </div>
 
                 {/* Inflation Rate Input */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Inflation Rate (%)</span>
+                <div>
+                  <Label>Inflation Rate (%)</Label>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={inflationRate}
+                      onChange={(e) => setInflationRate(Number(e.target.value))}
+                      min="0"
+                      step="0.1"
+                    />
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -422,56 +455,48 @@ export default function CompoundInterestCalculator() {
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
-                  </label>
-                  <input
-                    type="number"
-                    value={inflationRate}
-                    onChange={(e) => setInflationRate(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                    step="0.1"
-                  />
+                  </div>
                 </div>
 
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
+                <Button
                   onClick={calculateCompoundInterest}
+                  className="w-full"
                 >
                   Calculate
-                </button>
+                </Button>
               </div>
             </CardContent>
           </Card>
 
           {/* Results Section */}
-          <Card className="bg-card">
+          <Card>
             <CardHeader>
               <h2 className="text-2xl font-semibold">Results</h2>
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="stat bg-base-200 rounded-lg p-4">
-                    <div className="stat-title">Final Balance</div>
-                    <div className="stat-value text-lg">
+                  <div className="p-4 rounded-lg border">
+                    <div className="text-sm font-medium">Final Balance</div>
+                    <div className="text-lg font-bold">
                       ${finalBalance.toFixed(2)}
                     </div>
                   </div>
-                  <div className="stat bg-base-200 rounded-lg p-4">
-                    <div className="stat-title">Total Interest</div>
-                    <div className="stat-value text-lg">
+                  <div className="p-4 rounded-lg border">
+                    <div className="text-sm font-medium">Total Interest</div>
+                    <div className="text-lg font-bold">
                       ${totalInterest.toFixed(2)}
                     </div>
                   </div>
-                  <div className="stat bg-base-200 rounded-lg p-4">
-                    <div className="stat-title">Total Contributions</div>
-                    <div className="stat-value text-lg">
+                  <div className="p-4 rounded-lg border">
+                    <div className="text-sm font-medium">Total Contributions</div>
+                    <div className="text-lg font-bold">
                       ${totalContributions.toFixed(2)}
                     </div>
                   </div>
-                  <div className="stat bg-base-200 rounded-lg p-4">
-                    <div className="stat-title">Inflation Adjusted Balance</div>
-                    <div className="stat-value text-lg">
+                  <div className="p-4 rounded-lg border">
+                    <div className="text-sm font-medium">Inflation Adjusted Balance</div>
+                    <div className="text-lg font-bold">
                       ${inflationAdjustedBalance.toFixed(2)}
                     </div>
                   </div>
@@ -495,69 +520,73 @@ export default function CompoundInterestCalculator() {
 
         {/* Educational Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="prose prose-lg max-w-none">
+          <div className="max-w-none">
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Understanding Compound Interest</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="card bg-base-200">
-                  <div className="card-body">
-                    <h3 className="card-title">What is Compound Interest?</h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <h3 className="text-lg font-semibold mb-2">What is Compound Interest?</h3>
                     <p>Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. This creates a snowball effect, where your money grows exponentially over time.</p>
-                  </div>
-                </div>
-                <div className="card bg-base-200">
-                  <div className="card-body">
-                    <h3 className="card-title">The Power of Compounding</h3>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="pt-6">
+                    <h3 className="text-lg font-semibold mb-2">The Power of Compounding</h3>
                     <ul className="list-disc pl-6">
                       <li>Earnings generate more earnings</li>
                       <li>Growth accelerates over time</li>
                       <li>Earlier start means bigger returns</li>
                       <li>Regular contributions amplify growth</li>
                     </ul>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               </div>
             </section>
 
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Factors Affecting Returns</h2>
-              <div className="bg-base-200 p-6 rounded-lg">
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>
-                    <strong>Initial Investment:</strong> Starting amount
-                  </li>
-                  <li>
-                    <strong>Contribution Amount:</strong> Regular additional investments
-                  </li>
-                  <li>
-                    <strong>Interest Rate:</strong> Annual return rate
-                  </li>
-                  <li>
-                    <strong>Time Period:</strong> Investment duration
-                  </li>
-                  <li>
-                    <strong>Compounding Frequency:</strong> How often interest is calculated
-                  </li>
-                  <li>
-                    <strong>Inflation:</strong> Purchasing power impact
-                  </li>
-                </ul>
-              </div>
+              <Card>
+                <CardContent className="pt-6">
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li>
+                      <strong>Initial Investment:</strong> Starting amount
+                    </li>
+                    <li>
+                      <strong>Contribution Amount:</strong> Regular additional investments
+                    </li>
+                    <li>
+                      <strong>Interest Rate:</strong> Annual return rate
+                    </li>
+                    <li>
+                      <strong>Time Period:</strong> Investment duration
+                    </li>
+                    <li>
+                      <strong>Compounding Frequency:</strong> How often interest is calculated
+                    </li>
+                    <li>
+                      <strong>Inflation:</strong> Purchasing power impact
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
             </section>
 
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Investment Strategies</h2>
-              <div className="bg-base-200 p-6 rounded-lg">
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>Start investing early to maximize compound growth</li>
-                  <li>Make regular contributions to accelerate wealth building</li>
-                  <li>Reinvest dividends and interest payments</li>
-                  <li>Consider tax-advantaged accounts</li>
-                  <li>Diversify investments to manage risk</li>
-                  <li>Account for inflation in long-term planning</li>
-                  <li>Review and rebalance periodically</li>
-                </ul>
-              </div>
+              <Card>
+                <CardContent className="pt-6">
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li>Start investing early to maximize compound growth</li>
+                    <li>Make regular contributions to accelerate wealth building</li>
+                    <li>Reinvest dividends and interest payments</li>
+                    <li>Consider tax-advantaged accounts</li>
+                    <li>Diversify investments to manage risk</li>
+                    <li>Account for inflation in long-term planning</li>
+                    <li>Review and rebalance periodically</li>
+                  </ul>
+                </CardContent>
+              </Card>
             </section>
           </div>
         </div>
