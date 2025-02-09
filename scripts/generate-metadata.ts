@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { calculatorMetadata } from '../src/app/calculators/metadata-configs';
+import { calculatorMetadata } from '@/app/calculators/metadata-configs';
 
 const APP_DIR = path.join(process.cwd(), 'src', 'app');
 
@@ -18,11 +18,7 @@ const createLayoutContent = () => {
   return `import { Metadata } from 'next';
 import { metadata as pageMetadata } from './metadata';
 
-export const metadata: Metadata = {
-  title: pageMetadata.title,
-  description: pageMetadata.description,
-  keywords: pageMetadata.keywords,
-};
+export const metadata: Metadata = pageMetadata;
 
 export default function Layout({
   children,
@@ -33,27 +29,31 @@ export default function Layout({
 }`;
 };
 
-// Main function to generate files
+// Function to generate metadata files
 async function generateMetadataFiles() {
-  for (const [calculator, metadata] of Object.entries(calculatorMetadata)) {
-    const calculatorDir = path.join(APP_DIR, calculator);
+  // Create directories if they don't exist
+  Object.keys(calculatorMetadata).forEach((calculatorPath) => {
+    const calculatorDir = path.join(APP_DIR, calculatorPath);
     
-    // Skip if directory doesn't exist
     if (!fs.existsSync(calculatorDir)) {
-      console.log(`Skipping ${calculator} - directory doesn't exist`);
-      continue;
+      fs.mkdirSync(calculatorDir, { recursive: true });
     }
 
     // Create metadata.ts
     const metadataPath = path.join(calculatorDir, 'metadata.ts');
-    fs.writeFileSync(metadataPath, createMetadataContent(metadata));
-    console.log(`Created metadata.ts for ${calculator}`);
+    fs.writeFileSync(
+      metadataPath,
+      createMetadataContent(calculatorMetadata[calculatorPath])
+    );
 
-    // Create layout.tsx
+    // Create layout.tsx if it doesn't exist
     const layoutPath = path.join(calculatorDir, 'layout.tsx');
-    fs.writeFileSync(layoutPath, createLayoutContent());
-    console.log(`Created layout.tsx for ${calculator}`);
-  }
+    if (!fs.existsSync(layoutPath)) {
+      fs.writeFileSync(layoutPath, createLayoutContent());
+    }
+  });
+
+  console.log('Metadata files generated successfully!');
 }
 
 // Run the generator
