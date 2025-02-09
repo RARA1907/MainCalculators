@@ -5,37 +5,33 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 20 14.3% 4.1%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 20 14.3% 4.1%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 199 89% 48%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 186 94% 82%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 45 93% 47%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --popover-foreground: 20 14.3% 4.1%;
+    
+    --primary: 24 9.8% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 60 9.1% 97.8%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 199 89% 48%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
     --radius: 0.5rem;
-
-    --link: 199 89% 48%;
-    --link-hover: 186 94% 82%;
-    --link-active: 45 93% 47%;
   }
 }
 
@@ -58,44 +54,67 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-white text-slate-900;
   }
 
   h1 {
-    @apply text-4xl font-bold mb-4 text-foreground;
+    @apply text-4xl font-bold mb-4 text-slate-900;
   }
 
   h2 {
-    @apply text-2xl font-semibold mb-3 text-foreground;
+    @apply text-2xl font-semibold mb-3 text-slate-900;
   }
 
   p {
-    @apply mb-4 text-base leading-relaxed text-foreground;
+    @apply mb-4 text-base leading-relaxed text-slate-900;
   }
 
-  input {
-    @apply w-full px-4 py-2 rounded-lg bg-background text-foreground
-    border border-input focus:outline-none focus:ring-2 
-    focus:ring-primary focus:border-transparent;
+  input, select, textarea {
+    @apply w-full px-4 py-2 rounded-lg 
+    bg-white text-slate-900
+    border border-slate-200
+    focus:outline-none focus:ring-2 
+    focus:ring-blue-500 focus:border-transparent
+    placeholder:text-slate-400;
   }
 
   button {
-    @apply px-4 py-2 bg-primary text-primary-foreground rounded-lg 
-    hover:bg-secondary active:bg-accent transition-colors duration-200;
+    @apply px-4 py-2 bg-blue-500 text-white rounded-lg 
+    hover:bg-blue-400 active:bg-blue-600 
+    transition-colors duration-200
+    disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   a {
-    @apply text-primary hover:text-secondary active:text-accent transition-colors duration-200;
+    @apply text-blue-500 hover:text-blue-400 active:text-blue-600 
+    transition-colors duration-200;
   }
 }
 
 @layer components {
+  .calculator-input {
+    @apply bg-white text-slate-900 border-slate-200 !important;
+  }
+  
+  .calculator-card {
+    @apply bg-white text-slate-900 shadow-sm border border-slate-200 rounded-lg p-4;
+  }
+  
+  .calculator-result {
+    @apply bg-slate-50 text-slate-900 p-4 rounded-lg border border-slate-200;
+  }
+  
   .btn {
     @apply px-4 py-2 text-sm font-medium rounded-lg 
-    bg-primary text-primary-foreground
-    hover:bg-secondary hover:text-secondary-foreground
-    focus:outline-none focus:ring-2 focus:ring-primary
-    transition-colors duration-200;
+    bg-blue-500 text-white
+    hover:bg-blue-400 active:bg-blue-600
+    focus:outline-none focus:ring-2 focus:ring-blue-500
+    transition-colors duration-200
+    disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-100 text-slate-900
+    hover:bg-slate-200 active:bg-slate-300;
   }
 }
