@@ -10,6 +10,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -174,114 +178,99 @@ export default function BMICalculator() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6 mt-6">
           <Breadcrumb items={breadcrumbItems} />
-          <h1 className="text-3xl font-bold pt-4 text-base-content">BMI Calculator</h1>
+          <h1 className="text-3xl font-bold pt-4">BMI Calculator</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Input Section */}
-          <Card className="bg-card">
+          <Card>
             <CardHeader>
               <h2 className="text-2xl font-semibold">Calculate Your BMI</h2>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Unit System</span>
-                  </label>
-                  <div className="flex gap-4">
-                    <button
-                      className={`btn flex-1 ${unit === 'metric' ? 'btn-primary' : 'btn-outline'}`}
-                      onClick={() => handleUnitChange('metric')}
-                    >
-                      Metric
-                    </button>
-                    <button
-                      className={`btn flex-1 ${unit === 'imperial' ? 'btn-primary' : 'btn-outline'}`}
-                      onClick={() => handleUnitChange('imperial')}
-                    >
-                      Imperial
-                    </button>
-                  </div>
+            <CardContent className="space-y-6">
+              <div>
+                <Label>Unit System</Label>
+                <div className="flex gap-4 mt-2">
+                  <Button
+                    type="button"
+                    variant={unit === 'metric' ? 'default' : 'outline'}
+                    className="flex-1"
+                    onClick={() => handleUnitChange('metric')}
+                  >
+                    Metric
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={unit === 'imperial' ? 'default' : 'outline'}
+                    className="flex-1"
+                    onClick={() => handleUnitChange('imperial')}
+                  >
+                    Imperial
+                  </Button>
                 </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Gender</span>
-                  </label>
-                  <div className="flex gap-4">
-                    <button
-                      className={`btn flex-1 ${gender === 'male' ? 'btn-primary' : 'btn-outline'}`}
-                      onClick={() => setGender('male')}
-                    >
-                      Male
-                    </button>
-                    <button
-                      className={`btn flex-1 ${gender === 'female' ? 'btn-primary' : 'btn-outline'}`}
-                      onClick={() => setGender('female')}
-                    >
-                      Female
-                    </button>
-                  </div>
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Age</span>
-                  </label>
-                  <input
-                    type="number"
-                    value={age}
-                    onChange={(e) => setAge(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="2"
-                    max="120"
-                  />
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">
-                      Height ({unit === 'metric' ? 'cm' : 'inches'})
-                    </span>
-                  </label>
-                  <input
-                    type="number"
-                    value={height}
-                    onChange={(e) => setHeight(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                  />
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">
-                      Weight ({unit === 'metric' ? 'kg' : 'lbs'})
-                    </span>
-                  </label>
-                  <input
-                    type="number"
-                    value={weight}
-                    onChange={(e) => setWeight(Number(e.target.value))}
-                    className="input input-bordered w-full"
-                    min="0"
-                  />
-                </div>
-
-                <button
-                  className="btn w-full bg-blue-500 hover:bg-blue-600 text-white"
-                  onClick={calculateBMI}
-                >
-                  Calculate BMI
-                </button>
               </div>
+
+              <div>
+                <Label>Gender</Label>
+                <RadioGroup
+                  value={gender}
+                  onValueChange={(value) => setGender(value as 'male' | 'female')}
+                  className="grid grid-cols-2 gap-4 mt-2"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="male" id="male" />
+                    <Label htmlFor="male" className="font-normal">Male</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="female" id="female" />
+                    <Label htmlFor="female" className="font-normal">Female</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div>
+                <Label>Age</Label>
+                <Input
+                  type="number"
+                  value={age}
+                  onChange={(e) => setAge(Number(e.target.value))}
+                  className="mt-2"
+                />
+              </div>
+
+              <div>
+                <Label>{unit === 'metric' ? 'Height (cm)' : 'Height (inches)'}</Label>
+                <Input
+                  type="number"
+                  value={height}
+                  onChange={(e) => setHeight(Number(e.target.value))}
+                  className="mt-2"
+                />
+              </div>
+
+              <div>
+                <Label>{unit === 'metric' ? 'Weight (kg)' : 'Weight (lbs)'}</Label>
+                <Input
+                  type="number"
+                  value={weight}
+                  onChange={(e) => setWeight(Number(e.target.value))}
+                  className="mt-2"
+                />
+              </div>
+
+              <Button
+                type="button"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+                onClick={calculateBMI}
+              >
+                Calculate BMI
+              </Button>
             </CardContent>
           </Card>
 
           {/* Results Section */}
           <div className="space-y-8">
-            <Card className="bg-card">
+            <Card>
               <CardHeader>
                 <h2 className="text-2xl font-semibold">Your BMI Results</h2>
               </CardHeader>

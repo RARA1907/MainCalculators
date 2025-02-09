@@ -15,14 +15,14 @@ export function Breadcrumb({ segments, className, ...props }: BreadcrumbProps) {
     <nav
       aria-label="breadcrumb"
       className={cn(
-        "mb-4 flex items-center text-sm text-muted-foreground",
+        "mb-4 flex items-center text-sm text-slate-600",
         className
       )}
       {...props}
     >
       <Link
         href="/"
-        className="text-foreground hover:text-muted-foreground transition-colors"
+        className="text-slate-900 hover:text-slate-600 transition-colors"
       >
         Home
       </Link>
@@ -32,8 +32,8 @@ export function Breadcrumb({ segments, className, ...props }: BreadcrumbProps) {
           <Link
             href={segment.href}
             className={cn(
-              "hover:text-muted-foreground transition-colors",
-              index === segments.length - 1 && "text-foreground font-medium"
+              "hover:text-slate-600 transition-colors",
+              index === segments.length - 1 && "text-slate-900 font-medium"
             )}
             aria-current={index === segments.length - 1 ? "page" : undefined}
           >

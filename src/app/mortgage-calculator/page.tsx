@@ -17,6 +17,7 @@ import { Link2 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend as ChartLegend } from 'chart.js';
 import ReactECharts from 'echarts-for-react';
+import { Checkbox } from "@/components/ui/checkbox";
 
 ChartJS.register(ArcElement, ChartTooltip, ChartLegend);
 
@@ -132,78 +133,82 @@ export default function MortgageCalculator() {
                 <CardContent className="space-y-6">
                   {/* Home Price */}
                   <div className="form-control">
-                    <div className="flex items-center gap-2 mb-2">
-                      <label className="text-base-content">Home Price ($)</label>
+                    <Label className="flex items-center gap-2">
+                      Home Price ($)
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger>
-                            <Info className="h-4 w-4 text-base-content/70" />
+                            <Info className="h-4 w-4 text-slate-500" />
                           </TooltipTrigger>
                           <TooltipContent>
                             <p>Enter the total price of the home</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
-                    </div>
-                    <input
+                    </Label>
+                    <Input
                       type="number"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={homePrice}
                       onChange={(e) => setHomePrice(Number(e.target.value))}
+                      className="mt-2"
                     />
                   </div>
 
                   {/* Down Payment */}
                   <div className="form-control">
-                    <div className="flex items-center justify-between mb-2">
-                      <label className="text-base-content">Down Payment (%)</label>
+                    <Label className="flex items-center justify-between">
+                      Down Payment (%)
                       <span className="text-sm text-base-content/70">
                         (${(homePrice * (downPayment / 100)).toLocaleString()})
                       </span>
-                    </div>
-                    <input
+                    </Label>
+                    <Input
                       type="number"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={downPayment}
                       onChange={(e) => setDownPayment(Number(e.target.value))}
+                      className="mt-2"
                     />
                   </div>
 
                   {/* Interest Rate */}
                   <div className="form-control">
-                    <label className="text-base-content mb-2">Interest Rate (%)</label>
-                    <input
+                    <Label>Interest Rate (%)</Label>
+                    <Input
                       type="number"
                       step="0.001"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={interestRate}
                       onChange={(e) => setInterestRate(Number(e.target.value))}
+                      className="mt-2"
                     />
                   </div>
 
                   {/* Loan Term */}
                   <div className="form-control">
-                    <label className="text-base-content mb-2">Loan Term</label>
-                    <select 
-                      className="select select-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
-                      value={loanTerm}
-                      onChange={(e) => setLoanTerm(Number(e.target.value))}
+                    <Label>Loan Term</Label>
+                    <Select
+                      value={String(loanTerm)}
+                      onValueChange={(value) => setLoanTerm(Number(value))}
                     >
-                      <option value={30}>30 Years</option>
-                      <option value={20}>20 Years</option>
-                      <option value={15}>15 Years</option>
-                      <option value={10}>10 Years</option>
-                    </select>
+                      <SelectTrigger className="mt-2">
+                        <SelectValue placeholder="Select loan term" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="30">30 Years</SelectItem>
+                        <SelectItem value="20">20 Years</SelectItem>
+                        <SelectItem value="15">15 Years</SelectItem>
+                        <SelectItem value="10">10 Years</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   {/* Start Date */}
                   <div className="form-control">
-                    <label className="text-base-content mb-2">Start Date</label>
-                    <input
+                    <Label>Start Date</Label>
+                    <Input
                       type="month"
-                      className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
+                      className="mt-2"
                     />
                   </div>
 
@@ -211,61 +216,59 @@ export default function MortgageCalculator() {
 
                   {/* Include Taxes & Insurance Toggle */}
                   <div className="form-control">
-                    <label className="flex items-center justify-between cursor-pointer">
-                      <span className="text-base-content">Include Taxes & Insurance</span>
-                      <input
-                        type="checkbox"
-                        className="checkbox checkbox-primary"
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="taxes"
                         checked={includeTaxesCosts}
-                        onChange={(e) => setIncludeTaxesCosts(e.target.checked)}
+                        onCheckedChange={(checked) => setIncludeTaxesCosts(checked as boolean)}
                       />
-                    </label>
+                      <Label htmlFor="taxes">Include Taxes & Insurance</Label>
+                    </div>
                   </div>
 
                   {includeTaxesCosts && (
                     <>
                       {/* Property Tax */}
                       <div className="form-control">
-                        <label className="text-base-content mb-2">Property Tax Rate (% Annual)</label>
-                        <input
+                        <Label>Property Tax Rate (% Annual)</Label>
+                        <Input
                           type="number"
                           step="0.01"
-                          className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                           value={propertyTax}
                           onChange={(e) => setPropertyTax(Number(e.target.value))}
+                          className="mt-2"
                         />
                       </div>
 
                       {/* Home Insurance */}
                       <div className="form-control">
-                        <label className="text-base-content mb-2">Home Insurance ($ Annual)</label>
-                        <input
+                        <Label>Home Insurance ($ Annual)</Label>
+                        <Input
                           type="number"
-                          className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                           value={homeInsurance}
                           onChange={(e) => setHomeInsurance(Number(e.target.value))}
+                          className="mt-2"
                         />
                       </div>
 
                       {/* PMI Insurance Toggle & Input */}
                       <div className="form-control">
-                        <label className="flex items-center justify-between cursor-pointer">
-                          <span className="text-base-content">Private Mortgage Insurance (PMI)</span>
-                          <input
-                            type="checkbox"
-                            className="checkbox checkbox-primary"
+                        <div className="flex items-center space-x-2">
+                          <Checkbox
+                            id="pmi"
                             checked={includePMI}
-                            onChange={(e) => setIncludePMI(e.target.checked)}
+                            onCheckedChange={(checked) => setIncludePMI(checked as boolean)}
                           />
-                        </label>
+                          <Label htmlFor="pmi">Private Mortgage Insurance (PMI)</Label>
+                        </div>
                         {includePMI && (
                           <div className="mt-2">
-                            <label className="text-base-content mb-2 block">PMI ($ Annual)</label>
-                            <input
+                            <Label>PMI ($ Annual)</Label>
+                            <Input
                               type="number"
-                              className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                               value={pmiInsurance}
                               onChange={(e) => setPmiInsurance(Number(e.target.value))}
+                              className="mt-2"
                             />
                           </div>
                         )}
@@ -273,23 +276,22 @@ export default function MortgageCalculator() {
 
                       {/* HOA Fee Toggle & Input */}
                       <div className="form-control">
-                        <label className="flex items-center justify-between cursor-pointer">
-                          <span className="text-base-content">Homeowners Association Fee (HOA)</span>
-                          <input
-                            type="checkbox"
-                            className="checkbox checkbox-primary"
+                        <div className="flex items-center space-x-2">
+                          <Checkbox
+                            id="hoa"
                             checked={includeHOA}
-                            onChange={(e) => setIncludeHOA(e.target.checked)}
+                            onCheckedChange={(checked) => setIncludeHOA(checked as boolean)}
                           />
-                        </label>
+                          <Label htmlFor="hoa">Homeowners Association Fee (HOA)</Label>
+                        </div>
                         {includeHOA && (
                           <div className="mt-2">
-                            <label className="text-base-content mb-2 block">HOA Fee ($ Monthly)</label>
-                            <input
+                            <Label>HOA Fee ($ Monthly)</Label>
+                            <Input
                               type="number"
-                              className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                               value={hoaFee}
                               onChange={(e) => setHoaFee(Number(e.target.value))}
+                              className="mt-2"
                             />
                           </div>
                         )}
@@ -297,35 +299,34 @@ export default function MortgageCalculator() {
 
                       {/* Other Costs Toggle & Input */}
                       <div className="form-control">
-                        <label className="flex items-center justify-between cursor-pointer">
-                          <span className="text-base-content">Other Costs</span>
-                          <input
-                            type="checkbox"
-                            className="checkbox checkbox-primary"
+                        <div className="flex items-center space-x-2">
+                          <Checkbox
+                            id="other"
                             checked={includeOtherCosts}
-                            onChange={(e) => setIncludeOtherCosts(e.target.checked)}
+                            onCheckedChange={(checked) => setIncludeOtherCosts(checked as boolean)}
                           />
-                        </label>
+                          <Label htmlFor="other">Other Costs</Label>
+                        </div>
                         {includeOtherCosts && (
                           <div className="mt-2">
-                            <label className="text-base-content mb-2 block">Other Costs ($ Annual)</label>
-                            <input
+                            <Label>Other Costs ($ Annual)</Label>
+                            <Input
                               type="number"
-                              className="input input-bordered w-full bg-base-100 text-base-content border-base-300 border-2"
                               value={otherCosts}
                               onChange={(e) => setOtherCosts(Number(e.target.value))}
+                              className="mt-2"
                             />
                           </div>
                         )}
                       </div>
                     </>
                   )}
-                  <button 
-                    className="btn bg-blue-500 hover:bg-blue-600 text-white mt-4 w-full border-0"
+                  <Button 
+                    className="bg-blue-500 hover:bg-blue-600 text-white mt-4 w-full border-0"
                     onClick={calculateMortgage}
                   >
                     Calculate
-                  </button>
+                  </Button>
                 </CardContent>
               </Card>
             </div>
@@ -497,30 +498,30 @@ export default function MortgageCalculator() {
 
                   {/* Social Share Buttons */}
                   <div className="flex justify-end gap-2 mt-6">
-                    <button 
-                      className="btn btn-circle btn-ghost"
+                    <Button 
+                      className="btn-circle btn-ghost"
                       onClick={() => window.open(`https://twitter.com/intent/tweet?text=Check%20out%20this%20Mortgage%20Calculator!&url=${encodeURIComponent(window.location.href)}`, '_blank')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
                         <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-                      </svg>
-                    </button>
-                    <button 
-                      className="btn btn-circle btn-ghost"
+                    </svg>
+                    </Button>
+                    <Button 
+                      className="btn-circle btn-ghost"
                       onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
                         <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
                       </svg>
-                    </button>
-                    <button 
-                      className="btn btn-circle btn-ghost"
+                    </Button>
+                    <Button 
+                      className="btn-circle btn-ghost"
                       onClick={() => window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=Mortgage%20Calculator`, '_blank')}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                       </svg>
-                    </button>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
