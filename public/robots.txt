@@ -3,4 +3,5 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://github.com/sitemap.xml
+Sitemap: https://www.maincalculators.com/sitemap.xml
+
