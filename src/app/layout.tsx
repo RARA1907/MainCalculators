@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Metadata } from 'next'
 import { ScrollToTop } from '@/components/ScrollToTop'
 import { Toaster } from '@/components/ui/toaster'
+import { AdSenseLoader } from '@/components/AdSenseLoader'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -79,6 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className={inter.className}>
+        <AdSenseLoader />
         <div className="relative min-h-screen">
           <Layout>
             {children}
