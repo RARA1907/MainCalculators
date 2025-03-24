@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import globby from 'globby'
-import prettier from 'prettier'
+import { globby } from 'globby'
+import * as prettier from 'prettier'
 
 // Domaininizi buraya girin
 const SITE_URL = 'https://www.maincalculators.com'
@@ -42,7 +42,7 @@ async function generateSitemap() {
   `
 
   // Sitemap'i formatla
-  const formatted = prettier.format(sitemap, {
+  const formatted = await prettier.format(sitemap, {
     parser: 'html',
   })
 
