@@ -9,7 +9,7 @@
     "lint": "next lint",
     "generate-metadata": "node scripts/generate-metadata.js",
     "remove-data-state": "node scripts/remove-data-state.js",
-    "generate-sitemap": "ts-node scripts/generate-sitemap.ts",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
     "inject-adsense": "node scripts/inject-adsense.js"
   },
   "dependencies": {
