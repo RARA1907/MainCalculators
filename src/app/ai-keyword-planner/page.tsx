@@ -255,7 +255,7 @@ export default function AIKeywordPlanner() {
                 </h2>
                 <button
                   onClick={exportPlan}
-                  className="flex items-center px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+                  className="flex items-center px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-500 transition-colors"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Export Plan
@@ -299,7 +299,7 @@ export default function AIKeywordPlanner() {
                         <td className="py-3 px-4">
                           <button
                             onClick={() => copyToClipboard(keyword.keyword)}
-                            className="text-blue-600 hover:text-blue-800 transition-colors"
+                            className="text-white-600 hover:text-slate-500 transition-colors"
                             title="Copy keyword"
                           >
                             <Copy className="w-4 h-4" />
@@ -326,7 +326,7 @@ export default function AIKeywordPlanner() {
                         <h3 className="font-medium text-slate-900">{keyword.keyword}</h3>
                         <button
                           onClick={() => copyToClipboard(keyword.keyword)}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="text-white-600 hover:text-slate-500"
                         >
                           <Copy className="w-4 h-4" />
                         </button>

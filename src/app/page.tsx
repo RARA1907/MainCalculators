@@ -23,18 +23,18 @@ const featuredTools = [
     isNew: true
   },
   {
+    title: 'Salary Paycheck Calculator',
+    description: 'Calculate take-home pay with AI-powered financial analysis',
+    icon: Calculator,
+    href: '/salary-paycheck-calculator',
+    color: 'from-orange-500 to-red-600',
+    bgColor: 'bg-orange-50',
+    isNew: true
+  },
+  {
     title: 'Content Optimizer',
     description: 'Optimize your content for better search engine rankings',
     icon: Lightbulb,
-    href: '#',
-    color: 'from-orange-500 to-red-600',
-    bgColor: 'bg-orange-50',
-    comingSoon: true
-  },
-  {
-    title: 'Backlink Checker',
-    description: 'Check and analyze your website\'s backlink profile',
-    icon: Shield,
     href: '#',
     color: 'from-purple-500 to-pink-600',
     bgColor: 'bg-purple-50',
