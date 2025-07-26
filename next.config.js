@@ -234,15 +234,17 @@ const nextConfig = {
         })
       )
       
-      // Exclude disabled pages from build
-      config.module.rules.push({
-        test: /\.(tsx|ts|js|jsx)$/,
-        include: (input) => {
-          // Check if the file is in a disabled page directory
-          return !disabledPages.some(page => input.includes(`/${page}/`))
-        },
-        use: 'null-loader'
-      })
+      // Exclude disabled pages from build by modifying the resolve
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        // Redirect disabled pages to a dummy component
+        ...Object.fromEntries(
+          disabledPages.map(page => [
+            `@/app/${page}/page`,
+            require.resolve('./src/components/DisabledPage.tsx')
+          ])
+        )
+      }
     }
     
     return config
