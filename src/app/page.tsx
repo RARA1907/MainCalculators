@@ -42,28 +42,7 @@ const featuredTools = [
   }
 ]
 
-const categories = [
-  {
-    title: 'SEO Tools',
-    description: 'Complete suite of SEO optimization tools',
-    tools: ['Keyword Research', 'Site Audit', 'Rank Tracker', 'Technical SEO']
-  },
-  {
-    title: 'Content Tools',
-    description: 'Create and optimize content for better performance',
-    tools: ['Content Optimizer', 'Topic Research', 'Content Calendar', 'Readability Checker']
-  },
-  {
-    title: 'Analytics Tools',
-    description: 'Track and analyze your website performance',
-    tools: ['Traffic Analyzer', 'Conversion Tracker', 'Heatmap Tool', 'A/B Testing']
-  },
-  {
-    title: 'Marketing Tools',
-    description: 'Comprehensive marketing and advertising tools',
-    tools: ['PPC Optimizer', 'Social Media Manager', 'Email Campaign', 'ROI Calculator']
-  }
-]
+
 
 export default function Home() {
   return (
@@ -96,7 +75,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link 
-                href="#tools" 
+                href="/calculators" 
                 className="inline-flex items-center px-8 py-4 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-400 hover:bg-slate-50 transition-all duration-300"
               >
                 Explore All Tools
@@ -153,36 +132,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
-              Tool Categories
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Explore our comprehensive collection of professional tools organized by category
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {categories.map((category, index) => (
-              <div key={index} className="bg-slate-50 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">{category.title}</h3>
-                <p className="text-slate-600 mb-4">{category.description}</p>
-                <ul className="space-y-2">
-                  {category.tools.map((tool, toolIndex) => (
-                    <li key={toolIndex} className="flex items-center text-sm text-slate-600">
-                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></div>
-                      {tool}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -256,33 +206,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-slate-900 to-slate-800">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Boost Your Digital Success?
-          </h2>
-          <p className="text-xl text-slate-300 mb-8">
-            Start using our professional tools today and take your digital marketing to the next level
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/ahrefs-keyword-generator" 
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              Try Keyword Generator
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-slate-900 transition-all duration-300"
-            >
-              Contact Us
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+
 
       {/* Footer CTA */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
