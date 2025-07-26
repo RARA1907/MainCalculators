@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Sparkles, Zap, Target, TrendingUp, Users, Shield, Globe, Search, BarChart3, Calculator, Settings, Lightbulb } from 'lucide-react'
+import { ArrowRight, Search, BarChart3, Calculator, Lightbulb, Target, TrendingUp, Zap, Users } from 'lucide-react'
 
 const featuredTools = [
   {
@@ -42,58 +42,46 @@ const featuredTools = [
   }
 ]
 
-
-
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden w-full">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
-        <div className="relative w-full">
-          <div className="text-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-6">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Professional Tools Hub
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-              Professional
-              <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Digital Tools
-              </span>
-            </h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Discover a comprehensive collection of professional tools for SEO, content marketing, analytics, and digital growth. 
-              Everything you need to succeed online.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/ahrefs-keyword-generator" 
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                Try Our Tools
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link 
-                href="/calculators" 
-                className="inline-flex items-center px-8 py-4 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-400 hover:bg-slate-50 transition-all duration-300"
-              >
-                Explore All Tools
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </div>
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
+            Professional <span className="text-blue-600">Digital Tools</span>
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+            Discover a comprehensive collection of professional tools for SEO, content marketing, analytics, and digital growth. 
+            Everything you need to succeed online.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/ahrefs-keyword-generator" 
+              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Try Our Tools
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+            <Link 
+              href="/calculators" 
+              className="inline-flex items-center px-6 py-3 border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-colors"
+            >
+              Explore All Tools
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Featured Tools Section */}
-      <section id="tools" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
+      <section id="tools" className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
               Featured Tools
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Start with our most powerful and popular tools designed for professionals
             </p>
           </div>

@@ -1,118 +1,160 @@
 'use client'
 
 import Link from 'next/link';
+import { Mail, MessageCircle } from 'lucide-react';
 
 export default function ContactPage() {
   return (
-    <div className="bg-gradient-to-b from-white to-slate-50 min-h-[80vh] flex flex-col">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10">
-          <div className="absolute inset-0 bg-blue-100 transform -skew-y-6"></div>
-          <div className="absolute right-0 bottom-0 w-2/3 h-1/3 bg-blue-200 rounded-tl-3xl"></div>
-        </div>
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-4">Contact <span className="text-blue-600">Us</span></h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
-              We'd love to hear from you. Reach out with your questions, suggestions, or feedback.
-            </p>
-          </div>
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
+            Contact <span className="text-blue-600">Us</span>
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            We'd love to hear from you. Reach out with your questions, suggestions, or feedback.
+          </p>
         </div>
       </section>
 
       {/* Contact Information */}
-      <section className="flex-grow py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-slate-50 p-8 md:p-12 rounded-xl shadow-lg">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Column - Contact Info */}
-              <div>
-                <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Email Us</h2>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 flex-shrink-0 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm text-slate-500 mb-1">Email Address</p>
-                      <a 
-                        href="mailto:info@vayns.com" 
-                        className="text-xl font-medium text-blue-600 hover:text-blue-700 transition duration-300"
-                      >
-                        info@vayns.com
-                      </a>
-                    </div>
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Contact Info */}
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-8">Get in Touch</h2>
+              
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-500 mb-1">Email Address</p>
+                    <a 
+                      href="mailto:info@vayns.com" 
+                      className="text-xl font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      info@vayns.com
+                    </a>
+                    <p className="text-slate-600 mt-1">We typically respond within 24-48 hours</p>
                   </div>
                 </div>
-                
-                <div className="prose prose-lg">
-                  <p>
-                    Our team typically responds within 24-48 hours during business days. 
-                    We look forward to connecting with you!
-                  </p>
+
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <MessageCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-500 mb-1">Response Time</p>
+                    <p className="text-lg font-semibold text-slate-900">24-48 Hours</p>
+                    <p className="text-slate-600 mt-1">During business days</p>
+                  </div>
                 </div>
               </div>
+
+              <div className="mt-8 p-6 bg-white rounded-xl border border-slate-200">
+                <h3 className="text-lg font-semibold text-slate-900 mb-3">What we can help with:</h3>
+                <ul className="space-y-2 text-slate-600">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                    Calculator suggestions and feature requests
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                    Technical support and troubleshooting
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                    Feedback and improvement ideas
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
+                    Partnership and collaboration opportunities
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Right Column - Decorative Element */}
+            <div className="bg-blue-600 rounded-2xl p-8 text-white text-center">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <MessageCircle className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
+              <p className="text-lg opacity-90 mb-8">We value your feedback and inquiries</p>
               
-              {/* Right Column - Decorative Element */}
-              <div className="hidden md:block relative h-64">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 opacity-80 rounded-xl"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white text-center p-8">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                    </svg>
-                    <h3 className="text-2xl font-bold mb-2">Get in Touch</h3>
-                    <p>We value your feedback and inquiries</p>
-                  </div>
+              <div className="grid grid-cols-2 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-bold mb-2">24h</div>
+                  <div className="text-sm opacity-90">Response Time</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold mb-2">100%</div>
+                  <div className="text-sm opacity-90">Satisfaction</div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      
+      {/* Contact Categories */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">How Can We Help?</h2>
           
-          {/* Additional Contact Information */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-              <div className="w-12 h-12 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+              <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white text-xl">+</span>
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Suggestions</h3>
-              <p className="text-slate-600">Have ideas for new calculators or features? We'd love to hear!</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-4">Suggestions</h3>
+              <p className="text-slate-600 mb-4">
+                Have ideas for new calculators or features? We'd love to hear your suggestions and implement them to improve our platform.
+              </p>
+              <a href="mailto:info@vayns.com?subject=Suggestion" className="text-green-600 font-medium hover:text-green-700 transition-colors">
+                Send Suggestion →
+              </a>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-              <div className="w-12 h-12 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+              <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                <MessageCircle className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Support</h3>
-              <p className="text-slate-600">Need help using our calculators? Our team is here to assist you.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-4">Support</h3>
+              <p className="text-slate-600 mb-4">
+                Need help using our calculators? Our expert team is here to assist you with any technical issues or questions.
+              </p>
+              <a href="mailto:info@vayns.com?subject=Support" className="text-purple-600 font-medium hover:text-purple-700 transition-colors">
+                Get Support →
+              </a>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
-              <div className="w-12 h-12 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                </svg>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+              <div className="w-12 h-12 bg-yellow-600 rounded-lg flex items-center justify-center mb-4">
+                <span className="text-white text-xl">★</span>
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Feedback</h3>
-              <p className="text-slate-600">Your input helps us improve. Share your experience with us.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-4">Feedback</h3>
+              <p className="text-slate-600 mb-4">
+                Your input helps us improve. Share your experience with us and help us make our calculators even better.
+              </p>
+              <a href="mailto:info@vayns.com?subject=Feedback" className="text-yellow-600 font-medium hover:text-yellow-700 transition-colors">
+                Share Feedback →
+              </a>
             </div>
           </div>
         </div>
       </section>
       
       {/* Call to Action */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-slate-100">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4 text-slate-900">Ready to explore our calculators?</h2>
-          <p className="text-lg mb-8 text-slate-600">Discover our comprehensive suite of calculation tools</p>
-          <Link href="/" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition duration-300">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to explore our calculators?</h2>
+          <p className="text-lg text-blue-100 mb-8">Discover our comprehensive suite of calculation tools</p>
+          <Link href="/" className="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-slate-50 transition-colors">
             Back to Home
           </Link>
         </div>

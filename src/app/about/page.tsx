@@ -3,30 +3,26 @@ import Link from 'next/link';
 
 export default function AboutPage() {
   return (
-    <div className="bg-gradient-to-b from-white to-slate-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10">
-          <div className="absolute inset-0 bg-blue-100 transform -skew-y-6"></div>
-          <div className="absolute right-0 bottom-0 w-2/3 h-1/3 bg-blue-200 rounded-tl-3xl"></div>
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-4">About <span className="text-blue-600">Main Calculators</span></h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Providing powerful and intuitive calculation tools for everyone, from students to professionals since 2023.
-            </p>
-          </div>
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
+            About <span className="text-blue-600">Main Calculators</span>
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Providing powerful and intuitive calculation tools for everyone, from students to professionals since 2023.
+          </p>
         </div>
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-6">Our Story</h2>
-              <div className="prose prose-lg">
+              <div className="space-y-4 text-slate-600">
                 <p>
                   Main Calculators was founded with a simple yet powerful mission: to make complex calculations accessible 
                   to everyone. What began as a small project has grown into a comprehensive platform offering hundreds 
@@ -43,18 +39,23 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-80"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-white text-center p-8">
-                  <span className="block text-5xl font-bold mb-4">2023</span>
-                  <p className="text-xl">Year Founded</p>
-                  <div className="h-1 w-20 bg-white mx-auto my-6"></div>
-                  <span className="block text-5xl font-bold mb-4">500+</span>
-                  <p className="text-xl">Calculators</p>
-                  <div className="h-1 w-20 bg-white mx-auto my-6"></div>
-                  <span className="block text-5xl font-bold">50k+</span>
-                  <p className="text-xl">Monthly Users</p>
+            <div className="bg-blue-600 rounded-2xl p-8 text-white text-center">
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <div className="text-3xl font-bold mb-2">2023</div>
+                  <div className="text-sm opacity-90">Year Founded</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold mb-2">500+</div>
+                  <div className="text-sm opacity-90">Calculators</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold mb-2">50k+</div>
+                  <div className="text-sm opacity-90">Monthly Users</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold mb-2">99.9%</div>
+                  <div className="text-sm opacity-90">Uptime</div>
                 </div>
               </div>
             </div>
@@ -63,22 +64,17 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Mission & Vision</h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Empowering users with the tools they need to make informed decisions and solve complex problems.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Our Mission</h3>
               <p className="text-slate-600">
                 To provide accurate, accessible, and easy-to-use calculation tools that empower individuals and businesses to make 
@@ -87,12 +83,7 @@ export default function AboutPage() {
               </p>
             </div>
             
-            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
               <h3 className="text-2xl font-bold text-slate-900 mb-4">Our Vision</h3>
               <p className="text-slate-600">
                 To become the world's leading platform for online calculators, trusted by millions for its accuracy, 
@@ -105,34 +96,29 @@ export default function AboutPage() {
       </section>
 
       {/* What We Offer */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">What We Offer</h2>
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">What We Offer</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <div key={index} className="bg-slate-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
-                <div className={`h-2 ${category.color}`}></div>
-                <div className="p-6">
-                  <div className={`w-12 h-12 rounded-full ${category.bgColor} flex items-center justify-center mb-4`}>
-                    <span className="text-2xl">{category.icon}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{category.title}</h3>
-                  <p className="text-slate-600 mb-4">{category.description}</p>
-                  <ul className="space-y-2 mb-6">
-                    {category.examples.map((example, i) => (
-                      <li key={i} className="flex items-center">
-                        <svg className="h-4 w-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        <span>{example}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={category.link} className="text-blue-600 font-medium hover:text-blue-800 transition duration-300">
-                    View all {category.title.toLowerCase()} →
-                  </Link>
+              <div key={index} className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                <div className={`w-12 h-12 rounded-lg ${category.bgColor} flex items-center justify-center mb-4`}>
+                  <span className="text-xl">{category.icon}</span>
                 </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{category.title}</h3>
+                <p className="text-slate-600 mb-4">{category.description}</p>
+                <ul className="space-y-2 mb-4">
+                  {category.examples.map((example, i) => (
+                    <li key={i} className="flex items-center text-sm text-slate-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></div>
+                      {example}
+                    </li>
+                  ))}
+                </ul>
+                <Link href={category.link} className="text-blue-600 font-medium hover:text-blue-800 transition-colors">
+                  View all {category.title.toLowerCase()} →
+                </Link>
               </div>
             ))}
           </div>
@@ -140,18 +126,18 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Our Core Values</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
-                <div className={`w-12 h-12 rounded-full ${value.bgColor} flex items-center justify-center mb-4`}>
-                  <span className="text-white text-xl">{value.icon}</span>
+              <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
+                <div className={`w-12 h-12 rounded-lg ${value.bgColor} flex items-center justify-center mb-4 mx-auto`}>
+                  <span className="text-white text-lg">{value.icon}</span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">{value.title}</h3>
-                <p className="text-slate-600">{value.description}</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{value.title}</h3>
+                <p className="text-slate-600 text-sm">{value.description}</p>
               </div>
             ))}
           </div>
@@ -159,23 +145,23 @@ export default function AboutPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Frequently Asked Questions</h2>
           
-          <div className="space-y-6">
+          <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="border border-slate-200 rounded-lg overflow-hidden hover:border-blue-200 transition duration-300">
-                <h3 className="text-xl font-medium p-4 bg-slate-50 border-b border-slate-200">{faq.question}</h3>
-                <div className="p-4 prose">
-                  <p>{faq.answer}</p>
+              <div key={index} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <h3 className="text-lg font-semibold p-6 bg-slate-50 border-b border-slate-200">{faq.question}</h3>
+                <div className="p-6">
+                  <p className="text-slate-600">{faq.answer}</p>
                 </div>
               </div>
             ))}
           </div>
           
           <div className="mt-12 text-center">
-            <Link href="/contact" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition duration-300">
+            <Link href="/contact" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
               Have more questions? Contact us
             </Link>
           </div>
@@ -183,11 +169,11 @@ export default function AboutPage() {
       </section>
       
       {/* Call to Action */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-500 to-blue-700 text-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to start calculating?</h2>
-          <p className="text-xl mb-8 opacity-90">Explore our wide range of calculators and make better decisions today.</p>
-          <Link href="/" className="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 transition duration-300 shadow-lg">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to start calculating?</h2>
+          <p className="text-lg text-blue-100 mb-8">Explore our wide range of calculators and make better decisions today.</p>
+          <Link href="/" className="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-slate-50 transition-colors">
             Explore Our Calculators
           </Link>
         </div>
@@ -202,7 +188,6 @@ const categories = [
     title: "Finance Calculators",
     description: "Plan your financial future with our comprehensive suite of financial calculators.",
     icon: "💰",
-    color: "bg-green-500",
     bgColor: "bg-green-100 text-green-600",
     examples: ["Mortgage Calculator", "Investment Calculator", "Compound Interest Calculator", "Loan Calculator"],
     link: "/"
@@ -211,7 +196,6 @@ const categories = [
     title: "Health & Fitness",
     description: "Monitor and improve your health with our precision health and fitness calculators.",
     icon: "💪",
-    color: "bg-blue-500",
     bgColor: "bg-blue-100 text-blue-600",
     examples: ["BMI Calculator", "Calorie Calculator", "Body Fat Calculator", "Macro Calculator"],
     link: "/"
@@ -220,7 +204,6 @@ const categories = [
     title: "Math & Science",
     description: "Solve complex mathematical and scientific problems with ease.",
     icon: "🧮",
-    color: "bg-purple-500",
     bgColor: "bg-purple-100 text-purple-600",
     examples: ["Scientific Calculator", "Statistics Calculator", "Unit Converter", "Probability Calculator"],
     link: "/"
