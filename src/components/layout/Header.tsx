@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { SearchBar } from '@/components/SearchBar';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,11 +22,6 @@ export function Header() {
             </Link>
           </div>
           
-          {/* Search Bar - Hidden on mobile, shown on tablet and up */}
-          <div className="hidden md:block flex-1 max-w-md mx-4">
-            <SearchBar />
-          </div>
-
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-gray-600 hover:text-gray-900">
@@ -59,11 +53,6 @@ export function Header() {
         {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            {/* Search Bar - Mobile */}
-            <div className="px-2 pt-2 pb-3">
-              <SearchBar className="w-full" />
-            </div>
-            
             {/* Mobile Navigation */}
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
