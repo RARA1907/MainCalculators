@@ -94,10 +94,7 @@ export default function AhrefsKeywordGenerator() {
               <p className="text-slate-600 mt-1">Generate high-performing keywords for your SEO strategy</p>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-sm text-slate-500">
-                <TrendingUp className="w-4 h-4" />
-                <span>Powered by Gemini AI</span>
-              </div>
+            
             </div>
           </div>
         </div>

@@ -287,10 +287,7 @@ Effective Tax Rate,${results.effectiveTaxRate.toFixed(1)}%`
               <p className="text-slate-600 mt-1">Calculate your take-home pay with AI-powered financial analysis</p>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-sm text-slate-500">
-                <Lightbulb className="w-4 h-4" />
-                <span>Powered by Gemini AI</span>
-              </div>
+            
             </div>
           </div>
         </div>

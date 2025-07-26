@@ -125,10 +125,7 @@ export default function AIKeywordPlanner() {
               <p className="text-slate-600 mt-1">Create comprehensive keyword strategies with AI-powered planning</p>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2 text-sm text-slate-500">
-                <Lightbulb className="w-4 h-4" />
-                <span>Powered by Gemini AI</span>
-              </div>
+           
             </div>
           </div>
         </div>
