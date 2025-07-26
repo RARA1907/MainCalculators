@@ -62,8 +62,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.17",
     "daisyui": "^4.6.2",
     "eslint": "^8.56.0",
@@ -75,8 +75,5 @@
   "resolutions": {
     "react-remove-scroll": "^2.5.7",
     "date-fns": "^2.30.0"
-  },
-  "overrides": {
-    "@next/swc-darwin-arm64": "14.0.4"
   }
 }
