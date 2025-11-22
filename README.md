@@ -1,6 +1,7 @@
 # MainCalculators.com
 
 A modern financial calculator hub built with Next.js 14, TypeScript, and Tailwind CSS.
+<img width="1393" height="793" alt="Screenshot 2025-11-22 at 15 04 27 1" src="https://github.com/user-attachments/assets/f1b87c24-5af3-4c32-8264-f343df8165c1" />
 
 ## Features
 
