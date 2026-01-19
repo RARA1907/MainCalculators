@@ -78,8 +78,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme="light">
-      <body className={inter.className}>
+    <html lang="en" data-theme="light" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
         <AdSenseLoader />
         <div className="relative min-h-screen">
           <Layout>
